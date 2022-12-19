@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Relational data and databases (7) | Portfolio</title>
+  <meta name="description" content="Relational data and databases (7) | Portfolio" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Relational data and databases (7) | Portfolio" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Relational data and databases (7) | Portfolio" />
+  
+  
+  
+
+<meta name="author" content="Coco Niemel" />
+
+
+<meta name="date" content="2022-12-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-groupproject-5.html"/>
+<link rel="next" href="r-packages-8.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Curriculum Vitae</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#professional-experience"><i class="fa fa-check"></i>Professional Experience</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#skills"><i class="fa fa-check"></i>Skills</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#languages"><i class="fa fa-check"></i>Languages</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html"><i class="fa fa-check"></i>Reproducible Research (1)</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#the-analyzation-of-a-file"><i class="fa fa-check"></i>The analyzation of a file</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#scoring-reproducibility"><i class="fa fa-check"></i>Scoring reproducibility</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#usage-of-other-peoples-codes"><i class="fa fa-check"></i>Usage of other peoples codes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-management-2.html"><a href="data-management-2.html"><i class="fa fa-check"></i>Data management (2)</a></li>
+<li class="chapter" data-level="" data-path="free-future-assignment-3.html"><a href="free-future-assignment-3.html"><i class="fa fa-check"></i>Free future assignment (3)</a></li>
+<li class="chapter" data-level="" data-path="introduction-groupproject-5.html"><a href="introduction-groupproject-5.html"><i class="fa fa-check"></i>Introduction groupproject (5)</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-groupproject-5.html"><a href="introduction-groupproject-5.html#ontox"><i class="fa fa-check"></i>ONTOX</a></li>
+<li class="chapter" data-level="" data-path="introduction-groupproject-5.html"><a href="introduction-groupproject-5.html#our-addition"><i class="fa fa-check"></i>Our addition</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="relational-data-and-databases-7.html"><a href="relational-data-and-databases-7.html"><i class="fa fa-check"></i>Relational data and databases (7)</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="relational-data-and-databases-7.html"><a href="relational-data-and-databases-7.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-packages-8.html"><a href="r-packages-8.html"><i class="fa fa-check"></i>R packages (8)</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters-9.html"><a href="rmarkdown-parameters-9.html"><i class="fa fa-check"></i>Rmarkdown parameters (9)</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Portfolio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="relational-data-and-databases-7" class="section level1 unnumbered hasAnchor">
+<h1>Relational data and databases (7)<a href="relational-data-and-databases-7.html#relational-data-and-databases-7" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-1" class="section level2 hasAnchor" number="0.1">
+<h2><span class="header-section-number">0.1</span> Introduction<a href="relational-data-and-databases-7.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.</p>
+<p>Starting by creating three data frames out of files and making them tidy.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="relational-data-and-databases-7.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb30-2"><a href="relational-data-and-databases-7.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="relational-data-and-databases-7.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The flu</span></span>
+<span id="cb31-2"><a href="relational-data-and-databases-7.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
+<span id="cb31-3"><a href="relational-data-and-databases-7.html#cb31-3" aria-hidden="true" tabindex="-1"></a>flu_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/flu_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
+<span id="cb31-4"><a href="relational-data-and-databases-7.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Make tidy</span></span>
+<span id="cb31-5"><a href="relational-data-and-databases-7.html#cb31-5" aria-hidden="true" tabindex="-1"></a>flu_df_tidy <span class="ot">&lt;-</span> flu_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(flu_df)), <span class="at">names_to =</span> <span class="st">&#39;country&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;cases&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb31-6"><a href="relational-data-and-databases-7.html#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="relational-data-and-databases-7.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Dengue</span></span>
+<span id="cb31-8"><a href="relational-data-and-databases-7.html#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
+<span id="cb31-9"><a href="relational-data-and-databases-7.html#cb31-9" aria-hidden="true" tabindex="-1"></a>dengue_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/dengue_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
+<span id="cb31-10"><a href="relational-data-and-databases-7.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Make tidy</span></span>
+<span id="cb31-11"><a href="relational-data-and-databases-7.html#cb31-11" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy <span class="ot">&lt;-</span> dengue_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(dengue_df)), <span class="at">names_to =</span> <span class="st">&#39;country&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;cases&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb31-12"><a href="relational-data-and-databases-7.html#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="relational-data-and-databases-7.html#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Gapminder</span></span>
+<span id="cb31-14"><a href="relational-data-and-databases-7.html#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="do">## The dataframe is part of the dslabs package and therefore does not need to be imported.</span></span>
+<span id="cb31-15"><a href="relational-data-and-databases-7.html#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="do">## The dataframe is already tidy.</span></span></code></pre></div>
+<p>An important part of relational data is enabling comparison across different data frames. In this case we will be looking at the country and date, but in the data frames we use there are a couple of things that needs to be adjusted.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="relational-data-and-databases-7.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column &#39;country&#39;</span></span>
+<span id="cb32-2"><a href="relational-data-and-databases-7.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Check types.</span></span>
+<span id="cb32-3"><a href="relational-data-and-databases-7.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>country) <span class="co"># Character</span></span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="relational-data-and-databases-7.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>country) <span class="co"># Character</span></span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="relational-data-and-databases-7.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gapminder<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="relational-data-and-databases-7.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Change all types into factor</span></span>
+<span id="cb38-2"><a href="relational-data-and-databases-7.html#cb38-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(flu_df_tidy<span class="sc">$</span>country)</span>
+<span id="cb38-3"><a href="relational-data-and-databases-7.html#cb38-3" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dengue_df_tidy<span class="sc">$</span>country)</span>
+<span id="cb38-4"><a href="relational-data-and-databases-7.html#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="relational-data-and-databases-7.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check if it worked</span></span>
+<span id="cb38-6"><a href="relational-data-and-databases-7.html#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="relational-data-and-databases-7.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="relational-data-and-databases-7.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">## It worked!</span></span>
+<span id="cb42-2"><a href="relational-data-and-databases-7.html#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="relational-data-and-databases-7.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Column &#39;date&#39;</span></span>
+<span id="cb42-4"><a href="relational-data-and-databases-7.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Check types.</span></span>
+<span id="cb42-5"><a href="relational-data-and-databases-7.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>Date) <span class="co"># Date</span></span></code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="relational-data-and-databases-7.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>Date) <span class="co"># Date</span></span></code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="relational-data-and-databases-7.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gapminder<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="relational-data-and-databases-7.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Because flu and dengue are specified to day instead of the year at gapminder, a &#39;year&#39; column needs to be added and changed into the integer type to create similarity.</span></span>
+<span id="cb48-2"><a href="relational-data-and-databases-7.html#cb48-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy <span class="ot">&lt;-</span> flu_df_tidy <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(flu_df_tidy<span class="sc">$</span>Date, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">4</span>))</span>
+<span id="cb48-3"><a href="relational-data-and-databases-7.html#cb48-3" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy <span class="ot">&lt;-</span> dengue_df_tidy <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(dengue_df_tidy<span class="sc">$</span>Date, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">4</span>))</span>
+<span id="cb48-4"><a href="relational-data-and-databases-7.html#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="relational-data-and-databases-7.html#cb48-5" aria-hidden="true" tabindex="-1"></a>flu_df_tidy<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(flu_df_tidy<span class="sc">$</span>year)</span>
+<span id="cb48-6"><a href="relational-data-and-databases-7.html#cb48-6" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(dengue_df_tidy<span class="sc">$</span>year)</span>
+<span id="cb48-7"><a href="relational-data-and-databases-7.html#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="relational-data-and-databases-7.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Check if it worked.</span></span>
+<span id="cb48-9"><a href="relational-data-and-databases-7.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="relational-data-and-databases-7.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="relational-data-and-databases-7.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## It worked!</span></span></code></pre></div>
+<p>The data frames are now similar and can be stored into csv and rds files.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="relational-data-and-databases-7.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export data frames as csv</span></span>
+<span id="cb53-2"><a href="relational-data-and-databases-7.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(flu_df_tidy, <span class="st">&quot;files/flu.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb53-3"><a href="relational-data-and-databases-7.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dengue_df_tidy, <span class="st">&quot;files/dengue.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb53-4"><a href="relational-data-and-databases-7.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(gapminder, <span class="st">&quot;files/gapminder.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb53-5"><a href="relational-data-and-databases-7.html#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="relational-data-and-databases-7.html#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Export data frames as rds</span></span>
+<span id="cb53-7"><a href="relational-data-and-databases-7.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(flu_df_tidy, <span class="at">file=</span><span class="st">&quot;files/flu.rds&quot;</span>)</span>
+<span id="cb53-8"><a href="relational-data-and-databases-7.html#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dengue_df_tidy, <span class="at">file=</span><span class="st">&quot;files/dengue.rds&quot;</span>)</span>
+<span id="cb53-9"><a href="relational-data-and-databases-7.html#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(gapminder, <span class="at">file=</span><span class="st">&quot;files/gapminder.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="relational-data-and-databases-7.html#cb54-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(), </span>
+<span id="cb54-2"><a href="relational-data-and-databases-7.html#cb54-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;workflowsdb&quot;</span>, </span>
+<span id="cb54-3"><a href="relational-data-and-databases-7.html#cb54-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span><span class="st">&quot;localhost&quot;</span>, </span>
+<span id="cb54-4"><a href="relational-data-and-databases-7.html#cb54-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="st">&quot;5432&quot;</span>, </span>
+<span id="cb54-5"><a href="relational-data-and-databases-7.html#cb54-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user=</span><span class="st">&quot;postgres&quot;</span>, </span>
+<span id="cb54-6"><a href="relational-data-and-databases-7.html#cb54-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span><span class="st">&quot;Marlie99.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="relational-data-and-databases-7.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, gapminder)</span>
+<span id="cb55-2"><a href="relational-data-and-databases-7.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;flu&quot;</span>, flu_df_tidy)</span>
+<span id="cb55-3"><a href="relational-data-and-databases-7.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;dengue&quot;</span>, dengue_df_tidy)</span></code></pre></div>
+<p>Inspect the contents of the tables with SQL (in DBeaver) and save the SQL script.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-groupproject-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-packages-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

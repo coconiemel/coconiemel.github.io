@@ -1,0 +1,108 @@
+# Relational data and databases (7) {-}
+
+## Introduction
+
+This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.
+
+Starting by creating three data frames out of files and making them tidy.
+
+```{r libraries}
+
+library(dslabs)
+library(tidyverse)
+
+```
+
+```{r import and tidy}
+
+# The flu
+## Import, first 11 lines are metadata
+flu_df <- read_csv("files/flu_data.csv", skip = 11)
+## Make tidy
+flu_df_tidy <- flu_df %>% pivot_longer(cols = c(2:ncol(flu_df)), names_to = 'country', values_to = 'cases') %>% na.omit()
+
+# Dengue
+## Import, first 11 lines are metadata
+dengue_df <- read_csv("files/dengue_data.csv", skip = 11)
+## Make tidy
+dengue_df_tidy <- dengue_df %>% pivot_longer(cols = c(2:ncol(dengue_df)), names_to = 'country', values_to = 'cases') %>% na.omit()
+
+# Gapminder
+## The dataframe is part of the dslabs package and therefore does not need to be imported.
+## The dataframe is already tidy.
+
+```
+
+An important part of relational data is enabling comparison across different data frames. In this case we will be looking at the country and date, but in the data frames we use there are a couple of things that needs to be adjusted.
+
+```{r adjusting}
+
+# Column 'country'
+## Check types.
+class(flu_df_tidy$country) # Character
+class(dengue_df_tidy$country) # Character
+class(gapminder$country) # Factor
+
+## Change all types into factor
+flu_df_tidy$country <- as.factor(flu_df_tidy$country)
+dengue_df_tidy$country <- as.factor(dengue_df_tidy$country)
+
+## Check if it worked
+class(flu_df_tidy$country) # Factor
+class(dengue_df_tidy$country) # Factor
+## It worked!
+
+# Column 'date'
+## Check types.
+class(flu_df_tidy$Date) # Date
+class(dengue_df_tidy$Date) # Date
+class(gapminder$year) # Integer
+
+## Because flu and dengue are specified to day instead of the year at gapminder, a 'year' column needs to be added and changed into the integer type to create similarity.
+flu_df_tidy <- flu_df_tidy %>% mutate(year = substr(flu_df_tidy$Date, start=1, stop=4))
+dengue_df_tidy <- dengue_df_tidy %>% mutate(year = substr(dengue_df_tidy$Date, start=1, stop=4))
+
+flu_df_tidy$year <- as.integer(flu_df_tidy$year)
+dengue_df_tidy$year <- as.integer(dengue_df_tidy$year)
+
+## Check if it worked.
+class(flu_df_tidy$year) # Integer
+class(dengue_df_tidy$year) # Integer
+## It worked!
+
+```
+
+The data frames are now similar and can be stored into csv and rds files.
+
+```{r export}
+
+# Export data frames as csv
+write.csv(flu_df_tidy, "files/flu.csv", row.names=FALSE)
+write.csv(dengue_df_tidy, "files/dengue.csv", row.names=FALSE)
+write.csv(gapminder, "files/gapminder.csv", row.names=FALSE)
+
+# Export data frames as rds
+saveRDS(flu_df_tidy, file="files/flu.rds")
+saveRDS(dengue_df_tidy, file="files/dengue.rds")
+saveRDS(gapminder, file="files/gapminder.rds")
+
+```
+
+```{r connecting DBeaver, eval = FALSE}
+con <- dbConnect(RPostgres::Postgres(), 
+                 dbname = "workflowsdb", 
+                 host="localhost", 
+                 port="5432", 
+                 user="postgres", 
+                 password="Marlie99.")
+
+```
+
+```{r insert in DBeaver, eval = FALSE}
+dbWriteTable(con, "gapminder", gapminder)
+dbWriteTable(con, "flu", flu_df_tidy)
+dbWriteTable(con, "dengue", dengue_df_tidy)
+```
+
+Inspect the contents of the tables with SQL (in DBeaver) and save the SQL script.
+

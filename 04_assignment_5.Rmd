@@ -1,0 +1,18 @@
+# Introduction groupproject (5) {-}
+
+## ONTOX {-}
+
+The ONTOX Consortium is a research initiative dedicated to the study and application of ontological technology to develop solutions for real-world problems. The consortium is made up of leading experts in ontology and semantic technology from around the world. The research team is focused on developing ontology-based applications to address problems in the areas of health, environment, and security. Using ontology-based frameworks, the consortium is developing innovative solutions for data integration and data sharing, as well as for managing and exploiting huge amounts of data and actively exploring the use of ontology-based methods for decision support and artificial intelligence applications. 
+
+The European Commission is investing in this concept and has recently launched the "ONTOX" project, which is focused on providing a functional and sustainable solution for assessing the human risk of chemicals without animal testing. The project will create new approach methodologies (NAMs) which use computational systems based on artificial intelligence and are fed by biological, toxicological, chemical and kinetic data. These NAMs will be able to predict systemic repeated dose toxicity effects and, when combined with tailored exposure assessment, will allow for human risk assessment. ONTOX is expected to have a long-lasting effect, reinforcing Europe's role in the development and application of animal-free methods for risk assessment of chemicals [@vinkenSaferChemicalsUsing2021].
+
+As they state themselves: “The vision of the ONTOX consortium is to provide a functional and sustainable solution for advancing human risk assessment of chemicals without the use of animals in line with the principles of 21st century toxicity testing and next generation risk assessment.” [@ONTOXProjecta]
+
+One of the ways to achieve this is via the Phymdos app, created by D. Roodzant for University of Applied Sciences Utrecht. The app collects and combines existing data for risk assessment using the SysRev platform, this platform helps with data curation, SERs (Systematic Evidence Reviews), and managed reviews. It has been used to create thousands of projects, covering a wide range of disciplines whom are all publicly accessible [@bozadaSysrevFAIRPlatform2021]. In this case, the platform extracts metabolic pathways and compound interactions from data. The data is then formatted into an SBtab file which can be used to create visualisations or other formats such as SBML.
+
+SBtab is a data format designed for Systems Biology that builds from the structure of spreadsheets. It defines conventions for table structure, controlled vocabularies, and semantic annotations to support automated data integration and model building. There are predefined table types for experimental data and SBML-compliant models, and the format can be easily customized to include new types of data [@lubitzSBtabFlexibleTable2016].
+
+## Our addition {-}
+
+Our goal is to add to the function off the Phymdos app. The app now only allows to extract and analyze from one single tab, but to apply this process to a larger scope, it should be combining data from multiple sources instead of just focusing on one. So, the assignment we have received from Marc Teunis (The ONTOX project) is to retrieve the SBtab data from multiple articles and to merge these multiple files into one new file. Additionally, we must create a graph to visualize the data and must convert de SBtab file to a SBML format. This will all be combined in a R package [@ProjectONTOXData].
+
