@@ -11,6 +11,7 @@ Starting by creating three data frames out of files and making them tidy.
 library(dslabs)
 library(tidyverse)
 library(DBI)
+library(dplyr)
 
 ```
 
@@ -89,7 +90,7 @@ saveRDS(gapminder, file="files/gapminder.rds")
 
 ```
 
-The tables were inserted into a database in DBeaver for inspection.
+DBeaver and R were connected (my real password is hidden) and the tables were inserted into the 'workflowsdb' database in DBeaver for inspection.
 
 ```{r connecting DBeaver, eval = FALSE}
 con <- dbConnect(RPostgres::Postgres(), 
@@ -97,7 +98,7 @@ con <- dbConnect(RPostgres::Postgres(),
                  host="localhost", 
                  port="5432", 
                  user="postgres", 
-                 password="Marlie99.")
+                 password="password")
 
 ```
 
@@ -108,15 +109,41 @@ dbWriteTable(con, "dengue", dengue_df_tidy)
 ```
 
 Now that the tables are imported, i checked a couple of things.
-Dengue has no "NULL" variables in country and year, there are 6263 cases in the data set and the average amount of cases is 0.14. The country with the least amount of cases is Argentina and the country with the most is Venezuela.
-The Flu has no "NULL" variables in country and year, there are 17266 cases in the data set and the average amount of cases is 8.74. The country with the least amount of cases is Argentina and the country with the most is Uruguay.
+Dengue has no "NULL" variables in country and year, 6263 cases in the data set and the average amount of cases is 0.14 with a standard deviation of 0.14. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Venezuela with 1 case.
+The flu has no "NULL variables in country and year, 17266 cases in the data set and the average amount of cases is 473.74 with a standard deviation of 768.95. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Uruguay 10555 cases.
+
 Gapminder had no "NULL" variables in country and year.
 
-The information is obtained by the following SQL code in DBeaver:
+The information is obtained by the following R and SQL code:
+   
+```{r data inspection}
+
+# Dengue
+
+min(dengue_df_tidy$cases) # 0
+max(dengue_df_tidy$cases) # 1
+mean(dengue_df_tidy$cases) # 0.14
+sd(dengue_df_tidy$cases) # 0.14
+
+# Flu
+
+min(flu_df_tidy$cases) # 0
+max(flu_df_tidy$cases) # 10555
+mean(flu_df_tidy$cases) # 473.74
+sd(flu_df_tidy$cases) # 768.95
+
+```
 
 <img src="images/SQL_inspection.jpg"
      width="300" 
      height="800" />
-     
-     
-     Inspect the contents of the tables with dplyr (in R) and save a RMarkdown showing what you are doing.
+
+Figure 2: SQL code of data inspection.   
+
+
+
+
+Load the gapminder data in R and change the dataframe in such as way that you could join it to dengue and flue.
+
+Save this clean gapminder data in the “workflowsdb” database
+
