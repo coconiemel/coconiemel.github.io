@@ -23,5 +23,5 @@ An example of applying the Guerrilla analytics framework is linked below. This s
      width="300" 
      height="600" />
      
-Figure 2: Folder tree DAUR2.
+Figure 1: Folder tree DAUR2.
 
