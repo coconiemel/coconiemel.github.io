@@ -140,10 +140,30 @@ sd(flu_df_tidy$cases) # 768.95
 
 Figure 2: SQL code of data inspection.   
 
+For a good analysis of the different, but related data, they need to be joined together in one table with the important columns.
+
+<img src="images/SQL_....jpg"
+     width="300" 
+     height="600" />
+     
+Figure 3: SQL code of left-join.
+
+The analysis is done by despriptive statistics. First is the Shapiro-wilk to check for normal data, this was ... the case. The next step is an ANOVA, because we deal with 3 sets, this lead to ... . Finally the post-hoc tests, which concluded that ... .
+
+```{r despriptive statistics}
 
 
+```
 
-Load the gapminder data in R and change the dataframe in such as way that you could join it to dengue and flue.
+A good analysis contains graphs to bring things in vision.
 
-Save this clean gapminder data in the “workflowsdb” database
+```{r visualisation}
+
+
+```
+
+- Load gapminder data
+- Join and create table
+- Descriptive statistics
+- 3 visualisations
 
