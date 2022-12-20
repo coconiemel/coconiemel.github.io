@@ -12,6 +12,7 @@ library(dslabs)
 library(tidyverse)
 library(DBI)
 library(dplyr)
+library(ggplot2)
 
 ```
 
