@@ -23,7 +23,7 @@
 <meta name="author" content="Coco Niemel" />
 
 
-<meta name="date" content="2022-12-19" />
+<meta name="date" content="2022-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,83 +206,117 @@ div.csl-indent {
 <h2><span class="header-section-number">0.1</span> Introduction<a href="relational-data-and-databases-7.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.</p>
 <p>Starting by creating three data frames out of files and making them tidy.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="relational-data-and-databases-7.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
-<span id="cb30-2"><a href="relational-data-and-databases-7.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="relational-data-and-databases-7.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The flu</span></span>
-<span id="cb31-2"><a href="relational-data-and-databases-7.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
-<span id="cb31-3"><a href="relational-data-and-databases-7.html#cb31-3" aria-hidden="true" tabindex="-1"></a>flu_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/flu_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
-<span id="cb31-4"><a href="relational-data-and-databases-7.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Make tidy</span></span>
-<span id="cb31-5"><a href="relational-data-and-databases-7.html#cb31-5" aria-hidden="true" tabindex="-1"></a>flu_df_tidy <span class="ot">&lt;-</span> flu_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(flu_df)), <span class="at">names_to =</span> <span class="st">&#39;country&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;cases&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
-<span id="cb31-6"><a href="relational-data-and-databases-7.html#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="relational-data-and-databases-7.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Dengue</span></span>
-<span id="cb31-8"><a href="relational-data-and-databases-7.html#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
-<span id="cb31-9"><a href="relational-data-and-databases-7.html#cb31-9" aria-hidden="true" tabindex="-1"></a>dengue_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/dengue_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
-<span id="cb31-10"><a href="relational-data-and-databases-7.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Make tidy</span></span>
-<span id="cb31-11"><a href="relational-data-and-databases-7.html#cb31-11" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy <span class="ot">&lt;-</span> dengue_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(dengue_df)), <span class="at">names_to =</span> <span class="st">&#39;country&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;cases&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
-<span id="cb31-12"><a href="relational-data-and-databases-7.html#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-13"><a href="relational-data-and-databases-7.html#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Gapminder</span></span>
-<span id="cb31-14"><a href="relational-data-and-databases-7.html#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="do">## The dataframe is part of the dslabs package and therefore does not need to be imported.</span></span>
-<span id="cb31-15"><a href="relational-data-and-databases-7.html#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="do">## The dataframe is already tidy.</span></span></code></pre></div>
-<p>An important part of relational data is enabling comparison across different data frames. In this case we will be looking at the country and date, but in the data frames we use there are a couple of things that needs to be adjusted.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="relational-data-and-databases-7.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column &#39;country&#39;</span></span>
-<span id="cb32-2"><a href="relational-data-and-databases-7.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Check types.</span></span>
-<span id="cb32-3"><a href="relational-data-and-databases-7.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>country) <span class="co"># Character</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="relational-data-and-databases-7.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb1-2"><a href="relational-data-and-databases-7.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="relational-data-and-databases-7.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="relational-data-and-databases-7.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The flu</span></span>
+<span id="cb4-2"><a href="relational-data-and-databases-7.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
+<span id="cb4-3"><a href="relational-data-and-databases-7.html#cb4-3" aria-hidden="true" tabindex="-1"></a>flu_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/flu_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span></code></pre></div>
+<pre><code>## Rows: 659 Columns: 30
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl  (29): Argentina, Australia, Austria, Belgium, Bolivia, Brazil, Bulgaria...
+## date  (1): Date
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="relational-data-and-databases-7.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Make tidy</span></span>
+<span id="cb6-2"><a href="relational-data-and-databases-7.html#cb6-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy <span class="ot">&lt;-</span> flu_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(flu_df)), <span class="at">names_to =</span> <span class="st">&#39;country&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;cases&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb6-3"><a href="relational-data-and-databases-7.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="relational-data-and-databases-7.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dengue</span></span>
+<span id="cb6-5"><a href="relational-data-and-databases-7.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
+<span id="cb6-6"><a href="relational-data-and-databases-7.html#cb6-6" aria-hidden="true" tabindex="-1"></a>dengue_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/dengue_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span></code></pre></div>
+<pre><code>## Rows: 659 Columns: 11
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl  (10): Argentina, Bolivia, Brazil, India, Indonesia, Mexico, Philippines...
+## date  (1): Date
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="relational-data-and-databases-7.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Make tidy</span></span>
+<span id="cb8-2"><a href="relational-data-and-databases-7.html#cb8-2" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy <span class="ot">&lt;-</span> dengue_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(dengue_df)), <span class="at">names_to =</span> <span class="st">&#39;country&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;cases&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb8-3"><a href="relational-data-and-databases-7.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="relational-data-and-databases-7.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gapminder</span></span>
+<span id="cb8-5"><a href="relational-data-and-databases-7.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">## The dataframe is part of the dslabs package and therefore does not need to be imported.</span></span>
+<span id="cb8-6"><a href="relational-data-and-databases-7.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">## The dataframe is already tidy.</span></span></code></pre></div>
+<p>An important part of relational data is enabling comparison across different data frames. In this case we will be looking at the country and date, but in the data frames we use there are a couple of things that needs to be adjusted to make them similar.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="relational-data-and-databases-7.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column &#39;country&#39;</span></span>
+<span id="cb9-2"><a href="relational-data-and-databases-7.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Check types.</span></span>
+<span id="cb9-3"><a href="relational-data-and-databases-7.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>country) <span class="co"># Character</span></span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="relational-data-and-databases-7.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>country) <span class="co"># Character</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="relational-data-and-databases-7.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>country) <span class="co"># Character</span></span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="relational-data-and-databases-7.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gapminder<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="relational-data-and-databases-7.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gapminder<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="relational-data-and-databases-7.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Change all types into factor</span></span>
-<span id="cb38-2"><a href="relational-data-and-databases-7.html#cb38-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(flu_df_tidy<span class="sc">$</span>country)</span>
-<span id="cb38-3"><a href="relational-data-and-databases-7.html#cb38-3" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dengue_df_tidy<span class="sc">$</span>country)</span>
-<span id="cb38-4"><a href="relational-data-and-databases-7.html#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="relational-data-and-databases-7.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check if it worked</span></span>
-<span id="cb38-6"><a href="relational-data-and-databases-7.html#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="relational-data-and-databases-7.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Change all types into factor</span></span>
+<span id="cb15-2"><a href="relational-data-and-databases-7.html#cb15-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(flu_df_tidy<span class="sc">$</span>country)</span>
+<span id="cb15-3"><a href="relational-data-and-databases-7.html#cb15-3" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dengue_df_tidy<span class="sc">$</span>country)</span>
+<span id="cb15-4"><a href="relational-data-and-databases-7.html#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="relational-data-and-databases-7.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check if it worked</span></span>
+<span id="cb15-6"><a href="relational-data-and-databases-7.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="relational-data-and-databases-7.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="relational-data-and-databases-7.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>country) <span class="co"># Factor</span></span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="relational-data-and-databases-7.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">## It worked!</span></span>
-<span id="cb42-2"><a href="relational-data-and-databases-7.html#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="relational-data-and-databases-7.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Column &#39;date&#39;</span></span>
-<span id="cb42-4"><a href="relational-data-and-databases-7.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Check types.</span></span>
-<span id="cb42-5"><a href="relational-data-and-databases-7.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>Date) <span class="co"># Date</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="relational-data-and-databases-7.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## It worked!</span></span>
+<span id="cb19-2"><a href="relational-data-and-databases-7.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="relational-data-and-databases-7.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Column &#39;date&#39;</span></span>
+<span id="cb19-4"><a href="relational-data-and-databases-7.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Check types.</span></span>
+<span id="cb19-5"><a href="relational-data-and-databases-7.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>Date) <span class="co"># Date</span></span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="relational-data-and-databases-7.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>Date) <span class="co"># Date</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="relational-data-and-databases-7.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>Date) <span class="co"># Date</span></span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="relational-data-and-databases-7.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gapminder<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="relational-data-and-databases-7.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gapminder<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="relational-data-and-databases-7.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Because flu and dengue are specified to day instead of the year at gapminder, a &#39;year&#39; column needs to be added and changed into the integer type to create similarity.</span></span>
-<span id="cb48-2"><a href="relational-data-and-databases-7.html#cb48-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy <span class="ot">&lt;-</span> flu_df_tidy <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(flu_df_tidy<span class="sc">$</span>Date, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">4</span>))</span>
-<span id="cb48-3"><a href="relational-data-and-databases-7.html#cb48-3" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy <span class="ot">&lt;-</span> dengue_df_tidy <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(dengue_df_tidy<span class="sc">$</span>Date, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">4</span>))</span>
-<span id="cb48-4"><a href="relational-data-and-databases-7.html#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="relational-data-and-databases-7.html#cb48-5" aria-hidden="true" tabindex="-1"></a>flu_df_tidy<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(flu_df_tidy<span class="sc">$</span>year)</span>
-<span id="cb48-6"><a href="relational-data-and-databases-7.html#cb48-6" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(dengue_df_tidy<span class="sc">$</span>year)</span>
-<span id="cb48-7"><a href="relational-data-and-databases-7.html#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-8"><a href="relational-data-and-databases-7.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Check if it worked.</span></span>
-<span id="cb48-9"><a href="relational-data-and-databases-7.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="relational-data-and-databases-7.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Because flu and dengue are specified to day instead of the year at gapminder, a &#39;year&#39; column needs to be added and changed into the integer type to create similarity.</span></span>
+<span id="cb25-2"><a href="relational-data-and-databases-7.html#cb25-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy <span class="ot">&lt;-</span> flu_df_tidy <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(flu_df_tidy<span class="sc">$</span>Date, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">4</span>))</span>
+<span id="cb25-3"><a href="relational-data-and-databases-7.html#cb25-3" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy <span class="ot">&lt;-</span> dengue_df_tidy <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(dengue_df_tidy<span class="sc">$</span>Date, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">4</span>))</span>
+<span id="cb25-4"><a href="relational-data-and-databases-7.html#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="relational-data-and-databases-7.html#cb25-5" aria-hidden="true" tabindex="-1"></a>flu_df_tidy<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(flu_df_tidy<span class="sc">$</span>year)</span>
+<span id="cb25-6"><a href="relational-data-and-databases-7.html#cb25-6" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(dengue_df_tidy<span class="sc">$</span>year)</span>
+<span id="cb25-7"><a href="relational-data-and-databases-7.html#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="relational-data-and-databases-7.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Check if it worked.</span></span>
+<span id="cb25-9"><a href="relational-data-and-databases-7.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flu_df_tidy<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="relational-data-and-databases-7.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="relational-data-and-databases-7.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dengue_df_tidy<span class="sc">$</span>year) <span class="co"># Integer</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="relational-data-and-databases-7.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## It worked!</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="relational-data-and-databases-7.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## It worked!</span></span></code></pre></div>
 <p>The data frames are now similar and can be stored into csv and rds files.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="relational-data-and-databases-7.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export data frames as csv</span></span>
-<span id="cb53-2"><a href="relational-data-and-databases-7.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(flu_df_tidy, <span class="st">&quot;files/flu.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
-<span id="cb53-3"><a href="relational-data-and-databases-7.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dengue_df_tidy, <span class="st">&quot;files/dengue.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
-<span id="cb53-4"><a href="relational-data-and-databases-7.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(gapminder, <span class="st">&quot;files/gapminder.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
-<span id="cb53-5"><a href="relational-data-and-databases-7.html#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-6"><a href="relational-data-and-databases-7.html#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Export data frames as rds</span></span>
-<span id="cb53-7"><a href="relational-data-and-databases-7.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(flu_df_tidy, <span class="at">file=</span><span class="st">&quot;files/flu.rds&quot;</span>)</span>
-<span id="cb53-8"><a href="relational-data-and-databases-7.html#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dengue_df_tidy, <span class="at">file=</span><span class="st">&quot;files/dengue.rds&quot;</span>)</span>
-<span id="cb53-9"><a href="relational-data-and-databases-7.html#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(gapminder, <span class="at">file=</span><span class="st">&quot;files/gapminder.rds&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="relational-data-and-databases-7.html#cb54-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(), </span>
-<span id="cb54-2"><a href="relational-data-and-databases-7.html#cb54-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;workflowsdb&quot;</span>, </span>
-<span id="cb54-3"><a href="relational-data-and-databases-7.html#cb54-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span><span class="st">&quot;localhost&quot;</span>, </span>
-<span id="cb54-4"><a href="relational-data-and-databases-7.html#cb54-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="st">&quot;5432&quot;</span>, </span>
-<span id="cb54-5"><a href="relational-data-and-databases-7.html#cb54-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user=</span><span class="st">&quot;postgres&quot;</span>, </span>
-<span id="cb54-6"><a href="relational-data-and-databases-7.html#cb54-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span><span class="st">&quot;Marlie99.&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="relational-data-and-databases-7.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, gapminder)</span>
-<span id="cb55-2"><a href="relational-data-and-databases-7.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;flu&quot;</span>, flu_df_tidy)</span>
-<span id="cb55-3"><a href="relational-data-and-databases-7.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;dengue&quot;</span>, dengue_df_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="relational-data-and-databases-7.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export data frames as csv</span></span>
+<span id="cb30-2"><a href="relational-data-and-databases-7.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(flu_df_tidy, <span class="st">&quot;files/flu.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb30-3"><a href="relational-data-and-databases-7.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dengue_df_tidy, <span class="st">&quot;files/dengue.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb30-4"><a href="relational-data-and-databases-7.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(gapminder, <span class="st">&quot;files/gapminder.csv&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb30-5"><a href="relational-data-and-databases-7.html#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="relational-data-and-databases-7.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Export data frames as rds</span></span>
+<span id="cb30-7"><a href="relational-data-and-databases-7.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(flu_df_tidy, <span class="at">file=</span><span class="st">&quot;files/flu.rds&quot;</span>)</span>
+<span id="cb30-8"><a href="relational-data-and-databases-7.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dengue_df_tidy, <span class="at">file=</span><span class="st">&quot;files/dengue.rds&quot;</span>)</span>
+<span id="cb30-9"><a href="relational-data-and-databases-7.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(gapminder, <span class="at">file=</span><span class="st">&quot;files/gapminder.rds&quot;</span>)</span></code></pre></div>
+<p>The tables were inserted into a database in DBeaver for inspection.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="relational-data-and-databases-7.html#cb31-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(), </span>
+<span id="cb31-2"><a href="relational-data-and-databases-7.html#cb31-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;workflowsdb&quot;</span>, </span>
+<span id="cb31-3"><a href="relational-data-and-databases-7.html#cb31-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span><span class="st">&quot;localhost&quot;</span>, </span>
+<span id="cb31-4"><a href="relational-data-and-databases-7.html#cb31-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="st">&quot;5432&quot;</span>, </span>
+<span id="cb31-5"><a href="relational-data-and-databases-7.html#cb31-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user=</span><span class="st">&quot;postgres&quot;</span>, </span>
+<span id="cb31-6"><a href="relational-data-and-databases-7.html#cb31-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span><span class="st">&quot;Marlie99.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="relational-data-and-databases-7.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, gapminder)</span>
+<span id="cb32-2"><a href="relational-data-and-databases-7.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;flu&quot;</span>, flu_df_tidy)</span>
+<span id="cb32-3"><a href="relational-data-and-databases-7.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;dengue&quot;</span>, dengue_df_tidy)</span></code></pre></div>
+<p>Now that the tables are imported, i checked a couple of things.
+Dengue has no “NULL” variables in country and year, there are 6263 cases in the data set and the average amount of cases is 0.14.
+The Flu has no “NULL” variables in country and year, there are 17266 cases in the data set and the average amount of cases is 8.74.
+Gapminder had no “NULL” variables in country and year.</p>
+<p>The information is obtained by the following SQL code in DBeaver:</p>
+<p><img src="images/SQL_inspection.jpg"
+     width="300" 
+     height="600" /></p>
 <p>Inspect the contents of the tables with SQL (in DBeaver) and save the SQL script.</p>
 
 </div>
