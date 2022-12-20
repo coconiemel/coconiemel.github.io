@@ -178,7 +178,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-data-and-databases-7.html"><a href="relational-data-and-databases-7.html"><i class="fa fa-check"></i>Relational data and databases (7)</a>
 <ul>
-<li class="chapter" data-level="0.1" data-path="relational-data-and-databases-7.html"><a href="relational-data-and-databases-7.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> Introduction</a></li>
+<li class="chapter" data-level="" data-path="relational-data-and-databases-7.html"><a href="relational-data-and-databases-7.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="r-packages-8.html"><a href="r-packages-8.html"><i class="fa fa-check"></i>R packages (8)</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters-9.html"><a href="rmarkdown-parameters-9.html"><i class="fa fa-check"></i>Rmarkdown parameters (9)</a></li>
@@ -202,8 +202,8 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="relational-data-and-databases-7" class="section level1 unnumbered hasAnchor">
 <h1>Relational data and databases (7)<a href="relational-data-and-databases-7.html#relational-data-and-databases-7" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-1" class="section level2 hasAnchor" number="0.1">
-<h2><span class="header-section-number">0.1</span> Introduction<a href="relational-data-and-databases-7.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-1" class="section level2 unnumbered hasAnchor">
+<h2>Introduction<a href="relational-data-and-databases-7.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.</p>
 <p>Starting by creating three data frames out of files and making them tidy.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="relational-data-and-databases-7.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
@@ -216,7 +216,8 @@ div.csl-indent {
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="relational-data-and-databases-7.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="relational-data-and-databases-7.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb3-2"><a href="relational-data-and-databases-7.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="relational-data-and-databases-7.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The flu</span></span>
 <span id="cb4-2"><a href="relational-data-and-databases-7.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
 <span id="cb4-3"><a href="relational-data-and-databases-7.html#cb4-3" aria-hidden="true" tabindex="-1"></a>flu_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/flu_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span></code></pre></div>
@@ -299,25 +300,47 @@ div.csl-indent {
 <span id="cb30-7"><a href="relational-data-and-databases-7.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(flu_df_tidy, <span class="at">file=</span><span class="st">&quot;files/flu.rds&quot;</span>)</span>
 <span id="cb30-8"><a href="relational-data-and-databases-7.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dengue_df_tidy, <span class="at">file=</span><span class="st">&quot;files/dengue.rds&quot;</span>)</span>
 <span id="cb30-9"><a href="relational-data-and-databases-7.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(gapminder, <span class="at">file=</span><span class="st">&quot;files/gapminder.rds&quot;</span>)</span></code></pre></div>
-<p>The tables were inserted into a database in DBeaver for inspection.</p>
+<p>DBeaver and R were connected (my real password is hidden) and the tables were inserted into the ‘workflowsdb’ database in DBeaver for inspection.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="relational-data-and-databases-7.html#cb31-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(), </span>
 <span id="cb31-2"><a href="relational-data-and-databases-7.html#cb31-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;workflowsdb&quot;</span>, </span>
 <span id="cb31-3"><a href="relational-data-and-databases-7.html#cb31-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span><span class="st">&quot;localhost&quot;</span>, </span>
 <span id="cb31-4"><a href="relational-data-and-databases-7.html#cb31-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="st">&quot;5432&quot;</span>, </span>
 <span id="cb31-5"><a href="relational-data-and-databases-7.html#cb31-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user=</span><span class="st">&quot;postgres&quot;</span>, </span>
-<span id="cb31-6"><a href="relational-data-and-databases-7.html#cb31-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span><span class="st">&quot;Marlie99.&quot;</span>)</span></code></pre></div>
+<span id="cb31-6"><a href="relational-data-and-databases-7.html#cb31-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span><span class="st">&quot;password&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="relational-data-and-databases-7.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, gapminder)</span>
 <span id="cb32-2"><a href="relational-data-and-databases-7.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;flu&quot;</span>, flu_df_tidy)</span>
 <span id="cb32-3"><a href="relational-data-and-databases-7.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;dengue&quot;</span>, dengue_df_tidy)</span></code></pre></div>
 <p>Now that the tables are imported, i checked a couple of things.
-Dengue has no “NULL” variables in country and year, there are 6263 cases in the data set and the average amount of cases is 0.14.
-The Flu has no “NULL” variables in country and year, there are 17266 cases in the data set and the average amount of cases is 8.74.
-Gapminder had no “NULL” variables in country and year.</p>
-<p>The information is obtained by the following SQL code in DBeaver:</p>
+Dengue has no “NULL” variables in country and year, 6263 cases in the data set and the average amount of cases is 0.14 with a standard deviation of 0.14. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Venezuela with 1 case.
+The flu has no “NULL variables in country and year, 17266 cases in the data set and the average amount of cases is 473.74 with a standard deviation of 768.95. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Uruguay 10555 cases.</p>
+<p>Gapminder had no “NULL” variables in country and year.</p>
+<p>The information is obtained by the following R and SQL code:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="relational-data-and-databases-7.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dengue</span></span>
+<span id="cb33-2"><a href="relational-data-and-databases-7.html#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="relational-data-and-databases-7.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(dengue_df_tidy<span class="sc">$</span>cases) <span class="co"># 0</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="relational-data-and-databases-7.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(dengue_df_tidy<span class="sc">$</span>cases) <span class="co"># 1</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="relational-data-and-databases-7.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dengue_df_tidy<span class="sc">$</span>cases) <span class="co"># 0.14</span></span></code></pre></div>
+<pre><code>## [1] 0.1389711</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="relational-data-and-databases-7.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(dengue_df_tidy<span class="sc">$</span>cases) <span class="co"># 0.14</span></span></code></pre></div>
+<pre><code>## [1] 0.1389235</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="relational-data-and-databases-7.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flu</span></span>
+<span id="cb41-2"><a href="relational-data-and-databases-7.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="relational-data-and-databases-7.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(flu_df_tidy<span class="sc">$</span>cases) <span class="co"># 0</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="relational-data-and-databases-7.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(flu_df_tidy<span class="sc">$</span>cases) <span class="co"># 10555</span></span></code></pre></div>
+<pre><code>## [1] 10555</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="relational-data-and-databases-7.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(flu_df_tidy<span class="sc">$</span>cases) <span class="co"># 473.74</span></span></code></pre></div>
+<pre><code>## [1] 473.7355</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="relational-data-and-databases-7.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(flu_df_tidy<span class="sc">$</span>cases) <span class="co"># 768.95</span></span></code></pre></div>
+<pre><code>## [1] 768.9549</code></pre>
 <p><img src="images/SQL_inspection.jpg"
      width="300" 
-     height="600" /></p>
-<p>Inspect the contents of the tables with SQL (in DBeaver) and save the SQL script.</p>
+     height="800" /></p>
+<p>Figure 2: SQL code of data inspection.</p>
+<p>Load the gapminder data in R and change the dataframe in such as way that you could join it to dengue and flue.</p>
+<p>Save this clean gapminder data in the “workflowsdb” database</p>
 
 </div>
 </div>
