@@ -163,8 +163,6 @@ A good analysis contains graphs to bring things in vision.
 
 ```
 
-- Load gapminder data
-- Join and create table
 - Descriptive statistics
 - 3 visualisations
 
