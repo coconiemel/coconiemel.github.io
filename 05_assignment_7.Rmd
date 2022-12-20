@@ -1,6 +1,6 @@
 # Relational data and databases (7) {-}
 
-## Introduction
+## Introduction {-}
 
 This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.
 
@@ -10,6 +10,7 @@ Starting by creating three data frames out of files and making them tidy.
 
 library(dslabs)
 library(tidyverse)
+library(DBI)
 
 ```
 
@@ -33,7 +34,7 @@ dengue_df_tidy <- dengue_df %>% pivot_longer(cols = c(2:ncol(dengue_df)), names_
 
 ```
 
-An important part of relational data is enabling comparison across different data frames. In this case we will be looking at the country and date, but in the data frames we use there are a couple of things that needs to be adjusted.
+An important part of relational data is enabling comparison across different data frames. In this case we will be looking at the country and date, but in the data frames we use there are a couple of things that needs to be adjusted to make them similar.
 
 ```{r adjusting}
 
@@ -88,6 +89,8 @@ saveRDS(gapminder, file="files/gapminder.rds")
 
 ```
 
+The tables were inserted into a database in DBeaver for inspection.
+
 ```{r connecting DBeaver, eval = FALSE}
 con <- dbConnect(RPostgres::Postgres(), 
                  dbname = "workflowsdb", 
@@ -104,5 +107,13 @@ dbWriteTable(con, "flu", flu_df_tidy)
 dbWriteTable(con, "dengue", dengue_df_tidy)
 ```
 
-Inspect the contents of the tables with SQL (in DBeaver) and save the SQL script.
+Now that the tables are imported, i checked a couple of things.
+Dengue has no "NULL" variables in country and year, there are 6263 cases in the data set and the average amount of cases is 0.14.
+The Flu has no "NULL" variables in country and year, there are 17266 cases in the data set and the average amount of cases is 8.74.
+Gapminder had no "NULL" variables in country and year.
 
+The information is obtained by the following SQL code in DBeaver:
+
+<img src="images/SQL_inspection.jpg"
+     width="300" 
+     height="600" />
