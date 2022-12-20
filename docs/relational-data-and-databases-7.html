@@ -217,7 +217,8 @@ div.csl-indent {
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="relational-data-and-databases-7.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb3-2"><a href="relational-data-and-databases-7.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<span id="cb3-2"><a href="relational-data-and-databases-7.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="relational-data-and-databases-7.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="relational-data-and-databases-7.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The flu</span></span>
 <span id="cb4-2"><a href="relational-data-and-databases-7.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
 <span id="cb4-3"><a href="relational-data-and-databases-7.html#cb4-3" aria-hidden="true" tabindex="-1"></a>flu_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/flu_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span></code></pre></div>
@@ -339,8 +340,19 @@ The flu has no “NULL variables in country and year, 17266 cases in the data se
      width="300" 
      height="800" /></p>
 <p>Figure 2: SQL code of data inspection.</p>
-<p>Load the gapminder data in R and change the dataframe in such as way that you could join it to dengue and flue.</p>
-<p>Save this clean gapminder data in the “workflowsdb” database</p>
+<p>For a good analysis of the different, but related data, they need to be joined together in one table with the important columns.</p>
+<p><img src="images/SQL_join.jpg"
+     width="300" 
+     height="600" /></p>
+<p>Figure 3: SQL code of left-join.</p>
+<p>The analysis is done by descriptive statistics. First is the Shapiro-wilk to check for normal data, this was … the case. The next step is an ANOVA, because we deal with 3 sets, this lead to … . Finally the post-hoc tests, which concluded that … .</p>
+<p>A good analysis contains graphs to bring things in vision.</p>
+<ul>
+<li>Load gapminder data</li>
+<li>Join and create table</li>
+<li>Descriptive statistics</li>
+<li>3 visualisations</li>
+</ul>
 
 </div>
 </div>

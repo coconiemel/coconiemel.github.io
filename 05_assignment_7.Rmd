@@ -143,13 +143,13 @@ Figure 2: SQL code of data inspection.
 
 For a good analysis of the different, but related data, they need to be joined together in one table with the important columns.
 
-<img src="images/SQL_....jpg"
+<img src="images/SQL_join.jpg"
      width="300" 
      height="600" />
      
-Figure 3: SQL code of left-join.
+Figure 3: SQL code of inner-join.
 
-The analysis is done by despriptive statistics. First is the Shapiro-wilk to check for normal data, this was ... the case. The next step is an ANOVA, because we deal with 3 sets, this lead to ... . Finally the post-hoc tests, which concluded that ... .
+The analysis is done by descriptive statistics. First is the Shapiro-wilk to check for normal data, this was ... the case. The next step is an ANOVA, because we deal with 3 sets, this lead to ... . Finally the post-hoc tests, which concluded that ... .
 
 ```{r despriptive statistics}
 
