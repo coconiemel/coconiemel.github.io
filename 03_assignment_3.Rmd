@@ -1,3 +1,18 @@
 # Free future assignment (3) {-}
 
-blalba
+## Introduction {-}
+
+After this course i will be specializing in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before i start working in the field, i hope to earn a masters degree, so in two years i will probably be busy with my masters.
+
+Because i am interested in microbiology, my free assignment will also be in that lane. I will be learning to perform a phylogenetic analysis to a COVID dataset in R.
+
+## Plan {-}
+
+To achieve my goal, i have planned 4 days total to work on it. I have divided the days in a couple groups:
+- Half a day to come up with a plan, write this and search the right data needed.
+- One day to follow a tutorial.
+- Two days to implement this tutorial on the data i will be using and complete the analysis.
+- Half a day to finish the writing and details.
+
+## A phylogenetic analysis
+
