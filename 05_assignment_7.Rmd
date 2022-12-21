@@ -99,7 +99,7 @@ con <- dbConnect(RPostgres::Postgres(),
                  host="localhost", 
                  port="5432", 
                  user="postgres", 
-                 password="password")
+                 password="Marlie99.")
 
 ```
 
@@ -115,7 +115,23 @@ The flu has no "NULL variables in country and year, 17266 cases in the data set 
 
 Gapminder had no "NULL" variables in country and year.
 
-The information is obtained by the following R and SQL code:
+What stood out to me in general was that the dataset missed an important thing. The cases columns didn't specify how it was mesured, so a lot of metadata missed. This resulted in unreliable data .
+
+The information is obtained by the following SQL and R code:
+   
+<img src="images/SQL_inspection.jpg"
+     width="300" 
+     height="800" />
+
+Figure 2: SQL code of data inspection.   
+
+For a good analysis of the different, but related data, they need to be joined together in one table with the important columns.
+
+<img src="images/SQL_join.jpg"
+     width="300" 
+     height="600" />
+     
+Figure 3: SQL code of inner-join.
    
 ```{r data inspection}
 
@@ -133,21 +149,11 @@ max(flu_df_tidy$cases) # 10555
 mean(flu_df_tidy$cases) # 473.74
 sd(flu_df_tidy$cases) # 768.95
 
+# Load joined table to object
+flu_dengue_gapminder <- read_csv("files/flu_dengue_gapminder.csv")
+flu_dengue <- read_csv("files/flu_dengue.csv")
+
 ```
-
-<img src="images/SQL_inspection.jpg"
-     width="300" 
-     height="800" />
-
-Figure 2: SQL code of data inspection.   
-
-For a good analysis of the different, but related data, they need to be joined together in one table with the important columns.
-
-<img src="images/SQL_join.jpg"
-     width="300" 
-     height="600" />
-     
-Figure 3: SQL code of inner-join.
 
 The analysis is done by descriptive statistics. First is the Shapiro-wilk to check for normal data, this was ... the case. The next step is an ANOVA, because we deal with 3 sets, this lead to ... . Finally the post-hoc tests, which concluded that ... .
 
@@ -161,8 +167,15 @@ A good analysis contains graphs to bring things in vision.
 ```{r visualisation}
 
 
+
 ```
 
 - Descriptive statistics
 - 3 visualisations
 
+Plan:
+V load data, prepare data 
+plot using bargraph or boxplot
+check normality (Shapio-Wilk) of both groups separately
+perform ANOVA
+if significant, perform post hoc tests
