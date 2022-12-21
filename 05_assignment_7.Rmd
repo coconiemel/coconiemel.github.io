@@ -150,7 +150,7 @@ mean(flu_df_tidy$cases) # 473.74
 sd(flu_df_tidy$cases) # 768.95
 
 # Load joined table to object
-flu_dengue_gapminder <- read_csv("files/flu_dengue_gapminder.csv")
+gapminder_flu <- read_csv("files/gapminder_flu.csv")
 flu_dengue <- read_csv("files/flu_dengue.csv")
 
 ```
@@ -166,7 +166,32 @@ A good analysis contains graphs to bring things in vision.
 
 ```{r visualisation}
 
+gapminder_flu %>%
+  ggplot(aes(x=continent,y=flu_cases, group=continent, fill=continent)) + 
+  geom_col(stat="identity")+ 
+  labs(title = "Flu cases per continent", 
+       x="Continent", 
+       y="Amount of cases",
+       caption = "Figure 3: Bargraph to the amount of flu cases per continent") +
+  theme(legend.position = "right", text = element_text(size=10))
 
+ggplot(flu_dengue, aes(x=year, y=flu_cases, group = country, color = country)) + 
+  geom_point() +
+  geom_line() +
+  labs(title = "Flu cases",
+       x = "Year",
+       y = "Average dengue cases per year",
+       caption = "Figure 4: Linegraph of average flu cases per year per country.") +
+  theme(legend.position = "right", text = element_text(size=10))
+
+ggplot(flu_dengue, aes(x=year, y=dengue_cases, group = country, color = country)) + 
+  geom_point() +
+  geom_line() +
+  labs(title = "Dengue cases",
+       x = "Year",
+       y = "Average dengue cases per year",
+       caption = "Figure 5: Linegraph of average dengue cases per year per country.") +
+  theme(legend.position = "right", text = element_text(size=10))
 
 ```
 
