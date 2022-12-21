@@ -171,8 +171,8 @@ gapminder_flu %>%
   geom_col(stat="identity")+ 
   labs(title = "Flu cases per continent", 
        x="Continent", 
-       y="Amount of cases",
-       caption = "Figure 3: Bargraph to the amount of flu cases per continent") +
+       y="Average flu cases per continent",
+       caption = "Figure 3: Bargraph of the amount of flu cases per continent") +
   theme(legend.position = "right", text = element_text(size=10))
 
 ggplot(flu_dengue, aes(x=year, y=flu_cases, group = country, color = country)) + 
