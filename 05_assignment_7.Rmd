@@ -4,7 +4,9 @@
 
 This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.
 
-Starting by creating three data frames out of files and making them tidy.
+## DBeaver connection {-}
+
+Start by creating three data frames out of files and making them tidy.
 
 ```{r libraries}
 
@@ -109,13 +111,16 @@ dbWriteTable(con, "flu", flu_df_tidy)
 dbWriteTable(con, "dengue", dengue_df_tidy)
 ```
 
+## Inspection {-}
+
 Now that the tables are imported, i checked a couple of things.
 Dengue has no "NULL" variables in country and year, 6263 cases in the data set and the average amount of cases is 0.14 with a standard deviation of 0.14. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Venezuela with 1 case.
+
 The flu has no "NULL variables in country and year, 17266 cases in the data set and the average amount of cases is 473.74 with a standard deviation of 768.95. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Uruguay 10555 cases.
 
 Gapminder had no "NULL" variables in country and year.
 
-What stood out to me in general was that the dataset missed an important thing. The cases columns didn't specify how it was mesured, so a lot of metadata missed. This resulted in unreliable data .
+There was an important thing that stood out to me about the metadata. I will discuss this later in this chapter.
 
 The information is obtained by the following SQL and R code:
    
@@ -125,15 +130,7 @@ The information is obtained by the following SQL and R code:
 
 Figure 2: SQL code of data inspection.   
 
-For a good analysis of the different, but related data, they need to be joined together in one table with the important columns. I created two joined tables, flu with dengue and flu with gapminder. The flu and dengue table shows only four countries, this is because only those four countries occurred in both datasets. This is also the case for the gapminder and flu table, but here are more countries that occurred in both.
-
-<img src="images/SQL_join.jpg"
-     width="300" 
-     height="900" />
-     
-Figure 3: SQL code of inner-join.
-   
-```{r data inspection}
+```{r inspection}
 
 # Dengue
 
@@ -149,6 +146,18 @@ max(flu_df_tidy$cases) # 10555
 mean(flu_df_tidy$cases) # 473.74
 sd(flu_df_tidy$cases) # 768.95
 
+```
+
+For a good analysis of the different, but related data, they need to be joined together in one table with the important columns. I created four joined tables, flu with dengue, dengue with gapminder, flu with gapminder and all three of them. Some tables have more countries than others, this is because the joining only joins the matching countries. See below for the SQL and R code.
+
+<img src="images/SQL_join.jpg"
+     width="300" 
+     height="900" />
+     
+Figure 3: SQL code of inner-join.
+   
+```{r join}
+
 # Load joined table to object
 gapminder_flu <- read_csv("files/gapminder_flu.csv")
 gapminder_dengue <- read_csv("files/gapminder_dengue.csv")
@@ -158,27 +167,39 @@ gapminder_flu_dengue <- read_csv("files/gapminder_flu_dengue.csv")
 
 ```
 
+As said before, there was something important that stood out to me, the dataset missed metadata.
+The cases columns didn't specify how it was mesured, and this was also not written down in the metadata. This resulted in unreliable data that doesn't take in account that countries have different populations, so just a count of cases isn't enough. Therefore a normalisation was necessary. I divided the cases by the population from the gapminder data and multiplied this by 100000, which seemed like a logical amount when calculating with populations. I added the results to the tables.
+
+```{r normalizing}
+
+gapminder_flu <- gapminder_flu %>% mutate(normalized_flu=gapminder_flu$flu_cases/gapminder_flu$population*100000)
+
+gapminder_dengue <- gapminder_dengue %>% mutate(normalized_dengue=gapminder_dengue$dengue_cases/gapminder_dengue$population*100000)
+
+```
+
+## Descriptive statistics {-}
+
 The analysis is done by descriptive statistics. First is the Shapiro-wilk to check for normal data, this was ... the case. The next step is an ANOVA, because we deal with 3 sets, this lead to ... . Finally the post-hoc tests, which concluded that ... .
 
 ```{r despriptive statistics}
 
 
+
 ```
 
-A good analysis contains graphs to bring things in vision.
-The following graphs give an overview of amount of cases for flu or dengue. Figure 3 and 5 shows the amount of flu cases per continent and figure 4 and 6 show the average cases per year per country. 
-Mind that the counted cases aren't shown in proportion of the population.
+## Visualisations {-}
 
-### Flu
+### Flu {-}
 
 ```{r visualisations flu}
 
 gapminder_flu %>%
-  ggplot(aes(x=continent,y=flu_cases, group=continent, fill=continent)) + 
+  ggplot(aes(x=continent,y=normalized_flu, group=continent, fill=continent)) + 
   geom_col(stat="identity")+ 
   labs(title = "Flu cases per continent", 
        x="Continent", 
-       y="Average flu cases per continent",
+       y="Flu cases per 100000 residents ",
        caption = "Figure 3: Bargraph of the amount of flu cases per continent") +
   theme(legend.position = "right", text = element_text(size=10))
 
@@ -193,18 +214,16 @@ ggplot(flu_dengue, aes(x=year, y=flu_cases, group = country, color = country)) +
 
 ```
 
-Figure 3 shows that the most cases are in the Americas (North and South), which is made clear in figure 4 that shows Mexico with a high amount of cases.
-
-### Dengue
+### Dengue {-}
 
 ```{r visualisation dengue}
 
 gapminder_dengue %>%
-  ggplot(aes(x=continent,y=dengue_cases, group=continent, fill=continent)) + 
+  ggplot(aes(x=continent,y=normalized_dengue, group=continent, fill=continent)) + 
   geom_col(stat="identity")+ 
   labs(title = "Dengue cases per continent", 
        x="Continent", 
-       y="Average dengue cases per continent",
+       y="Dengue cases per 100000 residents",
        caption = "Figure 5: Bargraph of the amount of dengue cases per continent") +
   theme(legend.position = "right", text = element_text(size=10))
 
@@ -218,7 +237,8 @@ ggplot(flu_dengue, aes(x=year, y=dengue_cases, group = country, color = country)
   theme(legend.position = "right", text = element_text(size=10))
 
 ```
-Figure 5 shows a small difference between Asia and the Americas and figure 6 shows a big spike around 2009 for all countries shown.
+
+
 
 
 - Descriptive statistics
