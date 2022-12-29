@@ -15,6 +15,8 @@ library(tidyverse)
 library(DBI)
 library(dplyr)
 library(ggplot2)
+library(car)
+library(FSA)
 
 ```
 
@@ -168,23 +170,147 @@ gapminder_flu_dengue <- read_csv("files/gapminder_flu_dengue.csv")
 ```
 
 As said before, there was something important that stood out to me, the dataset missed metadata.
-The cases columns didn't specify how it was mesured, and this was also not written down in the metadata. This resulted in unreliable data that doesn't take in account that countries have different populations, so just a count of cases isn't enough. Therefore a normalisation was necessary. I divided the cases by the population from the gapminder data and multiplied this by 100000, which seemed like a logical amount when calculating with populations. I added the results to the tables.
+The cases columns didn't specify how it was messured, and this was also not written down in the metadata. This resulted in unreliable data that doesn't take in account that countries have different populations, so just a count of cases isn't enough. Therefore a normalisation was necessary. I divided the cases by the population from the gapminder data and multiplied this by 100000, which seemed like a logical amount when calculating with populations. I added the results to the tables.
 
 ```{r normalizing}
 
-gapminder_flu <- gapminder_flu %>% mutate(normalized_flu=gapminder_flu$flu_cases/gapminder_flu$population*100000)
+gapminder_flu <- gapminder_flu %>% mutate("cases_per_100000" =gapminder_flu$flu_cases/gapminder_flu$population*100000)
 
-gapminder_dengue <- gapminder_dengue %>% mutate(normalized_dengue=gapminder_dengue$dengue_cases/gapminder_dengue$population*100000)
+gapminder_dengue <- gapminder_dengue %>% mutate("cases_per_100000" =gapminder_dengue$dengue_cases/gapminder_dengue$population*100000)
+
+
 
 ```
 
 ## Descriptive statistics {-}
 
-The analysis is done by descriptive statistics. First is the Shapiro-wilk to check for normal data, this was ... the case. The next step is an ANOVA, because we deal with 3 sets, this lead to ... . Finally the post-hoc tests, which concluded that ... .
+Now that the sets are normalized, descriptives can start. Starting by calculating the means and standard deviations of cases per country with the updated data.
+
+After performing the Shapiro-Wilk test, the flu seems to have 8 non normal distributed variables from a total of 29, and dengue has 5 non normal distributed variables from a total of 10. 
+As an extra test, the Levene's test shows that the flu doesn't have a variance of equility between countries.
+ 
+Because of these two specifics, a Kruskal-Wallis test was chosen, because this test doesn't account for normality. The results of this test shows that both datasets have a p-value of < 2.2e-16 which tells us that there is a significance difference.
+
+To determine the differences between variables, the Dunn test was performed as a post hoc  test. The results of those are stored in separate tables of difference and no difference, but in total 114 from a total of 406 combinations of the flu show differences and 19 from a total of 45 combinations of dengue show differences.
 
 ```{r despriptive statistics}
 
+# Obtain mean and standard deviation per country
 
+flu_sum <- gapminder_flu %>% 
+                        group_by(country)%>% 
+                        summarize(avg_population = round(mean(population), 0),
+                                  sd_population = round(sd(population), 0),
+                                  avg_cases_per_100000 = mean(cases_per_100000),
+                                  sd_cases_per_100000 = sd(cases_per_100000))
+
+dengue_sum <- gapminder_dengue %>% 
+                        group_by(country)%>% 
+                        summarize(avg_population = round(mean(population), 0),
+                                  sd_population = round(sd(population), 0),
+                                  avg_cases_per_100000 = mean(cases_per_100000),
+                                  sd_cases_per_100000 = sd(cases_per_100000))
+
+# To check the normality, dataframes are made with the countries 
+
+flu_country <- gapminder_flu %>% 
+                        select(country, cases_per_100000, year) %>% 
+                        pivot_wider(names_from = country, 
+                                    values_from = cases_per_100000) %>% 
+                        filter(year != 2002)
+
+
+dengue_country <- gapminder_dengue %>% 
+                        select(country, cases_per_100000, year) %>% 
+                        pivot_wider(names_from = country, 
+                                    values_from = cases_per_100000) %>% 
+                        filter(year != 2002)
+
+# Shapiro wilk 
+## Flu
+
+flu_stats <- data.frame(country = colnames(flu_country[,2:length(colnames(flu_country))]),
+                                     pvalue_shap = round(c(shapiro.test(flu_country$Uruguay)$p.value,
+shapiro.test(flu_country$`United States`)$p.value,
+shapiro.test(flu_country$Ukraine)$p.value,
+shapiro.test(flu_country$Switzerland)$p.value,                                            shapiro.test(flu_country$Sweden)$p.value,
+shapiro.test(flu_country$Spain)$p.value,
+shapiro.test(flu_country$`South Africa`)$p.value,
+shapiro.test(flu_country$Russia)$p.value,
+shapiro.test(flu_country$Romania)$p.value,
+shapiro.test(flu_country$Poland)$p.value,
+shapiro.test(flu_country$Peru)$p.value,
+shapiro.test(flu_country$Paraguay)$p.value,                                            shapiro.test(flu_country$Norway)$p.value,
+shapiro.test(flu_country$`New Zealand`)$p.value,
+shapiro.test(flu_country$Netherlands)$p.value,
+shapiro.test(flu_country$Mexico)$p.value,
+shapiro.test(flu_country$Japan)$p.value,
+shapiro.test(flu_country$Hungary)$p.value,
+shapiro.test(flu_country$Germany)$p.value,
+shapiro.test(flu_country$France)$p.value,                                            shapiro.test(flu_country$Chile)$p.value,
+shapiro.test(flu_country$Canada)$p.value,
+shapiro.test(flu_country$Bulgaria)$p.value,
+shapiro.test(flu_country$Brazil)$p.value,
+shapiro.test(flu_country$Bolivia)$p.value,
+shapiro.test(flu_country$Belgium)$p.value,
+shapiro.test(flu_country$Austria)$p.value,
+shapiro.test(flu_country$Australia)$p.value,                                            
+shapiro.test(flu_country$Argentina)$p.value), 4))
+
+## Dengue 
+
+dengue_stats <- data.frame(country = colnames(dengue_country[,2:length(colnames(dengue_country))]),
+                                     pvalue_shap = round(c(shapiro.test(dengue_country$Venezuela)$p.value,                                    shapiro.test(dengue_country$Thailand)$p.value,
+shapiro.test(dengue_country$Singapore)$p.value,
+shapiro.test(dengue_country$Philippines)$p.value,
+shapiro.test(dengue_country$Mexico)$p.value,
+shapiro.test(dengue_country$Indonesia)$p.value,
+shapiro.test(dengue_country$India)$p.value,
+shapiro.test(dengue_country$Brazil)$p.value,
+shapiro.test(dengue_country$Bolivia)$p.value,
+shapiro.test(dengue_country$Argentina)$p.value), 4))
+
+# Normality check
+
+flu_stats <- flu_stats %>% mutate(normal_dis = pvalue_shap>0.05) 
+# 3 out of 5 are normally distributed
+
+dengue_stats <- dengue_stats %>% mutate(normal_dis = pvalue_shap>0.05) 
+# 21 out of 29 are normally distributed
+
+# Levene test
+
+leveneTest(cases_per_100000 ~ country, data = gapminder_flu) # <2.2e-16
+leveneTest(cases_per_100000 ~ country, data = gapminder_dengue) # 3.228e-07
+
+# Kruskal Wallis test
+
+kruskal.test(cases_per_100000 ~ country, data = gapminder_flu) # p-value < 2.2e-16
+kruskal.test(cases_per_100000 ~ country, data = gapminder_dengue) # p-value < 2.2e-16
+
+# P-value of basically .0000, there is a statistically significant difference
+
+# Dunn post-hoc test
+
+dengue_dunn <- dunnTest(cases_per_100000 ~ country, 
+                                data = gapminder_dengue, method = "holm")$res
+flu_dunn <- dunnTest(cases_per_100000 ~ country, 
+                               data = gapminder_flu, method = "holm")$res
+
+# Check for significant differences 
+
+dengue_dunn <- dengue_dunn %>% mutate(different = P.adj<0.05)
+flu_dunn <- flu_dunn %>% mutate(different = P.adj<0.05)
+
+# Note the significant differences between countries/continents
+
+dengue_dunn_diff <- dengue_dunn %>% filter(different == TRUE)
+flu_dunn_diff <- flu_dunn %>% filter(different == TRUE)
+
+# Note the comparable countries/continents
+
+dengue_dunn_non <- dengue_dunn %>% filter(different == FALSE)
+flu_dunn_non <- flu_dunn %>% filter(different == FALSE)
 
 ```
 
@@ -195,7 +321,7 @@ The analysis is done by descriptive statistics. First is the Shapiro-wilk to che
 ```{r visualisations flu}
 
 gapminder_flu %>%
-  ggplot(aes(x=continent,y=normalized_flu, group=continent, fill=continent)) + 
+  ggplot(aes(x=continent,y=cases_per_100000, group=continent, fill=continent)) + 
   geom_col(stat="identity")+ 
   labs(title = "Flu cases per continent", 
        x="Continent", 
@@ -219,7 +345,7 @@ ggplot(flu_dengue, aes(x=year, y=flu_cases, group = country, color = country)) +
 ```{r visualisation dengue}
 
 gapminder_dengue %>%
-  ggplot(aes(x=continent,y=normalized_dengue, group=continent, fill=continent)) + 
+  ggplot(aes(x=continent,y=cases_per_100000, group=continent, fill=continent)) + 
   geom_col(stat="identity")+ 
   labs(title = "Dengue cases per continent", 
        x="Continent", 
@@ -237,15 +363,3 @@ ggplot(flu_dengue, aes(x=year, y=dengue_cases, group = country, color = country)
   theme(legend.position = "right", text = element_text(size=10))
 
 ```
-
-
-
-
-- Descriptive statistics
-
-Plan:
-V load data, prepare data 
-plot using bargraph or boxplot
-check normality (Shapio-Wilk) of both groups separately
-perform ANOVA
-if significant, perform post hoc tests
