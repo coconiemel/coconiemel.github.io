@@ -23,7 +23,7 @@
 <meta name="author" content="Coco Niemel" />
 
 
-<meta name="date" content="2022-12-24" />
+<meta name="date" content="2023-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,7 +193,11 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="relational-data-and-databases-7.html"><a href="relational-data-and-databases-7.html#dengue"><i class="fa fa-check"></i>Dengue</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="r-packages-8.html"><a href="r-packages-8.html"><i class="fa fa-check"></i>R packages (8)</a></li>
+<li class="chapter" data-level="" data-path="r-packages-8.html"><a href="r-packages-8.html"><i class="fa fa-check"></i>R packages (8)</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-packages-8.html"><a href="r-packages-8.html#introduction-3"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="r-packages-8.html"><a href="r-packages-8.html#copopa"><i class="fa fa-check"></i>Copopa</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters-9.html"><a href="rmarkdown-parameters-9.html"><i class="fa fa-check"></i>Rmarkdown parameters (9)</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -215,8 +219,26 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="r-packages-8" class="section level1 unnumbered hasAnchor">
 <h1>R packages (8)<a href="r-packages-8.html#r-packages-8" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>blabla</p>
+<div id="introduction-3" class="section level2 unnumbered hasAnchor">
+<h2>Introduction<a href="r-packages-8.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this assignment I created a R package to support my portfolio, following <a href="https://r-pkgs.org/whole-game.html">The Whole Game demo</a> made by Hadley Wickham. The demo guided me through setting up my own package and helped me create something useful on my own after.</p>
+</div>
+<div id="copopa" class="section level2 unnumbered hasAnchor">
+<h2>Copopa<a href="r-packages-8.html#copopa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To start a new package, a name is necessary. I combined my name, “portfolio” and “package” together into a fun word an checked availability with the “available” package.</p>
+<p>The name was available, so I set up the project and the github repository to get started.</p>
+A package to support my portfolio would reduce duplicated code. But scanning through my portfolio, I noticed that there wasn’t a lot of code or duplicated code. Luckily, i found some in the “Relational data and databases” assignment that would work for this. The package that i made contains two functions:
+<ul>
+<li>
+check_type() -&gt; checks the data type of datasets, or columns in it.
+</li>
+<li>
+save_to_csv_rds() -&gt; saves a dataframe into CSV and RDS files.
+</li>
+</ul>
+<p>For the manual and contents of the package, please visit <a href="https://github.com/coconiemel/copopa">the copopa github repository</a>.</p>
 
+</div>
 </div>
             </section>
 
