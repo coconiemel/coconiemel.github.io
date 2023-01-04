@@ -13,6 +13,7 @@ The experiment used for this analysis was obtained from an experiment in which a
 # Used libraries in this exercise.
 library(readxl)
 library(tidyverse)
+library(kableExtra)
 
 ```
 
@@ -139,8 +140,9 @@ colnames(repita_criteria_tab) <- c('Transparency criteria', 'Score')
 # Convert matrix to table 
 repita_criteria_tab <- as.table(repita_criteria_tab)
 
-# View table 
-repita_criteria_tab
+# Design and view table 
+kable(repita_criteria_tab) %>%
+  kable_styling(latex_options = "striped")
 
 ```
 
