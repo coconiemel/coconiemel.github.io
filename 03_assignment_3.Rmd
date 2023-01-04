@@ -2,17 +2,165 @@
 
 ## Introduction {-}
 
-After this course i will be specializing in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before i start working in the field, i hope to earn a masters degree, so in two years i will probably be busy with my masters.
+After this course I will be specializing in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before i start working in the field, I hope to earn a masters degree, so in two years i will probably be busy with my masters.
 
-Because i am interested in microbiology, my free assignment will also be in that lane. I will be learning to perform a phylogenetic analysis to a COVID dataset in R.
+Because I am interested in microbiology, my free assignment will also be in that lane. I will be learning to perform a phylogenetic analysis to a COVID dataset in R.
 
 ## Plan {-}
 
-To achieve my goal, i have planned 4 days total to work on it. I have divided the days in a couple groups:
-- Half a day to come up with a plan, write this and search the right data needed.
-- One day to follow a tutorial.
-- Two days to implement this tutorial on the data i will be using and complete the analysis.
-- Half a day to finish the writing and details.
+To achieve my goal, I have planned 4 days total to work on it. I have divided the days in a couple groups:
+<ul><li>Half a day to come up with a plan, write this and search the right data needed.</li>
+<li>One day to follow a tutorial and find everything that I need for my own analysis.</li>
+<li>Two days to implement this tutorial on the data i will be using and complete the analysis.</li>
+<li>Half a day to finish the writing and details.</li></ul>
 
-## A phylogenetic analysis {-}
+## The phylogenetic analysis {-}
+
+```{r libraries in this code}
+
+library(adegenet)
+library(Biostrings)
+library(msa)
+library(copopa)
+library(kableExtra)
+library(ape)
+
+```
+
+The code needs two functions from the {compbio4all} package, but Nathan L Brouwer, the writer of the package, states that if there is any trouble downloading the package the (following) codes for the function can be copied. The package in question can be found at [the github repository](https://github.com/brouwern/compbio4all.git).
+
+```{r function codes}
+
+# Function to clean up fasta files
+
+fasta_cleaner <- function(fasta_object, parse = TRUE){
+
+  fasta_object <- sub("^(>)(.*?)(\\n)(.*)(\\n\\n)","\\4",fasta_object)
+  fasta_object <- gsub("\n", "", fasta_object)
+
+  if(parse == TRUE){
+    fasta_object <- stringr::str_split(fasta_object,
+                                       pattern = "",
+                                       simplify = FALSE)
+  }
+
+  return(fasta_object[[1]])
+}
+
+# Function to store fasta sequences into a R list
+
+entrez_fetch_list <- function(db, id, rettype, ...){
+
+  #setup list for storing output
+  n.seq <- length(id)
+  list.output <- as.list(rep(NA, n.seq))
+  names(list.output) <- id
+
+  # get output
+  for(i in 1:length(id)){
+    list.output[[i]] <- rentrez::entrez_fetch(db = db,
+                                              id = id[i],
+                                              rettype = rettype)
+  }
+
+
+  return(list.output)
+}
+
+```
+
+The analysis starts by fetching the sequences from NCBI and make them compatible for analysis.
+The file "species" is written to enhance the target IDs, this way, all the genomes can be fetched at once.
+
+```{r load and adjust sequences}
+
+# Import list of target species
+
+species <-scan(file = ("files/ebola_data/species.txt"), what = "character", sep = "\n", comment.char = "#") 
+
+# Obtain fasta sequences of all species combined in a list
+
+ebola_viruses <- entrez_fetch_list(db = "nucleotide",
+             id = species,
+             rettype = "fasta") 
+
+# Remove non sequence infromation
+
+for(i in 1:length(ebola_viruses)){
+  ebola_viruses[[i]] <- fasta_cleaner(ebola_viruses[[i]], parse = F)
+}
+
+# Create string set
+
+ebola_vector <- rep(NA, length(ebola_viruses))
+
+for(i in 1:length(ebola_vector)){
+  ebola_vector[i] <- ebola_viruses[[i]]
+}
+
+names(ebola_vector) <- names(ebola_viruses)
+
+ebola_vector_ss <- Biostrings::AAStringSet(ebola_vector)
+
+```
+
+```{r multiple sequence alignment, eval = FALSE}
+
+# Perform multiple sequence alignment
+
+ebola_align <- msa(ebola_vector_ss,
+                     method = "ClustalW")
+
+# Change class into correct one, in this case RNA because Ebola is a RNA-virus
+
+class(ebola_align) <- "RNAMultipleAlignment"
+
+# Save in file so alignment only needs to run once
+
+saveRDS(ebola_align, ("files/ebola_data/ebola_align.RDS"))
+
+```
+
+```{r import aligned data}
+
+# Import aligned file for usage
+
+ebola_align <- readRDS("files/ebola_data/ebola_align.RDS")
+
+```
+
+```{r view msa}
+
+ebola_align_seqinr <- msaConvert(ebola_align, 
+                                   type = "seqinr::alignment")
+
+ebola_dist <- seqinr::dist.alignment(ebola_align_seqinr, 
+                                       matrix = "identity")
+ebola_dist_rounded <- round(ebola_dist,
+                              digits = 2)
+
+```
+
+```{r phylogenetic tree}
+
+# Generate the structure of the tree
+
+ebola_tree <- nj(ebola_dist)
+
+# plot tree
+
+plot.phylo(ebola_tree, main="Phylogenetic Tree", 
+            use.edge.length = T)
+# add label
+mtext(text = "Ebola family gene tree - rooted, with branch lenths")
+
+min(ebola_dist_rounded)
+
+```
+
+To do:
+- Add normal lables to tree/msa
+- Documentation
+- Analysis after (closest relative etc.)
+- Update plan and intro
 
