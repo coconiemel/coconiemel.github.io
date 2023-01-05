@@ -29,12 +29,11 @@ library(ggtree)
 
 ```
 
-The code needs two functions from the {compbio4all} package, but Nathan L Brouwer, the writer of the package, states that if there is any trouble downloading the package the (following) codes for the function can be copied. The package in question can be found at [the github repository](https://github.com/brouwern/compbio4all.git).
+The code needs two functions from the {compbio4all} package, but Nathan L Brouwer, the writer of the package, states that if there is any trouble downloading the package the (following) codes for the function can be copied. The package in question can be found at [the github repository](https://github.com/brouwern/compbio4all.git). I did have trouble installing the packages, so the code retrieved from github is below.
 
 ```{r function codes}
 
 # Function to clean up fasta files
-
 fasta_cleaner <- function(fasta_object, parse = TRUE){
 
   fasta_object <- sub("^(>)(.*?)(\\n)(.*)(\\n\\n)","\\4",fasta_object)
@@ -50,7 +49,6 @@ fasta_cleaner <- function(fasta_object, parse = TRUE){
 }
 
 # Function to store fasta sequences into a R list
-
 entrez_fetch_list <- function(db, id, rettype, ...){
 
   #setup list for storing output
@@ -77,23 +75,19 @@ The file "species" is written to enhance the target IDs, this way, all the genom
 ```{r load and adjust sequences}
 
 # Import list of target species
-
 species <-scan(file = ("files/filo_data/species.txt"), what = "character", sep = "\n", comment.char = "#") 
 
 # Obtain fasta sequences of all species combined in a list
-
 filoviridae <- entrez_fetch_list(db = "nucleotide",
              id = species,
              rettype = "fasta") 
 
 # Remove non sequence infromation
-
 for(i in 1:length(filoviridae)){
   filoviridae[[i]] <- fasta_cleaner(filoviridae[[i]], parse = F)
 }
 
 # Create string set
-
 filoviridae_vector <- rep(NA, length(filoviridae))
 
 for(i in 1:length(filoviridae_vector)){
@@ -106,19 +100,18 @@ filoviridae_vector_ss <- Biostrings::AAStringSet(filoviridae_vector)
 
 ```
 
+Next is the multiple sequence alignment. This creates an alignment to easily spot the distances between all the options. Because this takes a long time to perform, I saved the alignment in a file that can be obtained.
+
 ```{r multiple sequence alignment, eval = FALSE}
 
 # Perform multiple sequence alignment
-
 filoviridae_align <- msa(filoviridae_vector_ss,
                      method = "ClustalW")
 
 # Change class into correct one, in this case RNA because Ebola is a RNA-virus
-
 class(filoviridae_align) <- "RNAMultipleAlignment"
 
 # Save in file so alignment only needs to run once
-
 saveRDS(filoviridae_align, ("files/filo_data/filoviridae_align.RDS"))
 
 ```
@@ -126,10 +119,11 @@ saveRDS(filoviridae_align, ("files/filo_data/filoviridae_align.RDS"))
 ```{r import aligned data}
 
 # Import aligned file for usage
-
 filoviridae_align <- readRDS("files/filo_data/filoviridae_align.RDS")
 
 ```
+
+To use the alignment for the tree, the genetic distance between the sequences will be calculated. For readability, a rounded version is also made. After the calculations the tree is plotted.
 
 ```{r view msa}
 
@@ -161,19 +155,19 @@ ggtree(filoviridae_tree, ladderize = T, branch.length = "branch.length",
 
 ```
 
-Figure 3: Phylogenetic tree of the Filoviridae family.
+
+_Figure 2: Phylogenetic tree of the Filoviridae family._
+
+The return of the code below shows the calculated genetic distances of all options. Seen from here is states that Taiforest ebolavirus & Bombali ebolavirus are closest related with a score of 0.56.
+
+It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus & Marburg marburgvirus, Bombali ebolavirus & Mengla dianlovirus, Sudan ebolavirus & Marburg marburgvirus, Sudan ebolavirus & Mengla dianlovirus, Reston ebolavirus & Marburg marburgvirus, Lloviu cuevavirus & Marburg marburgvirus, Lloviu cuevavirus & Mengla dianlovirus.
+
 
 ```{r details}
-# Details
 
+# Details
 filoviridae_dist_rounded
-min(filoviridae_dist_rounded) # closest relative 0.56 TFe & BBe
-max(filoviridae_dist_rounded) # furthest relavtive 0.76 BBe & Mm, BBe & Md, Se & Mm, Se & Md, Re & Mm, Lv & Mm, Lv & Md
+min(filoviridae_dist_rounded) 
+max(filoviridae_dist_rounded)
 
 ```
-
-To do:
-- Documentation
-- Analysis after (closest relative etc.)
-- Update plan and intro
-
