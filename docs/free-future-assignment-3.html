@@ -329,7 +329,7 @@ The file “species” is written to enhance the target IDs, this way, all the g
 <span id="cb32-9"><a href="free-future-assignment-3.html#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(filoviridae_align, (<span class="st">&quot;files/filo_data/filoviridae_align.RDS&quot;</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="free-future-assignment-3.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import aligned file for usage</span></span>
 <span id="cb33-2"><a href="free-future-assignment-3.html#cb33-2" aria-hidden="true" tabindex="-1"></a>filoviridae_align <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;files/filo_data/filoviridae_align.RDS&quot;</span>)</span></code></pre></div>
-<p>To use the alignment for the tree, the genetic distance between the sequences will be calculated. For readability, a rounded version is also made. After the calculations the tree is plotted.</p>
+<p>To use the alignment for the tree, the genetic distance between the sequences will be calculated. For readability, a rounded version is also made. After the calculations the tree is plotted. The tree clearly shows that most ebolaviruses are closely related, which is logical because they are only different species, only Reston and Sudan are somewhat further from the rest but close to each other. Is also shows that Mengla dianlovirus and Marburg marburgvirus are closely related, and Lloviu is also nearby.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="free-future-assignment-3.html#cb34-1" aria-hidden="true" tabindex="-1"></a>filoviridae_align_seqinr <span class="ot">&lt;-</span> <span class="fu">msaConvert</span>(filoviridae_align, </span>
 <span id="cb34-2"><a href="free-future-assignment-3.html#cb34-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">type =</span> <span class="st">&quot;seqinr::alignment&quot;</span>)</span>
 <span id="cb34-3"><a href="free-future-assignment-3.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -352,82 +352,83 @@ The file “species” is written to enhance the target IDs, this way, all the g
 <span id="cb35-13"><a href="free-future-assignment-3.html#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> .<span class="dv">5</span>), <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">hjust =</span> .<span class="dv">5</span>))</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/phylogenetic%20tree-1.png" width="672" /></p>
 <p><em>Figure 2: Phylogenetic tree of the Filoviridae family.</em></p>
-<p>The return of the code below shows the calculated genetic distances of all options. Seen from here is states that Taiforest ebolavirus &amp; Bombali ebolavirus are closest related with a score of 0.56.</p>
+<p>The tree shows an easy picture of the differences, but is doesn’t show the numbers in detail. To solve this, I calcutated them separately.</p>
+<p>The return of the code below shows the calculated genetic distances of all options. Seen from here is states that Taiforest ebolavirus &amp; Bundibogyo ebolavirus are closest related with a score of 0.56.</p>
 <p>It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus &amp; Marburg marburgvirus, Bombali ebolavirus &amp; Mengla dianlovirus, Sudan ebolavirus &amp; Marburg marburgvirus, Sudan ebolavirus &amp; Mengla dianlovirus, Reston ebolavirus &amp; Marburg marburgvirus, Lloviu cuevavirus &amp; Marburg marburgvirus, Lloviu cuevavirus &amp; Mengla dianlovirus.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="free-future-assignment-3.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Details</span></span>
 <span id="cb36-2"><a href="free-future-assignment-3.html#cb36-2" aria-hidden="true" tabindex="-1"></a>filoviridae_dist_rounded</span></code></pre></div>
-<pre><code>##                                  KC545393.1 Bundibogyo ebolavirus
-## MH121167.1 Taiforest ebolavirus                              0.56
-## KT357858.1 Zaire ebolavirus                                  0.61
-## NC_039345.1 Bombali ebolavirus                               0.64
-## EU338380.1 Sudan ebolavirus                                  0.65
-## MF540571.1 Reston ebolavirus                                 0.65
-## MZ541881.1 Lloviu cuevavirus                                 0.70
-## OL702894.1 Marburg margburgvirus                             0.75
-## NC_055510.1 Mengla dianlovirus                               0.75
-##                                  MH121167.1 Taiforest ebolavirus
-## MH121167.1 Taiforest ebolavirus                                 
+<pre><code>##                                 KC545393.1 Bundibogyo ebolavirus
+## MH121167.1 Taiforest ebolavirus                             0.56
 ## KT357858.1 Zaire ebolavirus                                 0.61
 ## NC_039345.1 Bombali ebolavirus                              0.64
 ## EU338380.1 Sudan ebolavirus                                 0.65
 ## MF540571.1 Reston ebolavirus                                0.65
 ## MZ541881.1 Lloviu cuevavirus                                0.70
-## OL702894.1 Marburg margburgvirus                            0.76
+## OL702894.1 Marburg marburgvirus                             0.75
 ## NC_055510.1 Mengla dianlovirus                              0.75
-##                                  KT357858.1 Zaire ebolavirus
-## MH121167.1 Taiforest ebolavirus                             
-## KT357858.1 Zaire ebolavirus                                 
-## NC_039345.1 Bombali ebolavirus                          0.63
-## EU338380.1 Sudan ebolavirus                             0.65
-## MF540571.1 Reston ebolavirus                            0.65
-## MZ541881.1 Lloviu cuevavirus                            0.71
-## OL702894.1 Marburg margburgvirus                        0.75
-## NC_055510.1 Mengla dianlovirus                          0.75
-##                                  NC_039345.1 Bombali ebolavirus
+##                                 MH121167.1 Taiforest ebolavirus
 ## MH121167.1 Taiforest ebolavirus                                
-## KT357858.1 Zaire ebolavirus                                    
-## NC_039345.1 Bombali ebolavirus                                 
-## EU338380.1 Sudan ebolavirus                                0.66
-## MF540571.1 Reston ebolavirus                               0.66
+## KT357858.1 Zaire ebolavirus                                0.61
+## NC_039345.1 Bombali ebolavirus                             0.64
+## EU338380.1 Sudan ebolavirus                                0.65
+## MF540571.1 Reston ebolavirus                               0.65
 ## MZ541881.1 Lloviu cuevavirus                               0.70
-## OL702894.1 Marburg margburgvirus                           0.76
-## NC_055510.1 Mengla dianlovirus                             0.76
-##                                  EU338380.1 Sudan ebolavirus
+## OL702894.1 Marburg marburgvirus                            0.76
+## NC_055510.1 Mengla dianlovirus                             0.75
+##                                 KT357858.1 Zaire ebolavirus
+## MH121167.1 Taiforest ebolavirus                            
+## KT357858.1 Zaire ebolavirus                                
+## NC_039345.1 Bombali ebolavirus                         0.63
+## EU338380.1 Sudan ebolavirus                            0.65
+## MF540571.1 Reston ebolavirus                           0.65
+## MZ541881.1 Lloviu cuevavirus                           0.71
+## OL702894.1 Marburg marburgvirus                        0.75
+## NC_055510.1 Mengla dianlovirus                         0.75
+##                                 NC_039345.1 Bombali ebolavirus
+## MH121167.1 Taiforest ebolavirus                               
+## KT357858.1 Zaire ebolavirus                                   
+## NC_039345.1 Bombali ebolavirus                                
+## EU338380.1 Sudan ebolavirus                               0.66
+## MF540571.1 Reston ebolavirus                              0.66
+## MZ541881.1 Lloviu cuevavirus                              0.70
+## OL702894.1 Marburg marburgvirus                           0.76
+## NC_055510.1 Mengla dianlovirus                            0.76
+##                                 EU338380.1 Sudan ebolavirus
+## MH121167.1 Taiforest ebolavirus                            
+## KT357858.1 Zaire ebolavirus                                
+## NC_039345.1 Bombali ebolavirus                             
+## EU338380.1 Sudan ebolavirus                                
+## MF540571.1 Reston ebolavirus                           0.63
+## MZ541881.1 Lloviu cuevavirus                           0.71
+## OL702894.1 Marburg marburgvirus                        0.76
+## NC_055510.1 Mengla dianlovirus                         0.76
+##                                 MF540571.1 Reston ebolavirus
 ## MH121167.1 Taiforest ebolavirus                             
 ## KT357858.1 Zaire ebolavirus                                 
 ## NC_039345.1 Bombali ebolavirus                              
 ## EU338380.1 Sudan ebolavirus                                 
-## MF540571.1 Reston ebolavirus                            0.63
+## MF540571.1 Reston ebolavirus                                
 ## MZ541881.1 Lloviu cuevavirus                            0.71
-## OL702894.1 Marburg margburgvirus                        0.76
+## OL702894.1 Marburg marburgvirus                         0.76
+## NC_055510.1 Mengla dianlovirus                          0.75
+##                                 MZ541881.1 Lloviu cuevavirus
+## MH121167.1 Taiforest ebolavirus                             
+## KT357858.1 Zaire ebolavirus                                 
+## NC_039345.1 Bombali ebolavirus                              
+## EU338380.1 Sudan ebolavirus                                 
+## MF540571.1 Reston ebolavirus                                
+## MZ541881.1 Lloviu cuevavirus                                
+## OL702894.1 Marburg marburgvirus                         0.76
 ## NC_055510.1 Mengla dianlovirus                          0.76
-##                                  MF540571.1 Reston ebolavirus
-## MH121167.1 Taiforest ebolavirus                              
-## KT357858.1 Zaire ebolavirus                                  
-## NC_039345.1 Bombali ebolavirus                               
-## EU338380.1 Sudan ebolavirus                                  
-## MF540571.1 Reston ebolavirus                                 
-## MZ541881.1 Lloviu cuevavirus                             0.71
-## OL702894.1 Marburg margburgvirus                         0.76
-## NC_055510.1 Mengla dianlovirus                           0.75
-##                                  MZ541881.1 Lloviu cuevavirus
-## MH121167.1 Taiforest ebolavirus                              
-## KT357858.1 Zaire ebolavirus                                  
-## NC_039345.1 Bombali ebolavirus                               
-## EU338380.1 Sudan ebolavirus                                  
-## MF540571.1 Reston ebolavirus                                 
-## MZ541881.1 Lloviu cuevavirus                                 
-## OL702894.1 Marburg margburgvirus                         0.76
-## NC_055510.1 Mengla dianlovirus                           0.76
-##                                  OL702894.1 Marburg margburgvirus
-## MH121167.1 Taiforest ebolavirus                                  
-## KT357858.1 Zaire ebolavirus                                      
-## NC_039345.1 Bombali ebolavirus                                   
-## EU338380.1 Sudan ebolavirus                                      
-## MF540571.1 Reston ebolavirus                                     
-## MZ541881.1 Lloviu cuevavirus                                     
-## OL702894.1 Marburg margburgvirus                                 
-## NC_055510.1 Mengla dianlovirus                               0.67</code></pre>
+##                                 OL702894.1 Marburg marburgvirus
+## MH121167.1 Taiforest ebolavirus                                
+## KT357858.1 Zaire ebolavirus                                    
+## NC_039345.1 Bombali ebolavirus                                 
+## EU338380.1 Sudan ebolavirus                                    
+## MF540571.1 Reston ebolavirus                                   
+## MZ541881.1 Lloviu cuevavirus                                   
+## OL702894.1 Marburg marburgvirus                                
+## NC_055510.1 Mengla dianlovirus                             0.67</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="free-future-assignment-3.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(filoviridae_dist_rounded) </span></code></pre></div>
 <pre><code>## [1] 0.56</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="free-future-assignment-3.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(filoviridae_dist_rounded)</span></code></pre></div>

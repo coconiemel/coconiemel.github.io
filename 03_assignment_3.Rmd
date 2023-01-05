@@ -123,7 +123,7 @@ filoviridae_align <- readRDS("files/filo_data/filoviridae_align.RDS")
 
 ```
 
-To use the alignment for the tree, the genetic distance between the sequences will be calculated. For readability, a rounded version is also made. After the calculations the tree is plotted.
+To use the alignment for the tree, the genetic distance between the sequences will be calculated. For readability, a rounded version is also made. After the calculations the tree is plotted. The tree clearly shows that most ebolaviruses are closely related, which is logical because they are only different species, only Reston and Sudan are somewhat further from the rest but close to each other. Is also shows that Mengla dianlovirus and Marburg marburgvirus are closely related, and Lloviu is also nearby.
 
 ```{r view msa}
 
@@ -158,7 +158,9 @@ ggtree(filoviridae_tree, ladderize = T, branch.length = "branch.length",
 
 _Figure 2: Phylogenetic tree of the Filoviridae family._
 
-The return of the code below shows the calculated genetic distances of all options. Seen from here is states that Taiforest ebolavirus & Bombali ebolavirus are closest related with a score of 0.56.
+The tree shows an easy picture of the differences, but is doesn't show the numbers in detail. To solve this, I calcutated them separately.
+
+The return of the code below shows the calculated genetic distances of all options. Seen from here is states that Taiforest ebolavirus & Bundibogyo ebolavirus are closest related with a score of 0.56.
 
 It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus & Marburg marburgvirus, Bombali ebolavirus & Mengla dianlovirus, Sudan ebolavirus & Marburg marburgvirus, Sudan ebolavirus & Mengla dianlovirus, Reston ebolavirus & Marburg marburgvirus, Lloviu cuevavirus & Marburg marburgvirus, Lloviu cuevavirus & Mengla dianlovirus.
 
