@@ -2,9 +2,11 @@
 
 ## Introduction {-}
 
+For this assignment, we were opted to learn a new skill in four days, any skill related to data science and life sciences that will help you in the future.
+
 After this course I will be specializing in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before i start working in the field, I hope to earn a masters degree, so in two years i will probably be busy with my masters. I am not sure what masters I would like to do.
 
-Because I am interested in microbiology, my free assignment will also be in that lane. I will be learning to generate a phylogenetic tree about the Filoviridae family. I chose this viral family because I am interested in infectious diseases and two species of these are known to cause quite the infectious diseases.
+Because I am interested in microbiology, my free assignment will also be in that lane. I chose to learn to generate a phylogenetic tree about the Filoviridae family. I chose this viral family because I am interested in infectious diseases and two species of these are known to cause quite the infectious diseases.
 
 ## Plan {-}
 
@@ -14,11 +16,24 @@ To achieve my goal, I had 4 days total planned to work on it. I had divided the 
 <li>Two days to implement my knowledge from searching the internet and the tutorial to the data I will be using and complete generating the tree.</li>
 <li>Half a day to finish the writing and details.</li></ul>
 
+Eventually, i gained my needed information to generate a phylogenetic tree from a little trial and error, but mostly because of the following resources: 
+<ul><li>[Multiple Alignment Object](https://bioconductor.org/packages/devel/bioc/vignettes/Biostrings/inst/doc/MultipleAlignments.pdf)</li>
+<li>[ggtree utilities](https://bioconductor.statistik.tu-dortmund.de/packages/3.5/bioc/vignettes/ggtree/inst/doc/ggtreeUtilities.html)</li>
+<li>[tree Visualization](https://bioconductor.statistik.tu-dortmund.de/packages/3.8/bioc/vignettes/ggtree/inst/doc/treeVisualization.html#displaying-tree-scale-evolution-distance)</li>
+<li>[Building a phylogeny in R](https://brouwern.github.io/lbrb/worked-example-building-a-phylogeny-in-r.html#genetic-distances-of-sequence-in-subset)</li>
+<li>[Visualization and annotation of phylogenetic trees: ggtree](https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html)</li></ul>
+
 ## The Filoviridae family {-}
+
+Viruses of the Filoviridae family, also know as filoviruses, are viruses containing one molecule of single-stranded negative-sense RNA that are enveloped in a fatty membrane. The viruses are zoonotic and it is believed that their reservoir hosts usually are bats [@FilovirusesFiloviridaeViral2021]. The viruses are one of the families known to cause Viral hemorrhagic fevers (VHS) that affects multiple body systems and usually results in heavy bleeding and death [@WhatAreVHFs2021].
+
+There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus and Striavirus. Ebolavirus has six knows species and the rest have one [@languonFilovirusDiseaseOutbreaks2019]. In my analysis I left Striavirus out, because there is barely any information or data about Striavirus.
+
+Ebolavirus and Marburgvirus are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@filoviruses-infection-with.pdf].
 
 ## The phylogenetic tree {-}
 
-```{r libraries in this code}
+```{r libraries in this code, echo = FALSE}
 
 library(adegenet)
 library(Biostrings)
@@ -69,7 +84,7 @@ entrez_fetch_list <- function(db, id, rettype, ...){
 
 ```
 
-The analysis starts by fetching the sequences from NCBI and make them compatible for analysis.
+The analysis starts by fetching the sequences from NCBI [@NationalCenterBiotechnology] and make them compatible for analysis.
 The file "species" is written to enhance the target IDs, this way, all the genomes can be fetched at once.
 
 ```{r load and adjust sequences}
