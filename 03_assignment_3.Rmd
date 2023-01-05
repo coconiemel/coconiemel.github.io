@@ -24,6 +24,7 @@ library(msa)
 library(copopa)
 library(kableExtra)
 library(ape)
+library(ggtree)
 
 ```
 
@@ -76,31 +77,31 @@ The file "species" is written to enhance the target IDs, this way, all the genom
 
 # Import list of target species
 
-species <-scan(file = ("files/ebola_data/species.txt"), what = "character", sep = "\n", comment.char = "#") 
+species <-scan(file = ("files/filo_data/species.txt"), what = "character", sep = "\n", comment.char = "#") 
 
 # Obtain fasta sequences of all species combined in a list
 
-ebola_viruses <- entrez_fetch_list(db = "nucleotide",
+filoviridae <- entrez_fetch_list(db = "nucleotide",
              id = species,
              rettype = "fasta") 
 
 # Remove non sequence infromation
 
-for(i in 1:length(ebola_viruses)){
-  ebola_viruses[[i]] <- fasta_cleaner(ebola_viruses[[i]], parse = F)
+for(i in 1:length(filoviridae)){
+  filoviridae[[i]] <- fasta_cleaner(filoviridae[[i]], parse = F)
 }
 
 # Create string set
 
-ebola_vector <- rep(NA, length(ebola_viruses))
+filoviridae_vector <- rep(NA, length(filoviridae))
 
-for(i in 1:length(ebola_vector)){
-  ebola_vector[i] <- ebola_viruses[[i]]
+for(i in 1:length(filoviridae_vector)){
+  filoviridae_vector[i] <- filoviridae[[i]]
 }
 
-names(ebola_vector) <- names(ebola_viruses)
+names(filoviridae_vector) <- names(filoviridae)
 
-ebola_vector_ss <- Biostrings::AAStringSet(ebola_vector)
+filoviridae_vector_ss <- Biostrings::AAStringSet(filoviridae_vector)
 
 ```
 
@@ -108,16 +109,16 @@ ebola_vector_ss <- Biostrings::AAStringSet(ebola_vector)
 
 # Perform multiple sequence alignment
 
-ebola_align <- msa(ebola_vector_ss,
+filoviridae_align <- msa(filoviridae_vector_ss,
                      method = "ClustalW")
 
 # Change class into correct one, in this case RNA because Ebola is a RNA-virus
 
-class(ebola_align) <- "RNAMultipleAlignment"
+class(filoviridae_align) <- "RNAMultipleAlignment"
 
 # Save in file so alignment only needs to run once
 
-saveRDS(ebola_align, ("files/ebola_data/ebola_align.RDS"))
+saveRDS(filoviridae_align, ("files/filo_data/filoviridae_align.RDS"))
 
 ```
 
@@ -125,18 +126,18 @@ saveRDS(ebola_align, ("files/ebola_data/ebola_align.RDS"))
 
 # Import aligned file for usage
 
-ebola_align <- readRDS("files/ebola_data/ebola_align.RDS")
+filoviridae_align <- readRDS("files/filo_data/filoviridae_align.RDS")
 
 ```
 
 ```{r view msa}
 
-ebola_align_seqinr <- msaConvert(ebola_align, 
+filoviridae_align_seqinr <- msaConvert(filoviridae_align, 
                                    type = "seqinr::alignment")
 
-ebola_dist <- seqinr::dist.alignment(ebola_align_seqinr, 
+filoviridae_dist <- seqinr::dist.alignment(filoviridae_align_seqinr, 
                                        matrix = "identity")
-ebola_dist_rounded <- round(ebola_dist,
+filoviridae_dist_rounded <- round(filoviridae_dist,
                               digits = 2)
 
 ```
@@ -145,21 +146,31 @@ ebola_dist_rounded <- round(ebola_dist,
 
 # Generate the structure of the tree
 
-ebola_tree <- nj(ebola_dist)
+filoviridae_tree <- nj(filoviridae_dist)
 
-# plot tree
+# Plot tree
 
-plot.phylo(ebola_tree, main="Phylogenetic Tree", 
-            use.edge.length = T)
-# add label
-mtext(text = "Ebola family gene tree - rooted, with branch lenths")
+ggtree(filoviridae_tree, ladderize = T, branch.length = "branch.length", 
+       root.position = .05)+ 
+  geom_tiplab(size = 3.5)+
+  xlim(0, .8)+
+  labs(title = "Filoviridae family tree",  
+       subtitle = "Rooted phylogenetic tree, with branch lengths")+
+  theme(plot.title = element_text(size = 18, face = "bold", hjust = .5), plot.subtitle = element_text(size = 12, face = "italic", hjust = .5))
 
-min(ebola_dist_rounded)
+```
+Figure 3: Phylogenetic tree of the Filoviridae family.
+
+```{r details}
+# Details
+
+filoviridae_dist_rounded
+min(filoviridae_dist_rounded) # closest relative 0.56 TFe & BBe
+max(filoviridae_dist_rounded) # furthest relavtive 0.76 BBe & Mm, BBe & Md, Se & Mm, Se & Md, Re & Mm, Lv & Mm, Lv & Md
 
 ```
 
 To do:
-- Add normal lables to tree/msa
 - Documentation
 - Analysis after (closest relative etc.)
 - Update plan and intro

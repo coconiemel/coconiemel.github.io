@@ -1,6 +1,0 @@
-KC545393.1 # Bundibogyo ebolavirus
-EU338380.1 # Sudan ebolavirus
-MH121167.1 # Tailforest ebolavirus
-KT357858.1 # Zaire ebolavirus
-MF540571.1 # Reston ebolavirus
-NC_039345.1 # Bombali ebolavirus
