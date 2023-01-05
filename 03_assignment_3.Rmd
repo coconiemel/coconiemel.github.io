@@ -2,26 +2,27 @@
 
 ## Introduction {-}
 
-After this course I will be specializing in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before i start working in the field, I hope to earn a masters degree, so in two years i will probably be busy with my masters.
+After this course I will be specializing in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before i start working in the field, I hope to earn a masters degree, so in two years i will probably be busy with my masters. I am not sure what masters I would like to do.
 
-Because I am interested in microbiology, my free assignment will also be in that lane. I will be learning to perform a phylogenetic analysis to a COVID dataset in R.
+Because I am interested in microbiology, my free assignment will also be in that lane. I will be learning to generate a phylogenetic tree about the Filoviridae family. I chose this viral family because I am interested in infectious diseases and two species of these are known to cause quite the infectious diseases.
 
 ## Plan {-}
 
-To achieve my goal, I have planned 4 days total to work on it. I have divided the days in a couple groups:
+To achieve my goal, I had 4 days total planned to work on it. I had divided the days in a couple groups:
 <ul><li>Half a day to come up with a plan, write this and search the right data needed.</li>
 <li>One day to follow a tutorial and find everything that I need for my own analysis.</li>
-<li>Two days to implement this tutorial on the data i will be using and complete the analysis.</li>
+<li>Two days to implement my knowledge from searching the internet and the tutorial to the data I will be using and complete generating the tree.</li>
 <li>Half a day to finish the writing and details.</li></ul>
 
-## The phylogenetic analysis {-}
+## The Filoviridae family {-}
+
+## The phylogenetic tree {-}
 
 ```{r libraries in this code}
 
 library(adegenet)
 library(Biostrings)
 library(msa)
-library(copopa)
 library(kableExtra)
 library(ape)
 library(ggtree)
@@ -159,6 +160,7 @@ ggtree(filoviridae_tree, ladderize = T, branch.length = "branch.length",
   theme(plot.title = element_text(size = 18, face = "bold", hjust = .5), plot.subtitle = element_text(size = 12, face = "italic", hjust = .5))
 
 ```
+
 Figure 3: Phylogenetic tree of the Filoviridae family.
 
 ```{r details}
