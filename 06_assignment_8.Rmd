@@ -11,8 +11,10 @@ To start a new package, a name is necessary. I combined my name, "portfolio" and
 The name was available, so I set up the project and the github repository to get started.
 
 A package to support my portfolio would reduce duplicated code. But scanning through my portfolio, I noticed that there wasn't a lot of code or duplicated code. Luckily, i found some in the "Relational data and databases" assignment that would work for this. The package that i made contains two functions:
-<ul><li>check_type() -> checks the data type of datasets, or columns in it.</li>
-<li>save_to_csv_rds() -> saves a dataframe into CSV and RDS files.</li></ul>
+<ul><li>multi_check() -> checks the data type of up to three datasets, or columns in it.</li>
+<li>save_to_csv_rds() -> saves a dataframe into CSV and RDS files.</li>
+<li>mima() -> calculates the minimum and maximum of data.</li>
+<li>mean_sd -> calculates the mean and standard deviation of data.</li></ul>
 For the manual and contents of the package, please visit [the copopa github repository](https://github.com/coconiemel/copopa).
 
 
