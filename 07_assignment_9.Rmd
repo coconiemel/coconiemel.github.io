@@ -31,6 +31,8 @@ mima(covid$dateRep) # First data was noted on 01/01/2020, last data was noted on
 
 ```
 
+## Building a parameterized graph {-}
+
 ```{r cases graph}
 
 covid_cases <- covid %>% filter(countriesAndTerritories == params$country,
