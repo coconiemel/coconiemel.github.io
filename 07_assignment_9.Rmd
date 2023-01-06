@@ -32,7 +32,8 @@ mima(covid$dateRep) # First data was noted on 01/01/2020, last data was noted on
 ```{r cases graph}
 covid_cases <- covid %>% select(countriesAndTerritories, cases, year, month)
 covid_cases_nl <- covid_cases %>% filter(countriesAndTerritories == "Netherlands",
-                                   year == "2020")
+                                   year == "2020",
+                                   month == 2:12)
 
 ggplot(covid_cases_nl, aes(x=month, y=cases))+
   geom_line()+
@@ -48,7 +49,8 @@ ggplot(covid_cases_nl, aes(x=month, y=cases))+
 
 covid_deaths <- covid %>% select(countriesAndTerritories, deaths, year, month)
 covid_deaths_nl <- covid_deaths %>% filter(countriesAndTerritories == "Netherlands",
-                                   year == "2020")
+                                   year == "2020",
+                                   month == 2:12)
 
 ggplot(covid_deaths_nl, aes(x=month, y=deaths))+
   geom_line()+
