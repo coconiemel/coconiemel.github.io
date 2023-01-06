@@ -10,54 +10,57 @@ library(tidyverse)
 library(dplyr)
 library(copopa)
 library(ggplot2)
+library(utils)
 
 ```
 
-```{r inspection}
+```{r data inspection}
 
 # Add file as data
-covid <- read_csv("files/covid_daily_data/data.csv")
+covid <- read.csv("https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
 
 # Check column names and amount of columns
-colnames(covid) # There are 12 columns
+colnames(covid) # There are 11 columns
 
 # Inspect data
-covid %>% count(countriesAndTerritories) # 214 countries participate
+covid %>% count(countriesAndTerritories) # 30 countries participate
 n_distinct(covid$geoId) # Each country has an unique geoId, so there are no double countries
-unique(covid$continentExp) # All countries are located in Asia, Europe, Africa, America, Oceania or Other
-mima(covid$dateRep) # First data was noted on 01/01/2020, last data was noted on 31/12/2019.
+unique(covid$continentExp) # All countries are located in Europe
+mima(covid$dateRep) # First data was noted on 01/01/2020, last data was noted on 31/12/2021.
+
 
 ```
 
 ```{r cases graph}
-covid_cases <- covid %>% select(countriesAndTerritories, cases, year, month)
-covid_cases_nl <- covid_cases %>% filter(countriesAndTerritories == "Netherlands",
-                                   year == "2020",
-                                   month == 2:12)
 
-ggplot(covid_cases_nl, aes(x=month, y=cases))+
+covid_cases <- covid %>% filter(countriesAndTerritories == params$country,
+                                year == params$year,
+                                month == params$month)
+covid_cases$dateRep <- as.Date(covid_cases$dateRep, "%d/%m/%y")
+
+ggplot(covid_cases, aes(x=dateRep, y=cases))+
   geom_line()+
   geom_point()+
-  labs(title = "Daily covid cases in the Netherlands that occured in 2020",
+  labs(title = "Daily covid cases in the Netherlands that occured in 2021",
        x = "Months",
-       y = "Cases")+
+       y = "New cases")+
   theme_minimal()
 
 ```
 
 ```{r deaths graph}
 
-covid_deaths <- covid %>% select(countriesAndTerritories, deaths, year, month)
-covid_deaths_nl <- covid_deaths %>% filter(countriesAndTerritories == "Netherlands",
-                                   year == "2020",
-                                   month == 2:12)
+covid_deaths <- covid %>% filter(countriesAndTerritories == params$country,
+                                year == params$year,
+                                month == params$month)
+covid_deeaths$dateRep <- as.Date(covid_cases$dateRep, "%d/%m/%y")
 
-ggplot(covid_deaths_nl, aes(x=month, y=deaths))+
+ggplot(covid_deaths, aes(x=dateRep, y=deaths))+
   geom_line()+
   geom_point()+
-  labs(title = "Daily covid cases in the Netherlands that occured in 2020",
+  labs(title = "Daily covid deaths in the Netherlands that occured in 2021",
        x = "Months",
-       y = "Cases")+
+       y = "Covid related deaths")+
   theme_minimal()
 
 ```
