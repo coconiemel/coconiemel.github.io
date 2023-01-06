@@ -190,6 +190,6 @@ max(filoviridae_dist_rounded)
 ## Future steps {-}
 
 In the future I would like to expand my knoledge in phylogeny and generating the trees, because this was just a start, there are so much more options to create. A couple of examples of things I would still like to learn in this area are:
-<ul><li> How to add the genetic distances to the tree so it is clear in one view.</i>
-<i> How to generate different types of trees, because there are a lot more and for different data, different types of trees are more compatible.</>
-<i> How to read an extensive tree. The one I've created is doable, but once they get a lot more species, reading it becomes quite hard.</li></ul>
+<ul><li>How to add the genetic distances to the tree so it is clear in one view.</li>
+<li> How to generate different types of trees, because there are a lot more and for different data, different types of trees are more compatible.</li>
+<li> How to read an extensive tree. The one I've created is doable, but once they get a lot more species, reading it becomes quite hard.</li></ul>
