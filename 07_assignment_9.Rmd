@@ -53,7 +53,7 @@ ggplot(covid_cases, aes(x=dateRep, y=cases))+
 covid_deaths <- covid %>% filter(countriesAndTerritories == params$country,
                                 year == params$year,
                                 month == params$month)
-covid_deeaths$dateRep <- as.Date(covid_cases$dateRep, "%d/%m/%y")
+covid_deaths$dateRep <- as.Date(covid_cases$dateRep, "%d/%m/%y")
 
 ggplot(covid_deaths, aes(x=dateRep, y=deaths))+
   geom_line()+
