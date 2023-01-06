@@ -182,8 +182,7 @@ It also states that there are multiple options that score furthest related with 
 
 # Details
 filoviridae_dist_rounded
-min(filoviridae_dist_rounded) 
-max(filoviridae_dist_rounded)
+mima(filoviridae_dist_rounded) # 0.56, 0.76
 
 ```
 
