@@ -17,6 +17,7 @@ library(dplyr)
 library(ggplot2)
 library(car)
 library(FSA)
+library(copopa)
 
 ```
 
@@ -46,9 +47,7 @@ An important part of relational data is enabling comparison across different dat
 
 # Column 'country'
 ## Check types.
-class(flu_df_tidy$country) # Character
-class(dengue_df_tidy$country) # Character
-class(gapminder$country) # Factor
+multi_check(flu_df_tidy$country, dengue_df_tidy$country, gapminder$country) # character, character, factor
 
 ## Change all types into factor
 flu_df_tidy$country <- as.factor(flu_df_tidy$country)
@@ -61,9 +60,7 @@ class(dengue_df_tidy$country) # Factor
 
 # Column 'date'
 ## Check types.
-class(flu_df_tidy$Date) # Date
-class(dengue_df_tidy$Date) # Date
-class(gapminder$year) # Integer
+multi_check(flu_df_tidy$Date, dengue_df_tidy$Date, gapminder$year) # date, date, integer
 
 ## Because flu and dengue are specified to day instead of the year at gapminder, a 'year' column needs to be added and changed into the integer type to create similarity.
 flu_df_tidy <- flu_df_tidy %>% mutate(year = substr(flu_df_tidy$Date, start=1, stop=4))
@@ -73,8 +70,7 @@ flu_df_tidy$year <- as.integer(flu_df_tidy$year)
 dengue_df_tidy$year <- as.integer(dengue_df_tidy$year)
 
 ## Check if it worked.
-class(flu_df_tidy$year) # Integer
-class(dengue_df_tidy$year) # Integer
+multi_check(flu_df_tidy$year, dengue_df_tidy$year, NA) # integer, integer
 ## It worked!
 
 ```
@@ -83,15 +79,10 @@ The data frames are now similar and can be stored into csv and rds files.
 
 ```{r export}
 
-# Export data frames as csv
-write.csv(flu_df_tidy, "files/flu.csv", row.names=FALSE)
-write.csv(dengue_df_tidy, "files/dengue.csv", row.names=FALSE)
-write.csv(gapminder, "files/gapminder.csv", row.names=FALSE)
-
-# Export data frames as rds
-saveRDS(flu_df_tidy, file="files/flu.rds")
-saveRDS(dengue_df_tidy, file="files/dengue.rds")
-saveRDS(gapminder, file="files/gapminder.rds")
+# Export data frames as csv and rds
+save_to_csv_rds(flu_df_tidy, "files/flu")
+save_to_csv_rds(dengue_df_tidy, "files/dengue")
+save_to_csv_rds(gapminder, "files/gapminder")
 
 ```
 
@@ -135,18 +126,12 @@ Figure 2: SQL code of data inspection.
 ```{r inspection}
 
 # Dengue
-
-min(dengue_df_tidy$cases) # 0
-max(dengue_df_tidy$cases) # 1
-mean(dengue_df_tidy$cases) # 0.14
-sd(dengue_df_tidy$cases) # 0.14
+mima(dengue_df_tidy$cases) # 0, 1
+mean_sd(dengue_df_tidy$cases) # 0.14, 0.14
 
 # Flu
-
-min(flu_df_tidy$cases) # 0
-max(flu_df_tidy$cases) # 10555
-mean(flu_df_tidy$cases) # 473.74
-sd(flu_df_tidy$cases) # 768.95
+mima(flu_df_tidy$cases) # 0, 10555
+mean_sd(flu_df_tidy$cases) # 473.74, 768.95
 
 ```
 
