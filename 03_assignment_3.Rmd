@@ -12,11 +12,11 @@ Because I am interested in microbiology, my free assignment will also be in that
 
 To achieve my goal, I had 4 days total planned to work on it. I had divided the days in a couple groups:
 <ul><li>Half a day to come up with a plan, write this and search the right data needed.</li>
-<li>One day to follow a tutorial and find everything that I need for my own analysis.</li>
-<li>Two days to implement my knowledge from searching the internet and the tutorial to the data I will be using and complete generating the tree.</li>
+<li>One day to find everything that I need for my own analysis.</li>
+<li>Two days to implement my knowledge from searching the internet and tutorials to the data I will be using and complete generating the tree.</li>
 <li>Half a day to finish the writing and details.</li></ul>
 
-Eventually, i gained my needed information to generate a phylogenetic tree from a little trial and error, but mostly because of the following resources: 
+Eventually, i gained my needed information to generate a phylogenetic tree from a lot of searching, some trial and error, but also with help from these resources: 
 <ul><li>[Multiple Alignment Object](https://bioconductor.org/packages/devel/bioc/vignettes/Biostrings/inst/doc/MultipleAlignments.pdf)</li>
 <li>[ggtree utilities](https://bioconductor.statistik.tu-dortmund.de/packages/3.5/bioc/vignettes/ggtree/inst/doc/ggtreeUtilities.html)</li>
 <li>[tree Visualization](https://bioconductor.statistik.tu-dortmund.de/packages/3.8/bioc/vignettes/ggtree/inst/doc/treeVisualization.html#displaying-tree-scale-evolution-distance)</li>
@@ -32,19 +32,18 @@ There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavi
 Ebolavirus and Marburgvirus are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@filoviruses-infection-with.pdf].
 
 ## The phylogenetic tree {-}
-
-```{r libraries in this code, echo = FALSE}
+```{r libraries in this code}
 
 library(adegenet)
 library(Biostrings)
 library(msa)
-library(kableExtra)
 library(ape)
 library(ggtree)
+library(rentrez)
 
 ```
 
-The code needs two functions from the {compbio4all} package, but Nathan L Brouwer, the writer of the package, states that if there is any trouble downloading the package the (following) codes for the function can be copied. The package in question can be found at [the github repository](https://github.com/brouwern/compbio4all.git). I did have trouble installing the packages, so the code retrieved from github is below.
+In one of my resources I found a useful function from the {compbio4all} package, but Nathan L Brouwer, the writer of the package, states that if there is any trouble downloading the package the (following) code for the function can be copied. The package in question can be found at [the github repository](https://github.com/brouwern/compbio4all.git). I did have trouble installing the package, so the code retrieved from github is below.
 
 ```{r function codes}
 
@@ -179,7 +178,6 @@ The return of the code below shows the calculated genetic distances of all optio
 
 It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus & Marburg marburgvirus, Bombali ebolavirus & Mengla dianlovirus, Sudan ebolavirus & Marburg marburgvirus, Sudan ebolavirus & Mengla dianlovirus, Reston ebolavirus & Marburg marburgvirus, Lloviu cuevavirus & Marburg marburgvirus, Lloviu cuevavirus & Mengla dianlovirus.
 
-
 ```{r details}
 
 # Details
@@ -188,3 +186,10 @@ min(filoviridae_dist_rounded)
 max(filoviridae_dist_rounded)
 
 ```
+
+## Future steps {-}
+
+In the future I would like to expand my knoledge in phylogeny and generating the trees, because this was just a start, there are so much more options to create. A couple of examples of things I would still like to learn in this area are:
+<ul><li> How to add the genetic distances to the tree so it is clear in one view.</i>
+<i> How to generate different types of trees, because there are a lot more and for different data, different types of trees are more compatible.</>
+<i> How to read an extensive tree. The one I've created is doable, but once they get a lot more species, reading it becomes quite hard.</li></ul>
