@@ -280,7 +280,8 @@ Eventually, i gained my needed information to generate a phylogenetic tree from 
 <span id="cb29-3"><a href="free-future-assignment-3.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(msa)</span>
 <span id="cb29-4"><a href="free-future-assignment-3.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
 <span id="cb29-5"><a href="free-future-assignment-3.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
-<span id="cb29-6"><a href="free-future-assignment-3.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rentrez)</span></code></pre></div>
+<span id="cb29-6"><a href="free-future-assignment-3.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rentrez)</span>
+<span id="cb29-7"><a href="free-future-assignment-3.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copopa)</span></code></pre></div>
 <p>In one of my resources I found a useful function from the {compbio4all} package, but Nathan L Brouwer, the writer of the package, states that if there is any trouble downloading the package the (following) code for the function can be copied. The package in question can be found at <a href="https://github.com/brouwern/compbio4all.git">the github repository</a>. I did have trouble installing the package, so the code retrieved from github is below.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="free-future-assignment-3.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to clean up fasta files</span></span>
 <span id="cb30-2"><a href="free-future-assignment-3.html#cb30-2" aria-hidden="true" tabindex="-1"></a>fasta_cleaner <span class="ot">&lt;-</span> <span class="cf">function</span>(fasta_object, <span class="at">parse =</span> <span class="cn">TRUE</span>){</span>
@@ -452,10 +453,12 @@ The file “species” is written to enhance the target IDs, this way, all the g
 ## MZ541881.1 Lloviu cuevavirus                                   
 ## OL702894.1 Marburg marburgvirus                                
 ## NC_055510.1 Mengla dianlovirus                             0.67</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="free-future-assignment-3.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(filoviridae_dist_rounded) </span></code></pre></div>
-<pre><code>## [1] 0.56</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="free-future-assignment-3.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(filoviridae_dist_rounded)</span></code></pre></div>
-<pre><code>## [1] 0.76</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="free-future-assignment-3.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(filoviridae_dist_rounded) <span class="co"># 0.56, 0.76</span></span></code></pre></div>
+<pre><code>## $min
+## [1] 0.56
+## 
+## $max
+## [1] 0.76</code></pre>
 </div>
 <div id="future-steps" class="section level2 unnumbered hasAnchor">
 <h2>Future steps<a href="free-future-assignment-3.html#future-steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
