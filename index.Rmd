@@ -7,6 +7,10 @@ output: bookdown::gitbook
 documentclass: book
 bibliography: bibliography.bib
 biblio-style: apalike
+params:
+  country: "Netherlands"
+  year: 2021
+  month: 1:12
 link-citations: yes
 ---
 

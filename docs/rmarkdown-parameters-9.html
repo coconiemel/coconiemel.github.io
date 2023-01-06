@@ -204,7 +204,11 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="r-packages-8.html"><a href="r-packages-8.html#introduction-3"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="r-packages-8.html"><a href="r-packages-8.html#copopa"><i class="fa fa-check"></i>Copopa</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="rmarkdown-parameters-9.html"><a href="rmarkdown-parameters-9.html"><i class="fa fa-check"></i>Rmarkdown parameters (9)</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters-9.html"><a href="rmarkdown-parameters-9.html"><i class="fa fa-check"></i>Rmarkdown parameters (9)</a>
+<ul>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters-9.html"><a href="rmarkdown-parameters-9.html#introduction-4"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters-9.html"><a href="rmarkdown-parameters-9.html#data-inspection"><i class="fa fa-check"></i>Data inspection</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -225,8 +229,98 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="rmarkdown-parameters-9" class="section level1 unnumbered hasAnchor">
 <h1>Rmarkdown parameters (9)<a href="rmarkdown-parameters-9.html#rmarkdown-parameters-9" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>blabla</p>
+<div id="introduction-4" class="section level2 unnumbered hasAnchor">
+<h2>Introduction<a href="rmarkdown-parameters-9.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="data-inspection" class="section level2 unnumbered hasAnchor">
+<h2>Data inspection<a href="rmarkdown-parameters-9.html#data-inspection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="rmarkdown-parameters-9.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb79-2"><a href="rmarkdown-parameters-9.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb79-3"><a href="rmarkdown-parameters-9.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copopa)</span>
+<span id="cb79-4"><a href="rmarkdown-parameters-9.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb79-5"><a href="rmarkdown-parameters-9.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(utils)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="rmarkdown-parameters-9.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add file as data</span></span>
+<span id="cb80-2"><a href="rmarkdown-parameters-9.html#cb80-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/csv&quot;</span>, <span class="at">na.strings =</span> <span class="st">&quot;&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;UTF-8-BOM&quot;</span>)</span>
+<span id="cb80-3"><a href="rmarkdown-parameters-9.html#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-4"><a href="rmarkdown-parameters-9.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column names and amount of columns</span></span>
+<span id="cb80-5"><a href="rmarkdown-parameters-9.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(covid) <span class="co"># There are 11 columns</span></span></code></pre></div>
+<pre><code>##  [1] &quot;dateRep&quot;                 &quot;day&quot;                    
+##  [3] &quot;month&quot;                   &quot;year&quot;                   
+##  [5] &quot;cases&quot;                   &quot;deaths&quot;                 
+##  [7] &quot;countriesAndTerritories&quot; &quot;geoId&quot;                  
+##  [9] &quot;countryterritoryCode&quot;    &quot;popData2020&quot;            
+## [11] &quot;continentExp&quot;</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="rmarkdown-parameters-9.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect data</span></span>
+<span id="cb82-2"><a href="rmarkdown-parameters-9.html#cb82-2" aria-hidden="true" tabindex="-1"></a>covid <span class="sc">%&gt;%</span> <span class="fu">count</span>(countriesAndTerritories) <span class="co"># 30 countries participate</span></span></code></pre></div>
+<pre><code>##    countriesAndTerritories    n
+## 1                  Austria  971
+## 2                  Belgium  968
+## 3                 Bulgaria  962
+## 4                  Croatia  972
+## 5                   Cyprus  794
+## 6                  Czechia 1003
+## 7                  Denmark  931
+## 8                  Estonia  973
+## 9                  Finland 1024
+## 10                  France 1006
+## 11                 Germany  992
+## 12                  Greece  971
+## 13                 Hungary  968
+## 14                 Iceland  803
+## 15                 Ireland  962
+## 16                   Italy  974
+## 17                  Latvia  970
+## 18           Liechtenstein  948
+## 19               Lithuania  997
+## 20              Luxembourg  973
+## 21                   Malta  964
+## 22             Netherlands  967
+## 23                  Norway  980
+## 24                  Poland  966
+## 25                Portugal  934
+## 26                 Romania  924
+## 27                Slovakia  954
+## 28                Slovenia  965
+## 29                   Spain  931
+## 30                  Sweden  982</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="rmarkdown-parameters-9.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(covid<span class="sc">$</span>geoId) <span class="co"># Each country has an unique geoId, so there are no double countries</span></span></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="rmarkdown-parameters-9.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(covid<span class="sc">$</span>continentExp) <span class="co"># All countries are located in Europe</span></span></code></pre></div>
+<pre><code>## [1] &quot;Europe&quot;</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="rmarkdown-parameters-9.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(covid<span class="sc">$</span>dateRep) <span class="co"># First data was noted on 01/01/2020, last data was noted on 31/12/2021.</span></span></code></pre></div>
+<pre><code>## $min
+## [1] &quot;01/01/2020&quot;
+## 
+## $max
+## [1] &quot;31/12/2021&quot;</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="rmarkdown-parameters-9.html#cb90-1" aria-hidden="true" tabindex="-1"></a>covid_cases <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
+<span id="cb90-2"><a href="rmarkdown-parameters-9.html#cb90-2" aria-hidden="true" tabindex="-1"></a>                                year <span class="sc">==</span> params<span class="sc">$</span>year,</span>
+<span id="cb90-3"><a href="rmarkdown-parameters-9.html#cb90-3" aria-hidden="true" tabindex="-1"></a>                                month <span class="sc">==</span> params<span class="sc">$</span>month)</span>
+<span id="cb90-4"><a href="rmarkdown-parameters-9.html#cb90-4" aria-hidden="true" tabindex="-1"></a>covid_cases<span class="sc">$</span>dateRep <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(covid_cases<span class="sc">$</span>dateRep, <span class="st">&quot;%d/%m/%y&quot;</span>)</span>
+<span id="cb90-5"><a href="rmarkdown-parameters-9.html#cb90-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-6"><a href="rmarkdown-parameters-9.html#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid_cases, <span class="fu">aes</span>(<span class="at">x=</span>dateRep, <span class="at">y=</span>cases))<span class="sc">+</span></span>
+<span id="cb90-7"><a href="rmarkdown-parameters-9.html#cb90-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb90-8"><a href="rmarkdown-parameters-9.html#cb90-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb90-9"><a href="rmarkdown-parameters-9.html#cb90-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Daily covid cases in the Netherlands that occured in 2021&quot;</span>,</span>
+<span id="cb90-10"><a href="rmarkdown-parameters-9.html#cb90-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Months&quot;</span>,</span>
+<span id="cb90-11"><a href="rmarkdown-parameters-9.html#cb90-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;New cases&quot;</span>)<span class="sc">+</span></span>
+<span id="cb90-12"><a href="rmarkdown-parameters-9.html#cb90-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="portfolio_book_files/figure-html/cases%20graph-1.png" width="672" /></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="rmarkdown-parameters-9.html#cb91-1" aria-hidden="true" tabindex="-1"></a>covid_deaths <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
+<span id="cb91-2"><a href="rmarkdown-parameters-9.html#cb91-2" aria-hidden="true" tabindex="-1"></a>                                year <span class="sc">==</span> params<span class="sc">$</span>year,</span>
+<span id="cb91-3"><a href="rmarkdown-parameters-9.html#cb91-3" aria-hidden="true" tabindex="-1"></a>                                month <span class="sc">==</span> params<span class="sc">$</span>month)</span>
+<span id="cb91-4"><a href="rmarkdown-parameters-9.html#cb91-4" aria-hidden="true" tabindex="-1"></a>covid_deaths<span class="sc">$</span>dateRep <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(covid_cases<span class="sc">$</span>dateRep, <span class="st">&quot;%d/%m/%y&quot;</span>)</span>
+<span id="cb91-5"><a href="rmarkdown-parameters-9.html#cb91-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-6"><a href="rmarkdown-parameters-9.html#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid_deaths, <span class="fu">aes</span>(<span class="at">x=</span>dateRep, <span class="at">y=</span>deaths))<span class="sc">+</span></span>
+<span id="cb91-7"><a href="rmarkdown-parameters-9.html#cb91-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb91-8"><a href="rmarkdown-parameters-9.html#cb91-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb91-9"><a href="rmarkdown-parameters-9.html#cb91-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Daily covid deaths in the Netherlands that occured in 2021&quot;</span>,</span>
+<span id="cb91-10"><a href="rmarkdown-parameters-9.html#cb91-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Months&quot;</span>,</span>
+<span id="cb91-11"><a href="rmarkdown-parameters-9.html#cb91-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Covid related deaths&quot;</span>)<span class="sc">+</span></span>
+<span id="cb91-12"><a href="rmarkdown-parameters-9.html#cb91-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="portfolio_book_files/figure-html/deaths%20graph-1.png" width="672" /></p>
 
+</div>
 </div>
             </section>
 
