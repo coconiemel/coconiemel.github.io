@@ -16,7 +16,7 @@ It is part of the Workflows course from the minor Data science for biology at Ut
 * References
 
 ## Acknowledgements
-- This project was based on [this course](https://lesmaterialen.rstudio.hu.nl/workflows-reader/#course-introduction).
+This project was based on [this course](https://lesmaterialen.rstudio.hu.nl/workflows-reader/#course-introduction).
 
 ## Contact
 Created by [@coconiemel](https://github.com/coconiemel) 
