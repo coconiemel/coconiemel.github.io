@@ -152,7 +152,7 @@ The code is stated below, showing comments of parts i have changed to make the c
 ```{r used libraries and functions}
 ### Load packages #############################################################
 
-## I put al the libraries together in the YAML header, instead of using 'source' per chunck for a better overview.
+## I put al the libraries together in the index, instead of using 'source' per chunck for a better overview.
 
 ### Case fatality rate #######################################################
 
