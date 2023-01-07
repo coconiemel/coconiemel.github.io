@@ -1,5 +1,4 @@
-# Group project
-
+# Group project 
 ## Introduction {-}
 
 Part of the course is a group project I peformed with two others. Our project is about ONTOX and their implementation of the Phymdos app.

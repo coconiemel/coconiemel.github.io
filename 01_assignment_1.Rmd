@@ -139,7 +139,7 @@ The readability of the code is quite al right. The code in general is readable a
 
 After trying the code myself the code was a little less accessible than I thought. At first it took a lot of effort, because the file in the url didn't exist any more and I couldn't figure out the updated pathway. The updated pathway was not clearly indicated, but once I found it the reproduction was pretty smooth and I only had to make small changes.
 
-<details><summary>The full code is stated below, showing comments of changes i made to make it run smoothly.</summary>
+The full code is stated below, showing comments of changes I made to make it run.
 
 ```{r functions}
 
@@ -722,4 +722,3 @@ _Figure 1: Differences in Case fatality rate between countries._
   ggsave("files/COVID_article/Fig_1.jpg", width = 4, height = 3, dpi = 600)
   
 ```
-</details>

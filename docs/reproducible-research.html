@@ -439,10 +439,7 @@ X
 <p>Looking at the code, is seems to achieve a visualisation of the differences in case-fatality rate (CFR) over time in between countries, using the age structure of infection and age specific CFRs. This is done by creating tables containing the latest data of diagnosed cases and death counts (concerning COVID-19) for each country.</p>
 <p>The readability of the code is quite al right. The code in general is readable and understandable because of comments en different chuncks. But the total code is quite long and stored in different files, which makes it a little bit harder to access and run.</p>
 <p>After trying the code myself the code was a little less accessible than I thought. At first it took a lot of effort, because the file in the url didn’t exist any more and I couldn’t figure out the updated pathway. The updated pathway was not clearly indicated, but once I found it the reproduction was pretty smooth and I only had to make small changes.</p>
-<details>
-<summary>
-The full code is stated below, showing comments of changes i made to make it run smoothly.
-</summary>
+<p>The full code is stated below, showing comments of changes I made to make it run.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="reproducible-research.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Case fatality rate #######################################################</span></span>
 <span id="cb6-2"><a href="reproducible-research.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="reproducible-research.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># cc = case-age distribution</span></span>
@@ -1003,7 +1000,6 @@ The full code is stated below, showing comments of changes i made to make it run
 <p><em>Figure 1: Differences in Case fatality rate between countries.</em></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="reproducible-research.html#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Save</span></span>
 <span id="cb11-2"><a href="reproducible-research.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="st">&quot;files/COVID_article/Fig_1.jpg&quot;</span>, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">3</span>, <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
-</details>
 
 </div>
 </div>
