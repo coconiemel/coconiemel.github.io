@@ -2,7 +2,25 @@
 
 ## Introduction {-}
 
+Parameters make a report in RMarkdown more dynamic, which help reproduce the analysis on different inputs or sets. Parameters can be set up for a number of things, so changing anything will become easy.
+
+In this assignment I will be using data about COVID19 retrieved from [ECDC](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country) and I will be looking at the daily reported cases and the daily reported deaths.
+
+For this assignment I used three parameters, the default of these need to be set in the YAML header, so if the parameters aren't specified, these will be rendered.
+```{r yaml settings, eval = FALSE}
+
+---
+params:
+  country: "Netherlands"
+  year: 2021
+  month: 3
+---
+
+```
+
 ## Data inspection {-}
+
+Starting the analysis with inspecting the dataset, without parameters, to look what we're working with. 
 
 ```{r new libraries}
 
@@ -16,7 +34,7 @@ library(utils)
 
 ```{r data inspection}
 
-# Add file as data
+# Add file as data using the link from the site
 covid <- read.csv("https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
 
 # Check column names and amount of columns
@@ -33,17 +51,21 @@ mima(covid$dateRep) # First data was noted on 01/01/2020, last data was noted on
 
 ## Building a parameterized graph {-}
 
+I will be making two graphs, one about the daily reported cases and one about the daily reported deaths. The parameters are country, year, and months and the default settings are used. The default settings show the data of the Netherlands in all 12 months of the year 2021.
+
 ```{r cases graph}
 
+# Filter the necessary columns and change the datatype of dateRep.
 covid_cases <- covid %>% filter(countriesAndTerritories == params$country,
                                 year == params$year,
-                                month == params$month)
+                                month == params$month) 
 covid_cases$dateRep <- as.Date(covid_cases$dateRep, "%d/%m/%y")
 
+# Plot the graph
 ggplot(covid_cases, aes(x=dateRep, y=cases))+
   geom_line()+
   geom_point()+
-  labs(title = "Daily covid cases in the Netherlands that occured in 2021",
+  labs(title = "Daily reported covid cases in the Netherlands that occured in March 2021",
        x = "Months",
        y = "New cases")+
   theme_minimal()
@@ -52,18 +74,35 @@ ggplot(covid_cases, aes(x=dateRep, y=cases))+
 
 ```{r deaths graph}
 
+# Filter the necessary columns and change the datatype of dateRep.
 covid_deaths <- covid %>% filter(countriesAndTerritories == params$country,
                                 year == params$year,
                                 month == params$month)
 covid_deaths$dateRep <- as.Date(covid_cases$dateRep, "%d/%m/%y")
 
+# Plot the graph
 ggplot(covid_deaths, aes(x=dateRep, y=deaths))+
   geom_line()+
   geom_point()+
-  labs(title = "Daily covid deaths in the Netherlands that occured in 2021",
+  labs(title = "Daily reported covid deaths in the Netherlands that occured in March 2021",
        x = "Months",
        y = "Covid related deaths")+
   theme_minimal()
 
 ```
 
+## Alter parameter settings {-}
+
+A parameterized report makes it easy to change settings to have a different view of the data, I added screenshots below to showcase what the graph would look like with a different input.
+
+<img src="images/cases_france.jpg"
+     width="600" 
+     height="400" />
+     
+_Figure 3: Parameterized graph containing the COVID cases data._
+
+<img src="images/deaths_france.jpg"
+     width="600" 
+     height="400" />
+     
+_Figure 4: Parameterized graph containing the COVID deaths data._
