@@ -1,7 +1,7 @@
 reproducible-research
 data-management
 a-phylogenetic-analysis
-groupproject
+group-project
 relational-data-and-databases
 r-package
 rmarkdown-parameters

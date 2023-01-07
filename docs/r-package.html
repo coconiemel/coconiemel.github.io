@@ -182,11 +182,11 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="a-phylogenetic-analysis.html"><a href="a-phylogenetic-analysis.html#the-phylogenetic-tree"><i class="fa fa-check"></i>The phylogenetic tree</a></li>
 <li class="chapter" data-level="" data-path="a-phylogenetic-analysis.html"><a href="a-phylogenetic-analysis.html#future-steps"><i class="fa fa-check"></i>Future steps</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="groupproject.html"><a href="groupproject.html"><i class="fa fa-check"></i><b>4</b> Groupproject</a>
+<li class="chapter" data-level="4" data-path="group-project.html"><a href="group-project.html"><i class="fa fa-check"></i><b>4</b> Group project</a>
 <ul>
-<li class="chapter" data-level="" data-path="groupproject.html"><a href="groupproject.html#introduction-3"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="groupproject.html"><a href="groupproject.html#ontox"><i class="fa fa-check"></i>ONTOX</a></li>
-<li class="chapter" data-level="" data-path="groupproject.html"><a href="groupproject.html#our-addition"><i class="fa fa-check"></i>Our addition</a></li>
+<li class="chapter" data-level="" data-path="group-project.html"><a href="group-project.html#introduction-3"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="group-project.html"><a href="group-project.html#ontox"><i class="fa fa-check"></i>ONTOX</a></li>
+<li class="chapter" data-level="" data-path="group-project.html"><a href="group-project.html#our-addition"><i class="fa fa-check"></i>Our addition</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html"><i class="fa fa-check"></i><b>5</b> Relational data and databases</a>
 <ul>
@@ -204,8 +204,9 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#introduction-5"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#copopa"><i class="fa fa-check"></i>Copopa</a></li>
+<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#install-and-load"><i class="fa fa-check"></i>Install and load</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html"><i class="fa fa-check"></i><b>7</b> Rmarkdown parameters</a>
+<li class="chapter" data-level="7" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html"><i class="fa fa-check"></i><b>7</b> RMarkdown parameters</a>
 <ul>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#introduction-6"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#data-inspection"><i class="fa fa-check"></i>Data inspection</a></li>
@@ -257,6 +258,18 @@ mean_sd -&gt; calculates the mean and standard deviation of data.
 </li>
 </ul>
 <p>For the manual and contents of the package, please visit <a href="https://github.com/coconiemel/copopa">the copopa github repository</a>.</p>
+</div>
+<div id="install-and-load" class="section level2 unnumbered">
+<h2>Install and load</h2>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="r-package.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only if not obtained already</span></span>
+<span id="cb58-2"><a href="r-package.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb58-3"><a href="r-package.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb58-4"><a href="r-package.html#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="r-package.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Installation</span></span>
+<span id="cb58-6"><a href="r-package.html#cb58-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;coconiemel/copopa&quot;</span>)</span>
+<span id="cb58-7"><a href="r-package.html#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="r-package.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load</span></span>
+<span id="cb58-9"><a href="r-package.html#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copopa)</span></code></pre></div>
 
 </div>
 </div>

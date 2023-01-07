@@ -19,4 +19,21 @@ A package to support my portfolio would reduce duplicated code. But scanning thr
 <li>mean_sd -> calculates the mean and standard deviation of data.</li></ul>
 For the manual and contents of the package, please visit [the copopa github repository](https://github.com/coconiemel/copopa).
 
+## Install and load {-}
+
+```{r install and load package, eval = FALSE}
+
+# Only if not obtained already
+install.packages("devtools")
+library(devtools)
+
+# Installation
+devtools::install_github("coconiemel/copopa")
+
+# Load
+library(copopa)
+
+```
+
+
 
