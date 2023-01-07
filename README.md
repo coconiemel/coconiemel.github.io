@@ -1,5 +1,8 @@
 # Portfolio of Coco Niemel
-As an assignment of the Workflows course of the Data Science for Biology minor (Utrecht university of applied sciences).
+
+## General Information
+The project is a collection of different assignments collected in a portfolio site. It contains a resume and shows how I take on different sides of workflows and data analysis. 
+It is part of the Workflows course from the minor Data science for biology at Utrecht university of applied sciences.
 
 ## Table of Contents
 * Curriculum Vitae
@@ -11,9 +14,6 @@ As an assignment of the Workflows course of the Data Science for Biology minor (
 * R package
 * RMarkdown parameters
 * References
-
-## General Information
-The project is a collection of different assignments collected in a portfolio site. It contains a resume and shows how I take on different sides of workflows and data analysis.
 
 ## Acknowledgements
 - This project was based on [this course](https://lesmaterialen.rstudio.hu.nl/workflows-reader/#course-introduction).
