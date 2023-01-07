@@ -47,9 +47,6 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -233,10 +230,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rmarkdown-parameters" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">7</span> Rmarkdown parameters<a href="rmarkdown-parameters.html#rmarkdown-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-6" class="section level2 unnumbered hasAnchor">
-<h2>Introduction<a href="rmarkdown-parameters.html#introduction-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rmarkdown-parameters" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Rmarkdown parameters</h1>
+<div id="introduction-6" class="section level2 unnumbered">
+<h2>Introduction</h2>
 <p>Parameters make a report in RMarkdown more dynamic, which help reproduce the analysis on different inputs or sets. Parameters can be set up for a number of things, so changing anything will become easy.</p>
 <p>In this assignment I will be using data about COVID19 retrieved from <a href="https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country">ECDC</a> and I will be looking at the daily reported cases and the daily reported deaths.</p>
 <p>For this assignment I used three parameters, the default of these need to be set in the YAML header, so if the parameters aren’t specified, these will be rendered.</p>
@@ -248,8 +245,8 @@ div.csl-indent {
 <span id="cb58-6"><a href="rmarkdown-parameters.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
 <hr />
 </div>
-<div id="data-inspection" class="section level2 unnumbered hasAnchor">
-<h2>Data inspection<a href="rmarkdown-parameters.html#data-inspection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-inspection" class="section level2 unnumbered">
+<h2>Data inspection</h2>
 <p>Starting the analysis with inspecting the dataset, without parameters, to look what we’re working with.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="rmarkdown-parameters.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add file as data using the link from the site</span></span>
 <span id="cb59-2"><a href="rmarkdown-parameters.html#cb59-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/csv&quot;</span>, <span class="at">na.strings =</span> <span class="st">&quot;&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;UTF-8-BOM&quot;</span>)</span>
@@ -307,8 +304,8 @@ div.csl-indent {
 ## [1] &quot;31/12/2021&quot;</code></pre>
 <hr />
 </div>
-<div id="building-a-parameterized-graph" class="section level2 unnumbered hasAnchor">
-<h2>Building a parameterized graph<a href="rmarkdown-parameters.html#building-a-parameterized-graph" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="building-a-parameterized-graph" class="section level2 unnumbered">
+<h2>Building a parameterized graph</h2>
 <p>I will be making two graphs, one about the daily reported cases and one about the daily reported deaths. The parameters are country, year, and months and the default settings are used. The default settings show the data of the Netherlands in all 12 months of the year 2021.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="rmarkdown-parameters.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the necessary columns and change the datatype of dateRep.</span></span>
 <span id="cb69-2"><a href="rmarkdown-parameters.html#cb69-2" aria-hidden="true" tabindex="-1"></a>covid_cases <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
@@ -342,8 +339,8 @@ div.csl-indent {
 <p><img src="portfolio_book_files/figure-html/deaths%20graph-1.png" width="672" /></p>
 <hr />
 </div>
-<div id="alter-parameter-settings" class="section level2 unnumbered hasAnchor">
-<h2>Alter parameter settings<a href="rmarkdown-parameters.html#alter-parameter-settings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="alter-parameter-settings" class="section level2 unnumbered">
+<h2>Alter parameter settings</h2>
 <p>A parameterized report makes it easy to change settings to have a different view of the data, I added screenshots below to showcase what the graph would look like with a different input.</p>
 <p><img src="images/cases_france.jpg"
      width="600" 

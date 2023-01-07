@@ -47,9 +47,6 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -233,15 +230,15 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reproducible-research" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Reproducible Research<a href="reproducible-research.html#reproducible-research" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction" class="section level2 unnumbered hasAnchor">
-<h2>Introduction<a href="reproducible-research.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="reproducible-research" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Reproducible Research</h1>
+<div id="introduction" class="section level2 unnumbered">
+<h2>Introduction</h2>
 <p>During this assignment I learned to search, analyse and use different types of reproducible data.</p>
 <hr />
 </div>
-<div id="analyse-an-excel-file" class="section level2 unnumbered hasAnchor">
-<h2>Analyse an excel file<a href="reproducible-research.html#analyse-an-excel-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="analyse-an-excel-file" class="section level2 unnumbered">
+<h2>Analyse an excel file</h2>
 <p>The experiment used for this analysis was obtained from an experiment in which adult C. elegans was exposed to varying concentrations of different compounds. The data for this experiment is supplied by J. Louter (INT/ILC).</p>
 <p>The experiment contains a Excel file called CE.LIQ.FLOW.062_Tidydata.xlsx. During analysing this file I noticed that under ‘compVehicle’ the negative and positive seems to be alike, apart from the concentration. Negative is a higher concentration with ethanol and positive is a lower concentration with a variation of things.
 The summary of the file tells the positive control is ethanol and the negative control is S medium.</p>
@@ -308,13 +305,13 @@ The normalizing step is to see if the offspring count increases or decreases rel
 <p><img src="portfolio_book_files/figure-html/normalize%20data-1.png" width="672" /></p>
 <hr />
 </div>
-<div id="scoring-reproducibility" class="section level2 unnumbered hasAnchor">
-<h2>Scoring reproducibility<a href="reproducible-research.html#scoring-reproducibility" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The next analysis is based on an article that addresses if meaningless novel words in linguistic contexts can achieve emotional connotations and whether these connotations can affect the quality of word learning and retention <span class="citation">(<a href="#ref-snefjellaHowEmotionLearned2020" role="doc-biblioref">Snefjella, Lana, and Kuperman 2020</a>)</span>.</p>
+<div id="scoring-reproducibility" class="section level2 unnumbered">
+<h2>Scoring reproducibility</h2>
+<p>The next analysis is based on an article that addresses if meaningless novel words in linguistic contexts can achieve emotional connotations and whether these connotations can affect the quality of word learning and retention <span class="citation">(<a href="references.html#ref-snefjellaHowEmotionLearned2020" role="doc-biblioref">Snefjella, Lana, and Kuperman 2020</a>)</span>.</p>
 <p>There is a lot of language research concerning the human capacity for learning new words, though this research is by far not complete yet. Because of that, the goal of this paper is to add to this research field.</p>
 <p>To answer these questions, five experiments were set up. three groups of L1 speakers of the English language had to learn nine novel words in a consistently positive, neutral or negative context. During the learning phase, reading times were recorded. Immediately after and one week after, vocabulary post-test were administered to assess learning and retention.</p>
 <p>The results showed that for both research questions two out of three groups learned the forms, definitional meanings en emotional connotations and that de positive group learned the best out of the three groups.</p>
-<p>The analysis is a scoring on the basis of the <a href="https://www.researchgate.net/publication/340244621_Reproducibility_and_reporting_practices_in_COVID-19_preprint_manuscripts">Repita transparency criteria</a>. This is a method for identifying reproducibility issues in a scientific publication <span class="citation">(<a href="#ref-sumnerReproducibilityReportingPractices2020" role="doc-biblioref">Sumner et al. 2020</a>)</span>. The scoring is shown below, the definitions can be found in the link above.</p>
+<p>The analysis is a scoring on the basis of the <a href="https://www.researchgate.net/publication/340244621_Reproducibility_and_reporting_practices_in_COVID-19_preprint_manuscripts">Repita transparency criteria</a>. This is a method for identifying reproducibility issues in a scientific publication <span class="citation">(<a href="references.html#ref-sumnerReproducibilityReportingPractices2020" role="doc-biblioref">Sumner et al. 2020</a>)</span>. The scoring is shown below, the definitions can be found in the link above.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="reproducible-research.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create matrix</span></span>
 <span id="cb5-2"><a href="reproducible-research.html#cb5-2" aria-hidden="true" tabindex="-1"></a>repita_criteria_tab <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">&quot;Study purpose&quot;</span>, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;Data availability statement&quot;</span>, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;Data location&quot;</span>, <span class="st">&quot;[Available here](https://osf.io/yghx3/)&quot;</span>, <span class="st">&quot;Study location&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;Author review&quot;</span>, <span class="st">&quot;[Bottom of page](https://www.sciencedirect.com/science/article/abs/pii/S0749596X20300851?via%3Dihub)&quot;</span>, <span class="st">&quot;Ethics statement&quot;</span>, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;Funding statement&quot;</span>, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;Code availability&quot;</span>, <span class="st">&quot;X&quot;</span>), <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
 <span id="cb5-3"><a href="reproducible-research.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -435,9 +432,9 @@ X
 </table>
 <hr />
 </div>
-<div id="usage-of-other-peoples-codes" class="section level2 unnumbered hasAnchor">
-<h2>Usage of other peoples codes<a href="reproducible-research.html#usage-of-other-peoples-codes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The last analysis contains a code of an article about the case-fatality rate of COVID-19 <span class="citation">(<a href="#ref-dudelMonitoringTrendsDifferences2020" role="doc-biblioref">Dudel et al. 2020</a>)</span>.</p>
+<div id="usage-of-other-peoples-codes" class="section level2 unnumbered">
+<h2>Usage of other peoples codes</h2>
+<p>The last analysis contains a code of an article about the case-fatality rate of COVID-19 <span class="citation">(<a href="references.html#ref-dudelMonitoringTrendsDifferences2020" role="doc-biblioref">Dudel et al. 2020</a>)</span>.</p>
 <p>Looking at the code, is seems to achieve a visualisation of the differences in case-fatality rate (CFR) over time in between countries, using the age structure of infection and age specific CFRs. This is done by creating tables containing the latest data of diagnosed cases and death counts (concerning COVID-19) for each country.</p>
 <p>The readability of the code is quite al right. The code in general is readable and understandable because of comments en different chuncks. But the total code is quite long and stored in different files, which makes it a little bit harder to access and run.</p>
 <p>After trying the code myself the code was a little less accessible than I thought. At first it took a lot of effort, because the file in the url didn’t exist any more and I couldn’t figure out the updated pathway. The updated pathway was not clearly indicated, but once I found it the reproduction was pretty smooth and I only had to make small changes.</p>
@@ -1007,18 +1004,6 @@ The full code is stated below, showing comments of changes i made to make it run
 <span id="cb11-2"><a href="reproducible-research.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="st">&quot;files/COVID_article/Fig_1.jpg&quot;</span>, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">3</span>, <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
 </details>
 
-</div>
-</div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-dudelMonitoringTrendsDifferences2020" class="csl-entry">
-Dudel, Christian, Tim Riffe, Enrique Acosta, Alyson van Raalte, Cosmo Strozza, and Mikko Myrskylä. 2020. <span>“Monitoring Trends and Differences in <span>COVID-19</span> Case Fatality Rates Using Decomposition Methods: <span>Contributions</span> of Age Structure and Age-Specific Fatality.”</span> <span>SocArXiv</span>. <a href="https://doi.org/10.31235/osf.io/j4a3d">https://doi.org/10.31235/osf.io/j4a3d</a>.
-</div>
-<div id="ref-snefjellaHowEmotionLearned2020" class="csl-entry">
-Snefjella, Bryor, Nadia Lana, and Victor Kuperman. 2020. <span>“How Emotion Is Learned: <span>Semantic</span> Learning of Novel Words in Emotional Contexts.”</span> <em>Journal of Memory and Language</em> 115 (December): 104171. <a href="https://doi.org/10.1016/j.jml.2020.104171">https://doi.org/10.1016/j.jml.2020.104171</a>.
-</div>
-<div id="ref-sumnerReproducibilityReportingPractices2020" class="csl-entry">
-Sumner, Josh, Leah Haynes, Sarah Nathan, Cynthia Hudson-Vitale, and Leslie McIntosh. 2020. <em>Reproducibility and Reporting Practices in <span>COVID-19</span> Preprint Manuscripts</em>. <a href="https://doi.org/10.1101/2020.03.24.20042796">https://doi.org/10.1101/2020.03.24.20042796</a>.
 </div>
 </div>
             </section>

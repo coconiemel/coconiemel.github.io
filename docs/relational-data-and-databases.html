@@ -47,9 +47,6 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -233,15 +230,15 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="relational-data-and-databases" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Relational data and databases<a href="relational-data-and-databases.html#relational-data-and-databases" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-4" class="section level2 unnumbered hasAnchor">
-<h2>Introduction<a href="relational-data-and-databases.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="relational-data-and-databases" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Relational data and databases</h1>
+<div id="introduction-4" class="section level2 unnumbered">
+<h2>Introduction</h2>
 <p>This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.</p>
 <hr />
 </div>
-<div id="dbeaver-connection" class="section level2 unnumbered hasAnchor">
-<h2>DBeaver connection<a href="relational-data-and-databases.html#dbeaver-connection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dbeaver-connection" class="section level2 unnumbered">
+<h2>DBeaver connection</h2>
 <p>I Start by creating three data frames out of files and making them tidy.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="relational-data-and-databases.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The flu</span></span>
 <span id="cb22-2"><a href="relational-data-and-databases.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
@@ -333,8 +330,8 @@ div.csl-indent {
 <span id="cb34-3"><a href="relational-data-and-databases.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;dengue&quot;</span>, dengue_df_tidy)</span></code></pre></div>
 <hr />
 </div>
-<div id="inspection" class="section level2 unnumbered hasAnchor">
-<h2>Inspection<a href="relational-data-and-databases.html#inspection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inspection" class="section level2 unnumbered">
+<h2>Inspection</h2>
 <p>Now that the tables are imported, i checked a couple of things.
 Dengue has no “NULL” variables in country and year, 6263 cases in the data set and the average amount of cases is 0.14 with a standard deviation of 0.14. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Venezuela with 1 case.</p>
 <p>The flu has no “NULL variables in country and year, 17266 cases in the data set and the average amount of cases is 473.74 with a standard deviation of 768.95. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Uruguay 10555 cases.</p>
@@ -387,8 +384,8 @@ The cases columns didn’t specify how it was measured, and this was also not wr
 <span id="cb44-3"><a href="relational-data-and-databases.html#cb44-3" aria-hidden="true" tabindex="-1"></a>gapminder_dengue <span class="ot">&lt;-</span> gapminder_dengue <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">&quot;cases_per_100000&quot;</span> <span class="ot">=</span>gapminder_dengue<span class="sc">$</span>dengue_cases<span class="sc">/</span>gapminder_dengue<span class="sc">$</span>population<span class="sc">*</span><span class="dv">100000</span>)</span></code></pre></div>
 <hr />
 </div>
-<div id="descriptive-statistics" class="section level2 unnumbered hasAnchor">
-<h2>Descriptive statistics<a href="relational-data-and-databases.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="descriptive-statistics" class="section level2 unnumbered">
+<h2>Descriptive statistics</h2>
 <p>Now that the sets are normalised, descriptives can start. Starting by calculating the means and standard deviations of cases per country with the updated data.</p>
 <p>After performing the Shapiro-Wilk test, the flu seems to have 8 non normal distributed variables from a total of 29, and dengue has 5 non normal distributed variables from a total of 10.
 As an extra test, the Levene’s test shows that the flu doesn’t have a variance of equility between countries.</p>
@@ -532,11 +529,11 @@ As an extra test, the Levene’s test shows that the flu doesn’t have a varian
 <span id="cb53-23"><a href="relational-data-and-databases.html#cb53-23" aria-hidden="true" tabindex="-1"></a>flu_dunn_non <span class="ot">&lt;-</span> flu_dunn <span class="sc">%&gt;%</span> <span class="fu">filter</span>(different <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <hr />
 </div>
-<div id="visualisations" class="section level2 unnumbered hasAnchor">
-<h2>Visualisations<a href="relational-data-and-databases.html#visualisations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="visualisations" class="section level2 unnumbered">
+<h2>Visualisations</h2>
 <p>According to the dataset en information in this assignment, two graphs per disease were made to showcase the data.</p>
-<div id="flu" class="section level3 unnumbered hasAnchor">
-<h3>Flu<a href="relational-data-and-databases.html#flu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="flu" class="section level3 unnumbered">
+<h3>Flu</h3>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="relational-data-and-databases.html#cb54-1" aria-hidden="true" tabindex="-1"></a>gapminder_flu <span class="sc">%&gt;%</span></span>
 <span id="cb54-2"><a href="relational-data-and-databases.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>continent,<span class="at">y=</span>cases_per_100000, <span class="at">group=</span>continent, <span class="at">fill=</span>continent)) <span class="sc">+</span> </span>
 <span id="cb54-3"><a href="relational-data-and-databases.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span> </span>
@@ -556,8 +553,8 @@ As an extra test, the Levene’s test shows that the flu doesn’t have a varian
 <p><img src="portfolio_book_files/figure-html/visualisation2%20flu-1.png" width="672" />
 <em>Figure 7: Linegraph of average flu cases per year per country.</em></p>
 </div>
-<div id="dengue" class="section level3 unnumbered hasAnchor">
-<h3>Dengue<a href="relational-data-and-databases.html#dengue" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="dengue" class="section level3 unnumbered">
+<h3>Dengue</h3>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="relational-data-and-databases.html#cb56-1" aria-hidden="true" tabindex="-1"></a>gapminder_dengue <span class="sc">%&gt;%</span></span>
 <span id="cb56-2"><a href="relational-data-and-databases.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>continent,<span class="at">y=</span>cases_per_100000, <span class="at">group=</span>continent, <span class="at">fill=</span>continent)) <span class="sc">+</span> </span>
 <span id="cb56-3"><a href="relational-data-and-databases.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span> </span>

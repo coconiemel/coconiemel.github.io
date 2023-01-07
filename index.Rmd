@@ -2,7 +2,9 @@
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
+    split_bib: no
     css: form.css
+    anchor_sections: false
     config:
         toc:  
             collapse: section
