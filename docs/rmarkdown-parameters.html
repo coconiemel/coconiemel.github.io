@@ -238,105 +238,62 @@ div.csl-indent {
 <p>Parameters make a report in RMarkdown more dynamic, which help reproduce the analysis on different inputs or sets. Parameters can be set up for a number of things, so changing anything will become easy.</p>
 <p>In this assignment I will be using data about COVID19 retrieved from <a href="https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country">ECDC</a> and I will be looking at the daily reported cases and the daily reported deaths.</p>
 <p>For this assignment I used three parameters, the default of these need to be set in the YAML header, so if the parameters aren’t specified, these will be rendered.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="rmarkdown-parameters.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb59-2"><a href="rmarkdown-parameters.html#cb59-2" aria-hidden="true" tabindex="-1"></a>params<span class="sc">:</span></span>
-<span id="cb59-3"><a href="rmarkdown-parameters.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  country<span class="sc">:</span> <span class="st">&quot;Netherlands&quot;</span></span>
-<span id="cb59-4"><a href="rmarkdown-parameters.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  year<span class="sc">:</span> <span class="dv">2021</span></span>
-<span id="cb59-5"><a href="rmarkdown-parameters.html#cb59-5" aria-hidden="true" tabindex="-1"></a>  month<span class="sc">:</span> <span class="dv">3</span></span>
-<span id="cb59-6"><a href="rmarkdown-parameters.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="rmarkdown-parameters.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb52-2"><a href="rmarkdown-parameters.html#cb52-2" aria-hidden="true" tabindex="-1"></a>params<span class="sc">:</span></span>
+<span id="cb52-3"><a href="rmarkdown-parameters.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  country<span class="sc">:</span> <span class="st">&quot;Netherlands&quot;</span></span>
+<span id="cb52-4"><a href="rmarkdown-parameters.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  year<span class="sc">:</span> <span class="dv">2021</span></span>
+<span id="cb52-5"><a href="rmarkdown-parameters.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  month<span class="sc">:</span> <span class="dv">3</span></span>
+<span id="cb52-6"><a href="rmarkdown-parameters.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
 <hr />
 </div>
 <div id="data-inspection" class="section level2 unnumbered">
 <h2>Data inspection</h2>
 <p>Starting the analysis with inspecting the dataset, without parameters, to look what we’re working with.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="rmarkdown-parameters.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add file as data using the link from the site</span></span>
-<span id="cb60-2"><a href="rmarkdown-parameters.html#cb60-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/csv&quot;</span>, <span class="at">na.strings =</span> <span class="st">&quot;&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;UTF-8-BOM&quot;</span>)</span>
-<span id="cb60-3"><a href="rmarkdown-parameters.html#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="rmarkdown-parameters.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column names and amount of columns</span></span>
-<span id="cb60-5"><a href="rmarkdown-parameters.html#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(covid) <span class="co"># There are 11 columns</span></span></code></pre></div>
-<pre><code>##  [1] &quot;dateRep&quot;                 &quot;day&quot;                    
-##  [3] &quot;month&quot;                   &quot;year&quot;                   
-##  [5] &quot;cases&quot;                   &quot;deaths&quot;                 
-##  [7] &quot;countriesAndTerritories&quot; &quot;geoId&quot;                  
-##  [9] &quot;countryterritoryCode&quot;    &quot;popData2020&quot;            
-## [11] &quot;continentExp&quot;</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="rmarkdown-parameters.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect data</span></span>
-<span id="cb62-2"><a href="rmarkdown-parameters.html#cb62-2" aria-hidden="true" tabindex="-1"></a>covid <span class="sc">%&gt;%</span> <span class="fu">count</span>(countriesAndTerritories) <span class="co"># 30 countries participate</span></span></code></pre></div>
-<pre><code>##    countriesAndTerritories    n
-## 1                  Austria  971
-## 2                  Belgium  968
-## 3                 Bulgaria  962
-## 4                  Croatia  972
-## 5                   Cyprus  794
-## 6                  Czechia 1003
-## 7                  Denmark  931
-## 8                  Estonia  973
-## 9                  Finland 1024
-## 10                  France 1006
-## 11                 Germany  992
-## 12                  Greece  971
-## 13                 Hungary  968
-## 14                 Iceland  803
-## 15                 Ireland  962
-## 16                   Italy  974
-## 17                  Latvia  970
-## 18           Liechtenstein  948
-## 19               Lithuania  997
-## 20              Luxembourg  973
-## 21                   Malta  964
-## 22             Netherlands  967
-## 23                  Norway  980
-## 24                  Poland  966
-## 25                Portugal  934
-## 26                 Romania  924
-## 27                Slovakia  954
-## 28                Slovenia  965
-## 29                   Spain  931
-## 30                  Sweden  982</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="rmarkdown-parameters.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(covid<span class="sc">$</span>geoId) <span class="co"># Each country has an unique geoId, so there are no double countries</span></span></code></pre></div>
-<pre><code>## [1] 30</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="rmarkdown-parameters.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(covid<span class="sc">$</span>continentExp) <span class="co"># All countries are located in Europe</span></span></code></pre></div>
-<pre><code>## [1] &quot;Europe&quot;</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="rmarkdown-parameters.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(covid<span class="sc">$</span>dateRep) <span class="co"># First data was noted on 01/01/2020, last data was noted on 31/12/2021.</span></span></code></pre></div>
-<pre><code>## $min
-## [1] &quot;01/01/2020&quot;
-## 
-## $max
-## [1] &quot;31/12/2021&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="rmarkdown-parameters.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add file as data using the link from the site</span></span>
+<span id="cb53-2"><a href="rmarkdown-parameters.html#cb53-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/csv&quot;</span>, <span class="at">na.strings =</span> <span class="st">&quot;&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;UTF-8-BOM&quot;</span>)</span>
+<span id="cb53-3"><a href="rmarkdown-parameters.html#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="rmarkdown-parameters.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column names and amount of columns</span></span>
+<span id="cb53-5"><a href="rmarkdown-parameters.html#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(covid) <span class="co"># There are 11 columns</span></span>
+<span id="cb53-6"><a href="rmarkdown-parameters.html#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="rmarkdown-parameters.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect data</span></span>
+<span id="cb53-8"><a href="rmarkdown-parameters.html#cb53-8" aria-hidden="true" tabindex="-1"></a>covid <span class="sc">%&gt;%</span> <span class="fu">count</span>(countriesAndTerritories) <span class="co"># 30 countries participate</span></span>
+<span id="cb53-9"><a href="rmarkdown-parameters.html#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(covid<span class="sc">$</span>geoId) <span class="co"># Each country has an unique geoId, so there are no double countries</span></span>
+<span id="cb53-10"><a href="rmarkdown-parameters.html#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(covid<span class="sc">$</span>continentExp) <span class="co"># All countries are located in Europe</span></span>
+<span id="cb53-11"><a href="rmarkdown-parameters.html#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(covid<span class="sc">$</span>dateRep) <span class="co"># First data was noted on 01/01/2020, last data was noted on 31/12/2021.</span></span></code></pre></div>
 <hr />
 </div>
 <div id="building-a-parameterized-graph" class="section level2 unnumbered">
 <h2>Building a parameterized graph</h2>
 <p>I will be making two graphs, one about the daily reported cases and one about the daily reported deaths. The parameters are country, year, and months and the default settings are used. The default settings show the data of the Netherlands in all 12 months of the year 2021.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="rmarkdown-parameters.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the necessary columns and change the datatype of dateRep.</span></span>
-<span id="cb70-2"><a href="rmarkdown-parameters.html#cb70-2" aria-hidden="true" tabindex="-1"></a>covid_cases <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
-<span id="cb70-3"><a href="rmarkdown-parameters.html#cb70-3" aria-hidden="true" tabindex="-1"></a>                                year <span class="sc">==</span> params<span class="sc">$</span>year,</span>
-<span id="cb70-4"><a href="rmarkdown-parameters.html#cb70-4" aria-hidden="true" tabindex="-1"></a>                                month <span class="sc">==</span> params<span class="sc">$</span>month) </span>
-<span id="cb70-5"><a href="rmarkdown-parameters.html#cb70-5" aria-hidden="true" tabindex="-1"></a>covid_cases<span class="sc">$</span>dateRep <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(covid_cases<span class="sc">$</span>dateRep, <span class="st">&quot;%d/%m/%y&quot;</span>)</span>
-<span id="cb70-6"><a href="rmarkdown-parameters.html#cb70-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-7"><a href="rmarkdown-parameters.html#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the graph</span></span>
-<span id="cb70-8"><a href="rmarkdown-parameters.html#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid_cases, <span class="fu">aes</span>(<span class="at">x=</span>dateRep, <span class="at">y=</span>cases))<span class="sc">+</span></span>
-<span id="cb70-9"><a href="rmarkdown-parameters.html#cb70-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb70-10"><a href="rmarkdown-parameters.html#cb70-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb70-11"><a href="rmarkdown-parameters.html#cb70-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Daily reported covid cases in the Netherlands that occured in March 2021&quot;</span>,</span>
-<span id="cb70-12"><a href="rmarkdown-parameters.html#cb70-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Months&quot;</span>,</span>
-<span id="cb70-13"><a href="rmarkdown-parameters.html#cb70-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;New cases&quot;</span>)<span class="sc">+</span></span>
-<span id="cb70-14"><a href="rmarkdown-parameters.html#cb70-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="rmarkdown-parameters.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the necessary columns and change the datatype of dateRep.</span></span>
+<span id="cb54-2"><a href="rmarkdown-parameters.html#cb54-2" aria-hidden="true" tabindex="-1"></a>covid_cases <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
+<span id="cb54-3"><a href="rmarkdown-parameters.html#cb54-3" aria-hidden="true" tabindex="-1"></a>                                year <span class="sc">==</span> params<span class="sc">$</span>year,</span>
+<span id="cb54-4"><a href="rmarkdown-parameters.html#cb54-4" aria-hidden="true" tabindex="-1"></a>                                month <span class="sc">==</span> params<span class="sc">$</span>month) </span>
+<span id="cb54-5"><a href="rmarkdown-parameters.html#cb54-5" aria-hidden="true" tabindex="-1"></a>covid_cases<span class="sc">$</span>dateRep <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(covid_cases<span class="sc">$</span>dateRep, <span class="st">&quot;%d/%m/%y&quot;</span>)</span>
+<span id="cb54-6"><a href="rmarkdown-parameters.html#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="rmarkdown-parameters.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the graph</span></span>
+<span id="cb54-8"><a href="rmarkdown-parameters.html#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid_cases, <span class="fu">aes</span>(<span class="at">x=</span>dateRep, <span class="at">y=</span>cases))<span class="sc">+</span></span>
+<span id="cb54-9"><a href="rmarkdown-parameters.html#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb54-10"><a href="rmarkdown-parameters.html#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb54-11"><a href="rmarkdown-parameters.html#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Daily reported covid cases in the Netherlands that occured in March 2021&quot;</span>,</span>
+<span id="cb54-12"><a href="rmarkdown-parameters.html#cb54-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Months&quot;</span>,</span>
+<span id="cb54-13"><a href="rmarkdown-parameters.html#cb54-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;New cases&quot;</span>)<span class="sc">+</span></span>
+<span id="cb54-14"><a href="rmarkdown-parameters.html#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/cases%20graph-1.png" width="672" /></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="rmarkdown-parameters.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the necessary columns and change the datatype of dateRep.</span></span>
-<span id="cb71-2"><a href="rmarkdown-parameters.html#cb71-2" aria-hidden="true" tabindex="-1"></a>covid_deaths <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
-<span id="cb71-3"><a href="rmarkdown-parameters.html#cb71-3" aria-hidden="true" tabindex="-1"></a>                                year <span class="sc">==</span> params<span class="sc">$</span>year,</span>
-<span id="cb71-4"><a href="rmarkdown-parameters.html#cb71-4" aria-hidden="true" tabindex="-1"></a>                                month <span class="sc">==</span> params<span class="sc">$</span>month)</span>
-<span id="cb71-5"><a href="rmarkdown-parameters.html#cb71-5" aria-hidden="true" tabindex="-1"></a>covid_deaths<span class="sc">$</span>dateRep <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(covid_cases<span class="sc">$</span>dateRep, <span class="st">&quot;%d/%m/%y&quot;</span>)</span>
-<span id="cb71-6"><a href="rmarkdown-parameters.html#cb71-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-7"><a href="rmarkdown-parameters.html#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the graph</span></span>
-<span id="cb71-8"><a href="rmarkdown-parameters.html#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid_deaths, <span class="fu">aes</span>(<span class="at">x=</span>dateRep, <span class="at">y=</span>deaths))<span class="sc">+</span></span>
-<span id="cb71-9"><a href="rmarkdown-parameters.html#cb71-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb71-10"><a href="rmarkdown-parameters.html#cb71-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb71-11"><a href="rmarkdown-parameters.html#cb71-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Daily reported covid deaths in the Netherlands that occured in March 2021&quot;</span>,</span>
-<span id="cb71-12"><a href="rmarkdown-parameters.html#cb71-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Months&quot;</span>,</span>
-<span id="cb71-13"><a href="rmarkdown-parameters.html#cb71-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Covid related deaths&quot;</span>)<span class="sc">+</span></span>
-<span id="cb71-14"><a href="rmarkdown-parameters.html#cb71-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="rmarkdown-parameters.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the necessary columns and change the datatype of dateRep.</span></span>
+<span id="cb55-2"><a href="rmarkdown-parameters.html#cb55-2" aria-hidden="true" tabindex="-1"></a>covid_deaths <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
+<span id="cb55-3"><a href="rmarkdown-parameters.html#cb55-3" aria-hidden="true" tabindex="-1"></a>                                year <span class="sc">==</span> params<span class="sc">$</span>year,</span>
+<span id="cb55-4"><a href="rmarkdown-parameters.html#cb55-4" aria-hidden="true" tabindex="-1"></a>                                month <span class="sc">==</span> params<span class="sc">$</span>month)</span>
+<span id="cb55-5"><a href="rmarkdown-parameters.html#cb55-5" aria-hidden="true" tabindex="-1"></a>covid_deaths<span class="sc">$</span>dateRep <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(covid_cases<span class="sc">$</span>dateRep, <span class="st">&quot;%d/%m/%y&quot;</span>)</span>
+<span id="cb55-6"><a href="rmarkdown-parameters.html#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="rmarkdown-parameters.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the graph</span></span>
+<span id="cb55-8"><a href="rmarkdown-parameters.html#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(covid_deaths, <span class="fu">aes</span>(<span class="at">x=</span>dateRep, <span class="at">y=</span>deaths))<span class="sc">+</span></span>
+<span id="cb55-9"><a href="rmarkdown-parameters.html#cb55-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb55-10"><a href="rmarkdown-parameters.html#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb55-11"><a href="rmarkdown-parameters.html#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Daily reported covid deaths in the Netherlands that occured in March 2021&quot;</span>,</span>
+<span id="cb55-12"><a href="rmarkdown-parameters.html#cb55-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Months&quot;</span>,</span>
+<span id="cb55-13"><a href="rmarkdown-parameters.html#cb55-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Covid related deaths&quot;</span>)<span class="sc">+</span></span>
+<span id="cb55-14"><a href="rmarkdown-parameters.html#cb55-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/deaths%20graph-1.png" width="672" /></p>
 <hr />
 </div>

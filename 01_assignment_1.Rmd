@@ -21,9 +21,16 @@ CE.LIQ.FLOW.062 <- read_excel("files/CE.LIQ.FLOW.062_Tidydata.xlsx")
 ```
 
 After import in R I checked the datatypes, but these were not assigned correctly. 
-RawData is double, but should be integer, because it contains full numbers.
+RawData is numeric, but should be integer, because it contains full numbers.
 CompName is character, but should be factor, because the names can be changed with numbers and get sorted by.
-CompConcentration is character, bu should be double, because it contains decimals.
+CompConcentration is character, but should be numeric, because it contains decimals.
+
+```{r check type, eval = FALSE}
+
+# Check datatype
+multi_check(CE.LIQ.FLOW.062$RawData, CE.LIQ.FLOW.062$compName, CE.LIQ.FLOW.062$compConcentration)
+
+```
 
 To keep working with the file, I changed the datatypes to the correct ones. 
 

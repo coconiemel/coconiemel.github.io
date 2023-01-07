@@ -24,7 +24,7 @@ params:
 
 Starting the analysis with inspecting the dataset, without parameters, to look what we're working with. 
 
-```{r data inspection}
+```{r data inspection, eval = FALSE}
 
 # Add file as data using the link from the site
 covid <- read.csv("https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/csv", na.strings = "", fileEncoding = "UTF-8-BOM")

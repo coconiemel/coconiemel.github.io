@@ -32,7 +32,7 @@ dengue_df_tidy <- dengue_df %>% pivot_longer(cols = c(2:ncol(dengue_df)), names_
 
 An important part of relational data is enabling comparison across different data frames. In this case we will be looking at the country and date, but in the data frames we use there are a couple of things that needs to be adjusted to make them similar.
 
-```{r adjusting}
+```{r adjusting, eval = FALSE}
 
 # Column 'country'
 ## Check types.
@@ -41,10 +41,6 @@ multi_check(flu_df_tidy$country, dengue_df_tidy$country, gapminder$country) # ch
 ## Change all types into factor
 flu_df_tidy$country <- as.factor(flu_df_tidy$country)
 dengue_df_tidy$country <- as.factor(dengue_df_tidy$country)
-
-## Check if it worked
-multi_check(flu_df_tidy$country, dengue_df_tidy$country, NA) 
-## It worked!
 
 # Column 'date'
 ## Check types.
@@ -57,10 +53,6 @@ dengue_df_tidy <- dengue_df_tidy %>% mutate(year = substr(dengue_df_tidy$Date, s
 ## Change all types into integer
 flu_df_tidy$year <- as.integer(flu_df_tidy$year)
 dengue_df_tidy$year <- as.integer(dengue_df_tidy$year)
-
-## Check if it worked.
-multi_check(flu_df_tidy$year, dengue_df_tidy$year, NA)
-## It worked!
 
 ```
 
