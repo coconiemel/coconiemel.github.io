@@ -1,17 +1,23 @@
 ---
-title: "Portfolio"
-author: "Coco Niemel"
-date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: 
+  bookdown::gitbook:
+    css: form.css
+    config:
+        toc:  
+            collapse: section
+            scroll_highlight: yes
+            before: <div class="titleandname">Portfolio of Coco Niemel</div>
+            
 documentclass: book
 bibliography: bibliography.bib
 biblio-style: apalike
+link-citations: yes
 params:
   country: "Netherlands"
   year: 2021
   month: 3
-link-citations: yes
+
 ---
 
 ```{r include=FALSE}
