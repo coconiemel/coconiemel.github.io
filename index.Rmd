@@ -9,7 +9,7 @@ output:
         toc:  
             collapse: section
             scroll_highlight: yes
-            before: <div class="titleandname">Portfolio of Coco Niemel</div>
+            before: <div class="title">Portfolio of Coco Niemel</div>
             
 documentclass: book
 bibliography: bibliography.bib
