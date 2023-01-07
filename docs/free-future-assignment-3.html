@@ -166,12 +166,12 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#skills"><i class="fa fa-check"></i>Skills</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#languages"><i class="fa fa-check"></i>Languages</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html"><i class="fa fa-check"></i>Reproducible Research (1)</a>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible Research</a>
 <ul>
-<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#the-analyzation-of-a-file"><i class="fa fa-check"></i>The analyzation of a file</a></li>
-<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#scoring-reproducibility"><i class="fa fa-check"></i>Scoring reproducibility</a></li>
-<li class="chapter" data-level="" data-path="reproducible-research-1.html"><a href="reproducible-research-1.html#usage-of-other-peoples-codes"><i class="fa fa-check"></i>Usage of other peoples codes</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#analyse-an-excel-file"><i class="fa fa-check"></i>Analyse an excel file</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#scoring-reproducibility"><i class="fa fa-check"></i>Scoring reproducibility</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#usage-of-other-peoples-codes"><i class="fa fa-check"></i>Usage of other peoples codes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-management-2.html"><a href="data-management-2.html"><i class="fa fa-check"></i>Data management (2)</a></li>
 <li class="chapter" data-level="" data-path="free-future-assignment-3.html"><a href="free-future-assignment-3.html"><i class="fa fa-check"></i>Free future assignment (3)</a>
@@ -281,112 +281,105 @@ Eventually, i gained my needed information to generate a phylogenetic tree from 
 </div>
 <div id="the-phylogenetic-tree" class="section level2 unnumbered hasAnchor">
 <h2>The phylogenetic tree<a href="free-future-assignment-3.html#the-phylogenetic-tree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="free-future-assignment-3.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(adegenet)</span>
-<span id="cb29-2"><a href="free-future-assignment-3.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Biostrings)</span>
-<span id="cb29-3"><a href="free-future-assignment-3.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(msa)</span>
-<span id="cb29-4"><a href="free-future-assignment-3.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
-<span id="cb29-5"><a href="free-future-assignment-3.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtree)</span>
-<span id="cb29-6"><a href="free-future-assignment-3.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rentrez)</span>
-<span id="cb29-7"><a href="free-future-assignment-3.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copopa)</span></code></pre></div>
 <p>In one of my resources I found a useful function from the {compbio4all} package, but Nathan L Brouwer, the writer of the package, states that if there is any trouble downloading the package the (following) code for the function can be copied. The package in question can be found at <a href="https://github.com/brouwern/compbio4all.git">the github repository</a>. I did have trouble installing the package, so the code retrieved from github is below.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="free-future-assignment-3.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to clean up fasta files</span></span>
-<span id="cb30-2"><a href="free-future-assignment-3.html#cb30-2" aria-hidden="true" tabindex="-1"></a>fasta_cleaner <span class="ot">&lt;-</span> <span class="cf">function</span>(fasta_object, <span class="at">parse =</span> <span class="cn">TRUE</span>){</span>
-<span id="cb30-3"><a href="free-future-assignment-3.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="free-future-assignment-3.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  fasta_object <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;^(&gt;)(.*?)(</span><span class="sc">\\</span><span class="st">n)(.*)(</span><span class="sc">\\</span><span class="st">n</span><span class="sc">\\</span><span class="st">n)&quot;</span>,<span class="st">&quot;</span><span class="sc">\\</span><span class="st">4&quot;</span>,fasta_object)</span>
-<span id="cb30-5"><a href="free-future-assignment-3.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  fasta_object <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>, fasta_object)</span>
-<span id="cb30-6"><a href="free-future-assignment-3.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="free-future-assignment-3.html#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(parse <span class="sc">==</span> <span class="cn">TRUE</span>){</span>
-<span id="cb30-8"><a href="free-future-assignment-3.html#cb30-8" aria-hidden="true" tabindex="-1"></a>    fasta_object <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(fasta_object,</span>
-<span id="cb30-9"><a href="free-future-assignment-3.html#cb30-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">pattern =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb30-10"><a href="free-future-assignment-3.html#cb30-10" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">simplify =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb30-11"><a href="free-future-assignment-3.html#cb30-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb30-12"><a href="free-future-assignment-3.html#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-13"><a href="free-future-assignment-3.html#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(fasta_object[[<span class="dv">1</span>]])</span>
-<span id="cb30-14"><a href="free-future-assignment-3.html#cb30-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-15"><a href="free-future-assignment-3.html#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-16"><a href="free-future-assignment-3.html#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to store fasta sequences into a R list</span></span>
-<span id="cb30-17"><a href="free-future-assignment-3.html#cb30-17" aria-hidden="true" tabindex="-1"></a>entrez_fetch_list <span class="ot">&lt;-</span> <span class="cf">function</span>(db, id, rettype, ...){</span>
-<span id="cb30-18"><a href="free-future-assignment-3.html#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-19"><a href="free-future-assignment-3.html#cb30-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#setup list for storing output</span></span>
-<span id="cb30-20"><a href="free-future-assignment-3.html#cb30-20" aria-hidden="true" tabindex="-1"></a>  n.seq <span class="ot">&lt;-</span> <span class="fu">length</span>(id)</span>
-<span id="cb30-21"><a href="free-future-assignment-3.html#cb30-21" aria-hidden="true" tabindex="-1"></a>  list.output <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(<span class="cn">NA</span>, n.seq))</span>
-<span id="cb30-22"><a href="free-future-assignment-3.html#cb30-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(list.output) <span class="ot">&lt;-</span> id</span>
-<span id="cb30-23"><a href="free-future-assignment-3.html#cb30-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-24"><a href="free-future-assignment-3.html#cb30-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get output</span></span>
-<span id="cb30-25"><a href="free-future-assignment-3.html#cb30-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(id)){</span>
-<span id="cb30-26"><a href="free-future-assignment-3.html#cb30-26" aria-hidden="true" tabindex="-1"></a>    list.output[[i]] <span class="ot">&lt;-</span> rentrez<span class="sc">::</span><span class="fu">entrez_fetch</span>(<span class="at">db =</span> db,</span>
-<span id="cb30-27"><a href="free-future-assignment-3.html#cb30-27" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">id =</span> id[i],</span>
-<span id="cb30-28"><a href="free-future-assignment-3.html#cb30-28" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">rettype =</span> rettype)</span>
-<span id="cb30-29"><a href="free-future-assignment-3.html#cb30-29" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb30-30"><a href="free-future-assignment-3.html#cb30-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-31"><a href="free-future-assignment-3.html#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-32"><a href="free-future-assignment-3.html#cb30-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(list.output)</span>
-<span id="cb30-33"><a href="free-future-assignment-3.html#cb30-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="free-future-assignment-3.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to clean up fasta files</span></span>
+<span id="cb12-2"><a href="free-future-assignment-3.html#cb12-2" aria-hidden="true" tabindex="-1"></a>fasta_cleaner <span class="ot">&lt;-</span> <span class="cf">function</span>(fasta_object, <span class="at">parse =</span> <span class="cn">TRUE</span>){</span>
+<span id="cb12-3"><a href="free-future-assignment-3.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="free-future-assignment-3.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  fasta_object <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;^(&gt;)(.*?)(</span><span class="sc">\\</span><span class="st">n)(.*)(</span><span class="sc">\\</span><span class="st">n</span><span class="sc">\\</span><span class="st">n)&quot;</span>,<span class="st">&quot;</span><span class="sc">\\</span><span class="st">4&quot;</span>,fasta_object)</span>
+<span id="cb12-5"><a href="free-future-assignment-3.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  fasta_object <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>, fasta_object)</span>
+<span id="cb12-6"><a href="free-future-assignment-3.html#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="free-future-assignment-3.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(parse <span class="sc">==</span> <span class="cn">TRUE</span>){</span>
+<span id="cb12-8"><a href="free-future-assignment-3.html#cb12-8" aria-hidden="true" tabindex="-1"></a>    fasta_object <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(fasta_object,</span>
+<span id="cb12-9"><a href="free-future-assignment-3.html#cb12-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">pattern =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb12-10"><a href="free-future-assignment-3.html#cb12-10" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">simplify =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-11"><a href="free-future-assignment-3.html#cb12-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-12"><a href="free-future-assignment-3.html#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="free-future-assignment-3.html#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(fasta_object[[<span class="dv">1</span>]])</span>
+<span id="cb12-14"><a href="free-future-assignment-3.html#cb12-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-15"><a href="free-future-assignment-3.html#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="free-future-assignment-3.html#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to store fasta sequences into a R list</span></span>
+<span id="cb12-17"><a href="free-future-assignment-3.html#cb12-17" aria-hidden="true" tabindex="-1"></a>entrez_fetch_list <span class="ot">&lt;-</span> <span class="cf">function</span>(db, id, rettype, ...){</span>
+<span id="cb12-18"><a href="free-future-assignment-3.html#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="free-future-assignment-3.html#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#setup list for storing output</span></span>
+<span id="cb12-20"><a href="free-future-assignment-3.html#cb12-20" aria-hidden="true" tabindex="-1"></a>  n.seq <span class="ot">&lt;-</span> <span class="fu">length</span>(id)</span>
+<span id="cb12-21"><a href="free-future-assignment-3.html#cb12-21" aria-hidden="true" tabindex="-1"></a>  list.output <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(<span class="cn">NA</span>, n.seq))</span>
+<span id="cb12-22"><a href="free-future-assignment-3.html#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(list.output) <span class="ot">&lt;-</span> id</span>
+<span id="cb12-23"><a href="free-future-assignment-3.html#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="free-future-assignment-3.html#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get output</span></span>
+<span id="cb12-25"><a href="free-future-assignment-3.html#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(id)){</span>
+<span id="cb12-26"><a href="free-future-assignment-3.html#cb12-26" aria-hidden="true" tabindex="-1"></a>    list.output[[i]] <span class="ot">&lt;-</span> rentrez<span class="sc">::</span><span class="fu">entrez_fetch</span>(<span class="at">db =</span> db,</span>
+<span id="cb12-27"><a href="free-future-assignment-3.html#cb12-27" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">id =</span> id[i],</span>
+<span id="cb12-28"><a href="free-future-assignment-3.html#cb12-28" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">rettype =</span> rettype)</span>
+<span id="cb12-29"><a href="free-future-assignment-3.html#cb12-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-30"><a href="free-future-assignment-3.html#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="free-future-assignment-3.html#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="free-future-assignment-3.html#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(list.output)</span>
+<span id="cb12-33"><a href="free-future-assignment-3.html#cb12-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The analysis starts by fetching the sequences from NCBI <span class="citation">(<a href="#ref-NationalCenterBiotechnology" role="doc-biblioref"><span>“National <span>Center</span> for <span>Biotechnology Information</span>,”</span> n.d.</a>)</span> and make them compatible for analysis.
 The file “species” is written to enhance the target IDs, this way, all the genomes can be fetched at once.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="free-future-assignment-3.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import list of target species</span></span>
-<span id="cb31-2"><a href="free-future-assignment-3.html#cb31-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span><span class="fu">scan</span>(<span class="at">file =</span> (<span class="st">&quot;files/filo_data/species.txt&quot;</span>), <span class="at">what =</span> <span class="st">&quot;character&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">comment.char =</span> <span class="st">&quot;#&quot;</span>) </span>
-<span id="cb31-3"><a href="free-future-assignment-3.html#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="free-future-assignment-3.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain fasta sequences of all species combined in a list</span></span>
-<span id="cb31-5"><a href="free-future-assignment-3.html#cb31-5" aria-hidden="true" tabindex="-1"></a>filoviridae <span class="ot">&lt;-</span> <span class="fu">entrez_fetch_list</span>(<span class="at">db =</span> <span class="st">&quot;nucleotide&quot;</span>,</span>
-<span id="cb31-6"><a href="free-future-assignment-3.html#cb31-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">id =</span> species,</span>
-<span id="cb31-7"><a href="free-future-assignment-3.html#cb31-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">rettype =</span> <span class="st">&quot;fasta&quot;</span>) </span>
-<span id="cb31-8"><a href="free-future-assignment-3.html#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="free-future-assignment-3.html#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove non sequence infromation</span></span>
-<span id="cb31-10"><a href="free-future-assignment-3.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(filoviridae)){</span>
-<span id="cb31-11"><a href="free-future-assignment-3.html#cb31-11" aria-hidden="true" tabindex="-1"></a>  filoviridae[[i]] <span class="ot">&lt;-</span> <span class="fu">fasta_cleaner</span>(filoviridae[[i]], <span class="at">parse =</span> F)</span>
-<span id="cb31-12"><a href="free-future-assignment-3.html#cb31-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-13"><a href="free-future-assignment-3.html#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-14"><a href="free-future-assignment-3.html#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create string set</span></span>
-<span id="cb31-15"><a href="free-future-assignment-3.html#cb31-15" aria-hidden="true" tabindex="-1"></a>filoviridae_vector <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(filoviridae))</span>
-<span id="cb31-16"><a href="free-future-assignment-3.html#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-17"><a href="free-future-assignment-3.html#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(filoviridae_vector)){</span>
-<span id="cb31-18"><a href="free-future-assignment-3.html#cb31-18" aria-hidden="true" tabindex="-1"></a>  filoviridae_vector[i] <span class="ot">&lt;-</span> filoviridae[[i]]</span>
-<span id="cb31-19"><a href="free-future-assignment-3.html#cb31-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-20"><a href="free-future-assignment-3.html#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-21"><a href="free-future-assignment-3.html#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(filoviridae_vector) <span class="ot">&lt;-</span> <span class="fu">names</span>(filoviridae)</span>
-<span id="cb31-22"><a href="free-future-assignment-3.html#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-23"><a href="free-future-assignment-3.html#cb31-23" aria-hidden="true" tabindex="-1"></a>filoviridae_vector_ss <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">AAStringSet</span>(filoviridae_vector)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="free-future-assignment-3.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import list of target species</span></span>
+<span id="cb13-2"><a href="free-future-assignment-3.html#cb13-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span><span class="fu">scan</span>(<span class="at">file =</span> (<span class="st">&quot;files/filo_data/species.txt&quot;</span>), <span class="at">what =</span> <span class="st">&quot;character&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">comment.char =</span> <span class="st">&quot;#&quot;</span>) </span>
+<span id="cb13-3"><a href="free-future-assignment-3.html#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="free-future-assignment-3.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain fasta sequences of all species combined in a list</span></span>
+<span id="cb13-5"><a href="free-future-assignment-3.html#cb13-5" aria-hidden="true" tabindex="-1"></a>filoviridae <span class="ot">&lt;-</span> <span class="fu">entrez_fetch_list</span>(<span class="at">db =</span> <span class="st">&quot;nucleotide&quot;</span>,</span>
+<span id="cb13-6"><a href="free-future-assignment-3.html#cb13-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">id =</span> species,</span>
+<span id="cb13-7"><a href="free-future-assignment-3.html#cb13-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">rettype =</span> <span class="st">&quot;fasta&quot;</span>) </span>
+<span id="cb13-8"><a href="free-future-assignment-3.html#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="free-future-assignment-3.html#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove non sequence infromation</span></span>
+<span id="cb13-10"><a href="free-future-assignment-3.html#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(filoviridae)){</span>
+<span id="cb13-11"><a href="free-future-assignment-3.html#cb13-11" aria-hidden="true" tabindex="-1"></a>  filoviridae[[i]] <span class="ot">&lt;-</span> <span class="fu">fasta_cleaner</span>(filoviridae[[i]], <span class="at">parse =</span> F)</span>
+<span id="cb13-12"><a href="free-future-assignment-3.html#cb13-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-13"><a href="free-future-assignment-3.html#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="free-future-assignment-3.html#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create string set</span></span>
+<span id="cb13-15"><a href="free-future-assignment-3.html#cb13-15" aria-hidden="true" tabindex="-1"></a>filoviridae_vector <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(filoviridae))</span>
+<span id="cb13-16"><a href="free-future-assignment-3.html#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="free-future-assignment-3.html#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(filoviridae_vector)){</span>
+<span id="cb13-18"><a href="free-future-assignment-3.html#cb13-18" aria-hidden="true" tabindex="-1"></a>  filoviridae_vector[i] <span class="ot">&lt;-</span> filoviridae[[i]]</span>
+<span id="cb13-19"><a href="free-future-assignment-3.html#cb13-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-20"><a href="free-future-assignment-3.html#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="free-future-assignment-3.html#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(filoviridae_vector) <span class="ot">&lt;-</span> <span class="fu">names</span>(filoviridae)</span>
+<span id="cb13-22"><a href="free-future-assignment-3.html#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="free-future-assignment-3.html#cb13-23" aria-hidden="true" tabindex="-1"></a>filoviridae_vector_ss <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">AAStringSet</span>(filoviridae_vector)</span></code></pre></div>
 <p>Next is the multiple sequence alignment. This creates an alignment to easily spot the distances between all the options. Because this takes a long time to perform, I saved the alignment in a file that can be obtained.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="free-future-assignment-3.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform multiple sequence alignment</span></span>
-<span id="cb32-2"><a href="free-future-assignment-3.html#cb32-2" aria-hidden="true" tabindex="-1"></a>filoviridae_align <span class="ot">&lt;-</span> <span class="fu">msa</span>(filoviridae_vector_ss,</span>
-<span id="cb32-3"><a href="free-future-assignment-3.html#cb32-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;ClustalW&quot;</span>)</span>
-<span id="cb32-4"><a href="free-future-assignment-3.html#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="free-future-assignment-3.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change class into correct one, in this case RNA because Ebola is a RNA-virus</span></span>
-<span id="cb32-6"><a href="free-future-assignment-3.html#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(filoviridae_align) <span class="ot">&lt;-</span> <span class="st">&quot;RNAMultipleAlignment&quot;</span></span>
-<span id="cb32-7"><a href="free-future-assignment-3.html#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-8"><a href="free-future-assignment-3.html#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save in file so alignment only needs to run once</span></span>
-<span id="cb32-9"><a href="free-future-assignment-3.html#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(filoviridae_align, (<span class="st">&quot;files/filo_data/filoviridae_align.RDS&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="free-future-assignment-3.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import aligned file for usage</span></span>
-<span id="cb33-2"><a href="free-future-assignment-3.html#cb33-2" aria-hidden="true" tabindex="-1"></a>filoviridae_align <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;files/filo_data/filoviridae_align.RDS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="free-future-assignment-3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform multiple sequence alignment</span></span>
+<span id="cb14-2"><a href="free-future-assignment-3.html#cb14-2" aria-hidden="true" tabindex="-1"></a>filoviridae_align <span class="ot">&lt;-</span> <span class="fu">msa</span>(filoviridae_vector_ss,</span>
+<span id="cb14-3"><a href="free-future-assignment-3.html#cb14-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;ClustalW&quot;</span>)</span>
+<span id="cb14-4"><a href="free-future-assignment-3.html#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="free-future-assignment-3.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change class into correct one, in this case RNA because Ebola is a RNA-virus</span></span>
+<span id="cb14-6"><a href="free-future-assignment-3.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(filoviridae_align) <span class="ot">&lt;-</span> <span class="st">&quot;RNAMultipleAlignment&quot;</span></span>
+<span id="cb14-7"><a href="free-future-assignment-3.html#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="free-future-assignment-3.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save in file so alignment only needs to run once</span></span>
+<span id="cb14-9"><a href="free-future-assignment-3.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(filoviridae_align, (<span class="st">&quot;files/filo_data/filoviridae_align.RDS&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="free-future-assignment-3.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import aligned file for usage</span></span>
+<span id="cb15-2"><a href="free-future-assignment-3.html#cb15-2" aria-hidden="true" tabindex="-1"></a>filoviridae_align <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;files/filo_data/filoviridae_align.RDS&quot;</span>)</span></code></pre></div>
 <p>To use the alignment for the tree, the genetic distance between the sequences will be calculated. For readability, a rounded version is also made. After the calculations the tree is plotted. The tree clearly shows that most ebolaviruses are closely related, which is logical because they are only different species, only Reston and Sudan are somewhat further from the rest but close to each other. Is also shows that Mengla dianlovirus and Marburg marburgvirus are closely related, and Lloviu is also nearby.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="free-future-assignment-3.html#cb34-1" aria-hidden="true" tabindex="-1"></a>filoviridae_align_seqinr <span class="ot">&lt;-</span> <span class="fu">msaConvert</span>(filoviridae_align, </span>
-<span id="cb34-2"><a href="free-future-assignment-3.html#cb34-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">type =</span> <span class="st">&quot;seqinr::alignment&quot;</span>)</span>
-<span id="cb34-3"><a href="free-future-assignment-3.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="free-future-assignment-3.html#cb34-4" aria-hidden="true" tabindex="-1"></a>filoviridae_dist <span class="ot">&lt;-</span> seqinr<span class="sc">::</span><span class="fu">dist.alignment</span>(filoviridae_align_seqinr, </span>
-<span id="cb34-5"><a href="free-future-assignment-3.html#cb34-5" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">matrix =</span> <span class="st">&quot;identity&quot;</span>)</span>
-<span id="cb34-6"><a href="free-future-assignment-3.html#cb34-6" aria-hidden="true" tabindex="-1"></a>filoviridae_dist_rounded <span class="ot">&lt;-</span> <span class="fu">round</span>(filoviridae_dist,</span>
-<span id="cb34-7"><a href="free-future-assignment-3.html#cb34-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="free-future-assignment-3.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the structure of the tree</span></span>
-<span id="cb35-2"><a href="free-future-assignment-3.html#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="free-future-assignment-3.html#cb35-3" aria-hidden="true" tabindex="-1"></a>filoviridae_tree <span class="ot">&lt;-</span> <span class="fu">nj</span>(filoviridae_dist)</span>
-<span id="cb35-4"><a href="free-future-assignment-3.html#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="free-future-assignment-3.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot tree</span></span>
-<span id="cb35-6"><a href="free-future-assignment-3.html#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="free-future-assignment-3.html#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(filoviridae_tree, <span class="at">ladderize =</span> T, <span class="at">branch.length =</span> <span class="st">&quot;branch.length&quot;</span>, </span>
-<span id="cb35-8"><a href="free-future-assignment-3.html#cb35-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">root.position =</span> .<span class="dv">05</span>)<span class="sc">+</span> </span>
-<span id="cb35-9"><a href="free-future-assignment-3.html#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="fl">3.5</span>)<span class="sc">+</span></span>
-<span id="cb35-10"><a href="free-future-assignment-3.html#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, .<span class="dv">8</span>)<span class="sc">+</span></span>
-<span id="cb35-11"><a href="free-future-assignment-3.html#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Filoviridae family tree&quot;</span>,  </span>
-<span id="cb35-12"><a href="free-future-assignment-3.html#cb35-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Rooted phylogenetic tree, with branch lengths&quot;</span>)<span class="sc">+</span></span>
-<span id="cb35-13"><a href="free-future-assignment-3.html#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> .<span class="dv">5</span>), <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">hjust =</span> .<span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="free-future-assignment-3.html#cb16-1" aria-hidden="true" tabindex="-1"></a>filoviridae_align_seqinr <span class="ot">&lt;-</span> <span class="fu">msaConvert</span>(filoviridae_align, </span>
+<span id="cb16-2"><a href="free-future-assignment-3.html#cb16-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">type =</span> <span class="st">&quot;seqinr::alignment&quot;</span>)</span>
+<span id="cb16-3"><a href="free-future-assignment-3.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="free-future-assignment-3.html#cb16-4" aria-hidden="true" tabindex="-1"></a>filoviridae_dist <span class="ot">&lt;-</span> seqinr<span class="sc">::</span><span class="fu">dist.alignment</span>(filoviridae_align_seqinr, </span>
+<span id="cb16-5"><a href="free-future-assignment-3.html#cb16-5" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">matrix =</span> <span class="st">&quot;identity&quot;</span>)</span>
+<span id="cb16-6"><a href="free-future-assignment-3.html#cb16-6" aria-hidden="true" tabindex="-1"></a>filoviridae_dist_rounded <span class="ot">&lt;-</span> <span class="fu">round</span>(filoviridae_dist,</span>
+<span id="cb16-7"><a href="free-future-assignment-3.html#cb16-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="free-future-assignment-3.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the structure of the tree</span></span>
+<span id="cb17-2"><a href="free-future-assignment-3.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="free-future-assignment-3.html#cb17-3" aria-hidden="true" tabindex="-1"></a>filoviridae_tree <span class="ot">&lt;-</span> <span class="fu">nj</span>(filoviridae_dist)</span>
+<span id="cb17-4"><a href="free-future-assignment-3.html#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="free-future-assignment-3.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot tree</span></span>
+<span id="cb17-6"><a href="free-future-assignment-3.html#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="free-future-assignment-3.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(filoviridae_tree, <span class="at">ladderize =</span> T, <span class="at">branch.length =</span> <span class="st">&quot;branch.length&quot;</span>, </span>
+<span id="cb17-8"><a href="free-future-assignment-3.html#cb17-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">root.position =</span> .<span class="dv">05</span>)<span class="sc">+</span> </span>
+<span id="cb17-9"><a href="free-future-assignment-3.html#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="fl">3.5</span>)<span class="sc">+</span></span>
+<span id="cb17-10"><a href="free-future-assignment-3.html#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, .<span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb17-11"><a href="free-future-assignment-3.html#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Filoviridae family tree&quot;</span>,  </span>
+<span id="cb17-12"><a href="free-future-assignment-3.html#cb17-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Rooted phylogenetic tree, with branch lengths&quot;</span>)<span class="sc">+</span></span>
+<span id="cb17-13"><a href="free-future-assignment-3.html#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> .<span class="dv">5</span>), <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">hjust =</span> .<span class="dv">5</span>))</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/phylogenetic%20tree-1.png" width="672" /></p>
 <p><em>Figure 2: Phylogenetic tree of the Filoviridae family.</em></p>
 <p>The tree shows an easy picture of the differences, but is doesn’t show the numbers in detail. To solve this, I calcutated them separately.</p>
 <p>The return of the code below shows the calculated genetic distances of all options. Seen from here is states that Taiforest ebolavirus &amp; Bundibogyo ebolavirus are closest related with a score of 0.56.</p>
 <p>It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus &amp; Marburg marburgvirus, Bombali ebolavirus &amp; Mengla dianlovirus, Sudan ebolavirus &amp; Marburg marburgvirus, Sudan ebolavirus &amp; Mengla dianlovirus, Reston ebolavirus &amp; Marburg marburgvirus, Lloviu cuevavirus &amp; Marburg marburgvirus, Lloviu cuevavirus &amp; Mengla dianlovirus.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="free-future-assignment-3.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Details</span></span>
-<span id="cb36-2"><a href="free-future-assignment-3.html#cb36-2" aria-hidden="true" tabindex="-1"></a>filoviridae_dist_rounded</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="free-future-assignment-3.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Details</span></span>
+<span id="cb18-2"><a href="free-future-assignment-3.html#cb18-2" aria-hidden="true" tabindex="-1"></a>filoviridae_dist_rounded</span></code></pre></div>
 <pre><code>##                                 KC545393.1 Bundibogyo ebolavirus
 ## MH121167.1 Taiforest ebolavirus                             0.56
 ## KT357858.1 Zaire ebolavirus                                 0.61
@@ -459,7 +452,7 @@ The file “species” is written to enhance the target IDs, this way, all the g
 ## MZ541881.1 Lloviu cuevavirus                                   
 ## OL702894.1 Marburg marburgvirus                                
 ## NC_055510.1 Mengla dianlovirus                             0.67</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="free-future-assignment-3.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(filoviridae_dist_rounded) <span class="co"># 0.56, 0.76</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="free-future-assignment-3.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(filoviridae_dist_rounded) <span class="co"># 0.56, 0.76</span></span></code></pre></div>
 <pre><code>## $min
 ## [1] 0.56
 ## 

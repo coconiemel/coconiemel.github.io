@@ -19,7 +19,7 @@ link-citations: yes
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, message = FALSE, echo = FALSE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
 ```{r libraries, echo = FALSE}

@@ -1,62 +1,49 @@
-# Reproducible Research (1) {-}
+# Reproducible Research {-}
 
 ## Introduction {-}
 
-During this assignment I learned to search and analyze different types of reproducible data.
+During this assignment I learned to search, analyse and use different types of reproducible data.
 
-## The analyzation of a file {-}
+## Analyse an excel file {-}
 
 The experiment used for this analysis was obtained from an experiment in which adult C. elegans was exposed to varying concentrations of different compounds. The data for this experiment is supplied by J. Louter (INT/ILC).
 
-The experiment contains a Excel file called CE.LIQ.FLOW.062_Tidydata.xlsx. During analyzation of this file I noticed that under 'compVehicle' the negative and positive seems to be alike, apart from the concentration. Negative is a higher concentration with ethanol and positive is a lower concentration with a variation of things. 
+The experiment contains a Excel file called CE.LIQ.FLOW.062_Tidydata.xlsx. During analysing this file I noticed that under 'compVehicle' the negative and positive seems to be alike, apart from the concentration. Negative is a higher concentration with ethanol and positive is a lower concentration with a variation of things. 
 The summary of the file tells the positive control is ethanol and the negative control is S medium.
 
 ```{r opening and importing}
 
+# Obtain file in environment
 CE.LIQ.FLOW.062 <- read_excel("files/CE.LIQ.FLOW.062_Tidydata.xlsx") 
-# redownload file into server
 
 ```
 
-When importing and opening the file in R I checked the datatypes, as shown below these were not assigned correctly. 
-RawData should be integer, because it contains full numbers.
-CompName should be factor, because the names can be changed with numbers and get sorted by.
-CompConcentration should be double, because it contains decimals.
+After import in R I checked the datatypes, but these were not assigned correctly. 
+RawData is double, but should be integer, because it contains full numbers.
+CompName is character, but should be factor, because the names can be changed with numbers and get sorted by.
+CompConcentration is character, bu should be double, because it contains decimals.
 
-```{r datatype check}
-
-# Check data types.
-typeof(CE.LIQ.FLOW.062$RawData) # double
-typeof(CE.LIQ.FLOW.062$compName) # character 
-typeof(CE.LIQ.FLOW.062$compConcentration) # character
-
-```
-
-To keep working with the file, I changed the datatypes to the correct ones. After this plotting was possible. The scatterplot shows the log10 of the concentration of different compounds in the C. elegans offspring count. 
-The correction with log10 was necessary because the labels of the x-axis were overlapping each other, the values had a large number of decimals and were randomly positioned. 
+To keep working with the file, I changed the datatypes to the correct ones. 
 
 ```{r alter type}
 
-# Turn raw data into integer datatype.
+# Turn into integer datatype.
 CE.LIQ.FLOW.062$RawData <- as.integer(CE.LIQ.FLOW.062$RawData)
 
-# Turn comp name into factor.
+# Turn into factor.
 CE.LIQ.FLOW.062$compName <- as.factor(CE.LIQ.FLOW.062$compName)
 
-# Turn comp concentration into double (numeric value).
+# Turn into double (numeric value).
 CE.LIQ.FLOW.062$compConcentration <- as.double(CE.LIQ.FLOW.062$compConcentration)
-
-# Check data types again.
-class(CE.LIQ.FLOW.062$RawData) # integer
-class(CE.LIQ.FLOW.062$compName) # factor
-class(CE.LIQ.FLOW.062$compConcentration) # numeric
-# Correct!
 
 ```
 
+After this plotting was possible. The scatterplot shows the log10 of the concentration of different compounds in the C. elegans offspring count. 
+The correction with log10 was necessary because the labels of the x-axis were overlapping each other, the values had a large number of decimals and were randomly positioned. 
+
 ```{r create plot}
 
-# Obtain needed columns.
+# Obtain needed columns
 CE.LIQ.FLOW.062_summary <- CE.LIQ.FLOW.062 %>% 
   group_by(compName, compConcentration, expType) %>%                          
                                  summarize(mean_counts = mean(RawData, na.rm = TRUE),
@@ -64,7 +51,7 @@ CE.LIQ.FLOW.062_summary <- CE.LIQ.FLOW.062 %>%
 CE.LIQ.FLOW.062_summary_tbl <- CE.LIQ.FLOW.062_summary %>% 
   filter(expType == "experiment")
 
-# Create scatterplot.
+# Create scatterplot
 CE.LIQ.FLOW.062_summary_tbl %>% ggplot(aes(x = log10(compConcentration), 
                                            y = mean_counts)) +
   geom_point(aes(color = compName, shape = expType), size = 2, 
@@ -79,10 +66,10 @@ position = position_jitter(width = 0.5, height = 0.5, seed = 123)) +
 
 ```
 
-For further analysation of the effect i would start by testing normality by performing a Shapiro-Wilk test. If unusual, i would normalize the data, if normal, i would start an ANOVA between de different conditions. I would end with the post-hoc tests, to check in what combination of groups the difference is.
+For further analysing of the effect I would start by testing normality by performing a Shapiro-Wilk test. If unusual, I would normalize the data, if normal, I would start an ANOVA between de different conditions. I would end with the post-hoc tests, to check in what combination of groups the difference is.
 
-In this case, the data is not normal, so normalization is necessary.
-The normalization step is to see is the offspring count increases or decreases relatively to the negative control and so, if there is anything influenced by the negative control.
+In this case, the data is not normal, so normalizing is necessary.
+The normalizing step is to see if the offspring count increases or decreases relatively to the negative control and if so, if there is anything influenced by the negative control.
 
 ```{r normalize data}
 
@@ -92,7 +79,7 @@ The normalization step is to see is the offspring count increases or decreases r
 CE.LIQ.FLOW.062_summary_norm <- CE.LIQ.FLOW.062_summary_tbl %>% 
   mutate(norm_counts = mean_counts/85.9, norm_sd = sd_counts/85.9)
 
-# Create scatterplot with normalized data.
+# Create scatterplot with normalized data
 CE.LIQ.FLOW.062_summary_norm %>% ggplot(aes(x = log10(compConcentration), 
                                             y = norm_counts)) +
   geom_point(aes(color = compName, shape = expType), size = 2, 
@@ -118,12 +105,12 @@ To answer these questions, five experiments were set up. three groups of L1 spea
 
 The results showed that for both research questions two out of three groups learned the forms, definitional meanings en emotional connotations and that de positive group learned the best out of the three groups.
 
-Part of this analyzation is a scoring on the basis of the "Repita" criteria. This is a method for identifying reproductibility issues in a scientific publication [@sumnerReproducibilityReportingPractices2020]. The scoring is shown below.
+The analysis is a scoring on the basis of the [Repita transparency criteria](https://www.researchgate.net/publication/340244621_Reproducibility_and_reporting_practices_in_COVID-19_preprint_manuscripts). This is a method for identifying reproducibility issues in a scientific publication [@sumnerReproducibilityReportingPractices2020]. The scoring is shown below, the definitions can be found in the link above.
 
 ```{r repita scoring table}
 
 # Create matrix
-repita_criteria_tab <- matrix(c("Study purpose", "V", "Data availability statement", "V", "Data location", "Online version", "Study location", "USA", "Author review", "V", "Ethics statement", "V", "Funding statement", "V", "Code availability", "X"), ncol=2, byrow=TRUE)
+repita_criteria_tab <- matrix(c("Study purpose", "V", "Data availability statement", "V", "Data location", "[Available here](https://osf.io/yghx3/)", "Study location", "USA", "Author review", "[Bottom of page](https://www.sciencedirect.com/science/article/abs/pii/S0749596X20300851?via%3Dihub)", "Ethics statement", "V", "Funding statement", "V", "Code availability", "X"), ncol=2, byrow=TRUE)
 
 # Define names of matrix
 colnames(repita_criteria_tab) <- c('Transparency criteria', 'Score')
@@ -139,20 +126,17 @@ kable(repita_criteria_tab) %>%
 
 ## Usage of other peoples codes {-}
 
-The last analyzation contains a code of an article about the case-fatality rate of COVID-19  [@dudelMonitoringTrendsDifferences2020].
+The last analysis contains a code of an article about the case-fatality rate of COVID-19  [@dudelMonitoringTrendsDifferences2020].
 
 Looking at the code, is seems to achieve a visualisation of the differences in case-fatality rate (CFR)  over time in between countries, using the age structure of infection and age specific CFRs. This is done by creating tables containing the latest data of diagnosed cases and death counts (concerning COVID-19) for each country.
 
-The readability of the code is quite alright. The code in general is readable and understandable because of comments en different chuncks. But the total code is quite long and stored in different files, which makes it a little bit harder to access and run.
+The readability of the code is quite al right. The code in general is readable and understandable because of comments en different chuncks. But the total code is quite long and stored in different files, which makes it a little bit harder to access and run.
 
-But after trying the code myself the code was a little less accesible as i thought. At first it took a lot of effort, because the file in the url didn't exist anymore and I couldn't figure out the updated pathway. The updated pathway was not clearly indicated, but once I found it the reproduction was pretty smooth and I only had to make small changes.
+After trying the code myself the code was a little less accessible than I thought. At first it took a lot of effort, because the file in the url didn't exist any more and I couldn't figure out the updated pathway. The updated pathway was not clearly indicated, but once I found it the reproduction was pretty smooth and I only had to make small changes.
 
-The code is stated below, showing comments of parts i have changed to make the code run smoothly.
+<details><summary>The full code is stated below, showing comments of changes i made to make it run smoothly.</summary>
 
-```{r used libraries and functions}
-### Load packages #############################################################
-
-## I put al the libraries together in the index, instead of using 'source' per chunck for a better overview.
+```{r functions}
 
 ### Case fatality rate #######################################################
 
@@ -230,7 +214,7 @@ The code is stated below, showing comments of parts i have changed to make the c
   write_csv(dat,path="Data/inputdata.csv")
 ```
 
-```{r COVID CFR analysis}
+```{r COVID CFR analysis, eval = FALSE}
 ### Load functions & packages #################################################
 
 # Not necessary anymore, all the libraries are stored together above.
@@ -271,8 +255,8 @@ The code is stated below, showing comments of parts i have changed to make the c
   deaths <- aggregate(Deaths~Code+Date+Country+Region,data=dat2[dat2$Sex=="b",],sum)
   
   # Most recent counts
-  cases %>% group_by(Country,Region) %>% slice(which.max(Date))
-  deaths %>% group_by(Country,Region) %>% slice(which.max(Date))
+  cases %>% group_by(Country,Region) %>% dplyr::slice(which.max(Date))
+  deaths %>% group_by(Country,Region) %>% dplyr::slice(which.max(Date))
   
   
 ### Analysis for Table 2 (and appendix) #######################################
@@ -316,9 +300,9 @@ The code is stated below, showing comments of parts i have changed to make the c
   
   # Select only most recent date, both genders combined
   
-  DecDE <- DecDE %>% filter(Sex=="b") %>% group_by(Country,Region) %>% filter(Date<=refdate) %>% slice(which.max(Date))
-  DecIT <- DecIT %>% filter(Sex=="b") %>% group_by(Country,Region) %>% filter(Date<=refdate) %>% slice(which.max(Date))
-  DecSK <- DecSK %>% filter(Sex=="b") %>% group_by(Country,Region) %>% filter(Date<=refdate) %>% slice(which.max(Date))
+  DecDE <- DecDE %>% filter(Sex=="b") %>% group_by(Country,Region) %>% filter(Date<=refdate) %>% dplyr::slice(which.max(Date))
+  DecIT <- DecIT %>% filter(Sex=="b") %>% group_by(Country,Region) %>% filter(Date<=refdate) %>% dplyr::slice(which.max(Date))
+  DecSK <- DecSK %>% filter(Sex=="b") %>% group_by(Country,Region) %>% filter(Date<=refdate) %>% dplyr::slice(which.max(Date))
   
   # Drop unnecessary variables
   DecDE <- DecDE %>% select(Country,Region,Date,CFR2,Diff,AgeComp,RateComp)
@@ -487,7 +471,7 @@ The code is stated below, showing comments of parts i have changed to make the c
              path="files/COVID_article/AppendixTab5.xlsx")
 ```
 
-```{r extra analysis}
+```{r extra analysis, eval = FALSE}
 ### Load functions & packages #################################################
  
 # Not necessary anymore, all the libraries are stored together above. 
@@ -726,6 +710,6 @@ The code is stated below, showing comments of parts i have changed to make the c
   
   # Save
   ggsave("files/COVID_article/Fig_1.jpg", width = 4, height = 3, dpi = 600)
+  
 ```
-
-
+</details>
