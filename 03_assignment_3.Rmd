@@ -32,17 +32,6 @@ There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavi
 Ebolavirus and Marburgvirus are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@filoviruses-infection-with.pdf].
 
 ## The phylogenetic tree {-}
-```{r libraries in this code}
-
-library(adegenet)
-library(Biostrings)
-library(msa)
-library(ape)
-library(ggtree)
-library(rentrez)
-library(copopa)
-
-```
 
 In one of my resources I found a useful function from the {compbio4all} package, but Nathan L Brouwer, the writer of the package, states that if there is any trouble downloading the package the (following) code for the function can be copied. The package in question can be found at [the github repository](https://github.com/brouwern/compbio4all.git). I did have trouble installing the package, so the code retrieved from github is below.
 

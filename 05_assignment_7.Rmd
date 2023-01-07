@@ -8,19 +8,6 @@ This assignment was focused on learning the basics of the SQL language and how t
 
 Start by creating three data frames out of files and making them tidy.
 
-```{r libraries}
-
-library(dslabs)
-library(tidyverse)
-library(DBI)
-library(dplyr)
-library(ggplot2)
-library(car)
-library(FSA)
-library(copopa)
-
-```
-
 ```{r import and tidy}
 
 # The flu

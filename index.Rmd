@@ -19,7 +19,35 @@ link-citations: yes
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, message = FALSE, echo = FALSE)
+```
+
+```{r libraries, echo = FALSE}
+
+library(readxl)
+library(tidyverse)
+library(kableExtra)
+library(adegenet)
+library(Biostrings)
+library(msa)
+library(ape)
+library(ggtree)
+library(rentrez)
+library(copopa)
+library(dslabs)
+library(DBI)
+library(dplyr)
+library(ggplot2)
+library(car)
+library(FSA)
+library(utils)
+library(dplyr)
+library(data.table)
+library(writexl)
+library(httr)
+library(ggrepel)
+library(scales)
+
 ```
 
 # Curriculum Vitae {-}

@@ -8,15 +8,6 @@ During this assignment I learned to search and analyze different types of reprod
 
 The experiment used for this analysis was obtained from an experiment in which adult C. elegans was exposed to varying concentrations of different compounds. The data for this experiment is supplied by J. Louter (INT/ILC).
 
-```{r used libraries}
-
-# Used libraries in this exercise.
-library(readxl)
-library(tidyverse)
-library(kableExtra)
-
-```
-
 The experiment contains a Excel file called CE.LIQ.FLOW.062_Tidydata.xlsx. During analyzation of this file I noticed that under 'compVehicle' the negative and positive seems to be alike, apart from the concentration. Negative is a higher concentration with ethanol and positive is a lower concentration with a variation of things. 
 The summary of the file tells the positive control is ethanol and the negative control is S medium.
 
@@ -161,15 +152,7 @@ The code is stated below, showing comments of parts i have changed to make the c
 ```{r used libraries and functions}
 ### Load packages #############################################################
 
-## I put al the libraries together here, instead of using 'source' per chunck for a better overview.
-
-  library(tidyverse)
-  library(data.table)
-  library(writexl)
-  library(httr)
-  library(ggrepel)
-  library(scales)
-
+## I put al the libraries together in the YAML header, instead of using 'source' per chunck for a better overview.
 
 ### Case fatality rate #######################################################
 

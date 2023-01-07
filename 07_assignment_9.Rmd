@@ -22,16 +22,6 @@ params:
 
 Starting the analysis with inspecting the dataset, without parameters, to look what we're working with. 
 
-```{r new libraries}
-
-library(tidyverse)
-library(dplyr)
-library(copopa)
-library(ggplot2)
-library(utils)
-
-```
-
 ```{r data inspection}
 
 # Add file as data using the link from the site
