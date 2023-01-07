@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Relational data and databases | Portfolio</title>
+  <meta name="description" content="5 Relational data and databases | Portfolio" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Relational data and databases | Portfolio" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Relational data and databases | Portfolio" />
+  
+  
+  
+
+<meta name="author" content="Coco Niemel" />
+
+
+<meta name="date" content="2023-01-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="groupproject.html"/>
+<link rel="next" href="r-package.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Curriculum Vitae</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#professional-experience"><i class="fa fa-check"></i>Professional Experience</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#skills"><i class="fa fa-check"></i>Skills</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#languages"><i class="fa fa-check"></i>Languages</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>1</b> Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#analyse-an-excel-file"><i class="fa fa-check"></i>Analyse an excel file</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#scoring-reproducibility"><i class="fa fa-check"></i>Scoring reproducibility</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#usage-of-other-peoples-codes"><i class="fa fa-check"></i>Usage of other peoples codes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>2</b> Data management</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-management.html"><a href="data-management.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="data-management.html"><a href="data-management.html#my-execution"><i class="fa fa-check"></i>My execution</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-phylogenetic-analysis.html"><a href="a-phylogenetic-analysis.html"><i class="fa fa-check"></i><b>3</b> A phylogenetic analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="a-phylogenetic-analysis.html"><a href="a-phylogenetic-analysis.html#introduction-2"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="a-phylogenetic-analysis.html"><a href="a-phylogenetic-analysis.html#plan"><i class="fa fa-check"></i>Plan</a></li>
+<li class="chapter" data-level="" data-path="a-phylogenetic-analysis.html"><a href="a-phylogenetic-analysis.html#the-filoviridae-family"><i class="fa fa-check"></i>The Filoviridae family</a></li>
+<li class="chapter" data-level="" data-path="a-phylogenetic-analysis.html"><a href="a-phylogenetic-analysis.html#the-phylogenetic-tree"><i class="fa fa-check"></i>The phylogenetic tree</a></li>
+<li class="chapter" data-level="" data-path="a-phylogenetic-analysis.html"><a href="a-phylogenetic-analysis.html#future-steps"><i class="fa fa-check"></i>Future steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="groupproject.html"><a href="groupproject.html"><i class="fa fa-check"></i><b>4</b> Groupproject</a>
+<ul>
+<li class="chapter" data-level="" data-path="groupproject.html"><a href="groupproject.html#introduction-3"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="groupproject.html"><a href="groupproject.html#ontox"><i class="fa fa-check"></i>ONTOX</a></li>
+<li class="chapter" data-level="" data-path="groupproject.html"><a href="groupproject.html#our-addition"><i class="fa fa-check"></i>Our addition</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html"><i class="fa fa-check"></i><b>5</b> Relational data and databases</a>
+<ul>
+<li class="chapter" data-level="" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html#introduction-4"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html#dbeaver-connection"><i class="fa fa-check"></i>DBeaver connection</a></li>
+<li class="chapter" data-level="" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html#inspection"><i class="fa fa-check"></i>Inspection</a></li>
+<li class="chapter" data-level="" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
+<li class="chapter" data-level="" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html#visualisations"><i class="fa fa-check"></i>Visualisations</a>
+<ul>
+<li class="chapter" data-level="" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html#flu"><i class="fa fa-check"></i>Flu</a></li>
+<li class="chapter" data-level="" data-path="relational-data-and-databases.html"><a href="relational-data-and-databases.html#dengue"><i class="fa fa-check"></i>Dengue</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-package.html"><a href="r-package.html"><i class="fa fa-check"></i><b>6</b> R package</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#introduction-5"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#copopa"><i class="fa fa-check"></i>Copopa</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html"><i class="fa fa-check"></i><b>7</b> Rmarkdown parameters</a>
+<ul>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#introduction-6"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#data-inspection"><i class="fa fa-check"></i>Data inspection</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#building-a-parameterized-graph"><i class="fa fa-check"></i>Building a parameterized graph</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#alter-parameter-settings"><i class="fa fa-check"></i>Alter parameter settings</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Portfolio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="relational-data-and-databases" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Relational data and databases<a href="relational-data-and-databases.html#relational-data-and-databases" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-4" class="section level2 unnumbered hasAnchor">
+<h2>Introduction<a href="relational-data-and-databases.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.</p>
+<hr />
+</div>
+<div id="dbeaver-connection" class="section level2 unnumbered hasAnchor">
+<h2>DBeaver connection<a href="relational-data-and-databases.html#dbeaver-connection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I Start by creating three data frames out of files and making them tidy.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="relational-data-and-databases.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The flu</span></span>
+<span id="cb22-2"><a href="relational-data-and-databases.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
+<span id="cb22-3"><a href="relational-data-and-databases.html#cb22-3" aria-hidden="true" tabindex="-1"></a>flu_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/flu_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
+<span id="cb22-4"><a href="relational-data-and-databases.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Make tidy</span></span>
+<span id="cb22-5"><a href="relational-data-and-databases.html#cb22-5" aria-hidden="true" tabindex="-1"></a>flu_df_tidy <span class="ot">&lt;-</span> flu_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(flu_df)), <span class="at">names_to =</span> <span class="st">&#39;country&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;cases&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb22-6"><a href="relational-data-and-databases.html#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="relational-data-and-databases.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Dengue</span></span>
+<span id="cb22-8"><a href="relational-data-and-databases.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Import, first 11 lines are metadata</span></span>
+<span id="cb22-9"><a href="relational-data-and-databases.html#cb22-9" aria-hidden="true" tabindex="-1"></a>dengue_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/dengue_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
+<span id="cb22-10"><a href="relational-data-and-databases.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Make tidy</span></span>
+<span id="cb22-11"><a href="relational-data-and-databases.html#cb22-11" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy <span class="ot">&lt;-</span> dengue_df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(dengue_df)), <span class="at">names_to =</span> <span class="st">&#39;country&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;cases&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb22-12"><a href="relational-data-and-databases.html#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="relational-data-and-databases.html#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Gapminder</span></span>
+<span id="cb22-14"><a href="relational-data-and-databases.html#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="do">## The dataframe is part of the dslabs package and therefore does not need to be imported.</span></span>
+<span id="cb22-15"><a href="relational-data-and-databases.html#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="do">## The dataframe is already tidy.</span></span></code></pre></div>
+<p>An important part of relational data is enabling comparison across different data frames. In this case we will be looking at the country and date, but in the data frames we use there are a couple of things that needs to be adjusted to make them similar.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="relational-data-and-databases.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column &#39;country&#39;</span></span>
+<span id="cb23-2"><a href="relational-data-and-databases.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Check types.</span></span>
+<span id="cb23-3"><a href="relational-data-and-databases.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">multi_check</span>(flu_df_tidy<span class="sc">$</span>country, dengue_df_tidy<span class="sc">$</span>country, gapminder<span class="sc">$</span>country) <span class="co"># character, character, factor</span></span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;character&quot;
+## 
+## [[2]]
+## [1] &quot;character&quot;
+## 
+## [[3]]
+## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="relational-data-and-databases.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Change all types into factor</span></span>
+<span id="cb25-2"><a href="relational-data-and-databases.html#cb25-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(flu_df_tidy<span class="sc">$</span>country)</span>
+<span id="cb25-3"><a href="relational-data-and-databases.html#cb25-3" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dengue_df_tidy<span class="sc">$</span>country)</span>
+<span id="cb25-4"><a href="relational-data-and-databases.html#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="relational-data-and-databases.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Check if it worked</span></span>
+<span id="cb25-6"><a href="relational-data-and-databases.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">multi_check</span>(flu_df_tidy<span class="sc">$</span>country, dengue_df_tidy<span class="sc">$</span>country, <span class="cn">NA</span>) </span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;factor&quot;
+## 
+## [[2]]
+## [1] &quot;factor&quot;
+## 
+## [[3]]
+## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="relational-data-and-databases.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## It worked!</span></span>
+<span id="cb27-2"><a href="relational-data-and-databases.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="relational-data-and-databases.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Column &#39;date&#39;</span></span>
+<span id="cb27-4"><a href="relational-data-and-databases.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Check types.</span></span>
+<span id="cb27-5"><a href="relational-data-and-databases.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">multi_check</span>(flu_df_tidy<span class="sc">$</span>Date, dengue_df_tidy<span class="sc">$</span>Date, gapminder<span class="sc">$</span>year) </span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Date&quot;
+## 
+## [[2]]
+## [1] &quot;Date&quot;
+## 
+## [[3]]
+## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="relational-data-and-databases.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Because flu and dengue are specified to day instead of the year at gapminder, a &#39;year&#39; column needs to be added and changed into the integer type to create similarity.</span></span>
+<span id="cb29-2"><a href="relational-data-and-databases.html#cb29-2" aria-hidden="true" tabindex="-1"></a>flu_df_tidy <span class="ot">&lt;-</span> flu_df_tidy <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(flu_df_tidy<span class="sc">$</span>Date, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">4</span>))</span>
+<span id="cb29-3"><a href="relational-data-and-databases.html#cb29-3" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy <span class="ot">&lt;-</span> dengue_df_tidy <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(dengue_df_tidy<span class="sc">$</span>Date, <span class="at">start=</span><span class="dv">1</span>, <span class="at">stop=</span><span class="dv">4</span>))</span>
+<span id="cb29-4"><a href="relational-data-and-databases.html#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="relational-data-and-databases.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Change all types into integer</span></span>
+<span id="cb29-6"><a href="relational-data-and-databases.html#cb29-6" aria-hidden="true" tabindex="-1"></a>flu_df_tidy<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(flu_df_tidy<span class="sc">$</span>year)</span>
+<span id="cb29-7"><a href="relational-data-and-databases.html#cb29-7" aria-hidden="true" tabindex="-1"></a>dengue_df_tidy<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(dengue_df_tidy<span class="sc">$</span>year)</span>
+<span id="cb29-8"><a href="relational-data-and-databases.html#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="relational-data-and-databases.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Check if it worked.</span></span>
+<span id="cb29-10"><a href="relational-data-and-databases.html#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">multi_check</span>(flu_df_tidy<span class="sc">$</span>year, dengue_df_tidy<span class="sc">$</span>year, <span class="cn">NA</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;integer&quot;
+## 
+## [[2]]
+## [1] &quot;integer&quot;
+## 
+## [[3]]
+## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="relational-data-and-databases.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## It worked!</span></span></code></pre></div>
+<p>The data frames are now similar and can be stored into csv and rds files.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="relational-data-and-databases.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export data frames as csv and rds</span></span>
+<span id="cb32-2"><a href="relational-data-and-databases.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save_to_csv_rds</span>(flu_df_tidy, <span class="st">&quot;files/flu&quot;</span>)</span>
+<span id="cb32-3"><a href="relational-data-and-databases.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save_to_csv_rds</span>(dengue_df_tidy, <span class="st">&quot;files/dengue&quot;</span>)</span>
+<span id="cb32-4"><a href="relational-data-and-databases.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">save_to_csv_rds</span>(gapminder, <span class="st">&quot;files/gapminder&quot;</span>)</span></code></pre></div>
+<p>DBeaver and R were connected (my real password is hidden) and the tables were inserted into the ‘workflowsdb’ database in DBeaver for inspection.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="relational-data-and-databases.html#cb33-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(), </span>
+<span id="cb33-2"><a href="relational-data-and-databases.html#cb33-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;workflowsdb&quot;</span>, </span>
+<span id="cb33-3"><a href="relational-data-and-databases.html#cb33-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span><span class="st">&quot;localhost&quot;</span>, </span>
+<span id="cb33-4"><a href="relational-data-and-databases.html#cb33-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="st">&quot;5432&quot;</span>, </span>
+<span id="cb33-5"><a href="relational-data-and-databases.html#cb33-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user=</span><span class="st">&quot;postgres&quot;</span>, </span>
+<span id="cb33-6"><a href="relational-data-and-databases.html#cb33-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span><span class="st">&quot;Password&quot;</span>) <span class="co"># Hide my real password</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="relational-data-and-databases.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, gapminder)</span>
+<span id="cb34-2"><a href="relational-data-and-databases.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;flu&quot;</span>, flu_df_tidy)</span>
+<span id="cb34-3"><a href="relational-data-and-databases.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;dengue&quot;</span>, dengue_df_tidy)</span></code></pre></div>
+<hr />
+</div>
+<div id="inspection" class="section level2 unnumbered hasAnchor">
+<h2>Inspection<a href="relational-data-and-databases.html#inspection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the tables are imported, i checked a couple of things.
+Dengue has no “NULL” variables in country and year, 6263 cases in the data set and the average amount of cases is 0.14 with a standard deviation of 0.14. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Venezuela with 1 case.</p>
+<p>The flu has no “NULL variables in country and year, 17266 cases in the data set and the average amount of cases is 473.74 with a standard deviation of 768.95. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Uruguay 10555 cases.</p>
+<p>Gapminder had no “NULL” variables in country and year.</p>
+<p>There was an important thing that stood out to me about the metadata. I will discuss this later in this chapter. This information is obtained by the following SQL and R code:</p>
+<p><img src="images/SQL_inspection.jpg"
+     width="300" 
+     height="800" /></p>
+<p><em>Figure 4: SQL code of data inspection.</em></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="relational-data-and-databases.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dengue</span></span>
+<span id="cb35-2"><a href="relational-data-and-databases.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(dengue_df_tidy<span class="sc">$</span>cases) <span class="co"># 0, 1</span></span></code></pre></div>
+<pre><code>## $min
+## [1] 0
+## 
+## $max
+## [1] 1</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="relational-data-and-databases.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean_sd</span>(dengue_df_tidy<span class="sc">$</span>cases) <span class="co"># 0.14, 0.14</span></span></code></pre></div>
+<pre><code>## $mean
+## [1] 0.1389711
+## 
+## $sd
+## [1] 0.1389235</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="relational-data-and-databases.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flu</span></span>
+<span id="cb39-2"><a href="relational-data-and-databases.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(flu_df_tidy<span class="sc">$</span>cases) <span class="co"># 0, 10555</span></span></code></pre></div>
+<pre><code>## $min
+## [1] 0
+## 
+## $max
+## [1] 10555</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="relational-data-and-databases.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean_sd</span>(flu_df_tidy<span class="sc">$</span>cases) <span class="co"># 473.74, 768.95</span></span></code></pre></div>
+<pre><code>## $mean
+## [1] 473.7355
+## 
+## $sd
+## [1] 768.9549</code></pre>
+<p>For a good analysis of the different, but related data, they need to be joined together in one table with the important columns. I created four joined tables, flu with dengue, dengue with gapminder, flu with gapminder and all three of them. Some tables have more countries than others, this is because the joining only joins the matching countries. See below for the SQL and R code.</p>
+<p><img src="images/SQL_join.jpg"
+     width="300" 
+     height="900" /></p>
+<p><em>Figure 5: SQL code of inner-join.</em></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="relational-data-and-databases.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load joined table to object</span></span>
+<span id="cb43-2"><a href="relational-data-and-databases.html#cb43-2" aria-hidden="true" tabindex="-1"></a>gapminder_flu <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/gapminder_flu.csv&quot;</span>)</span>
+<span id="cb43-3"><a href="relational-data-and-databases.html#cb43-3" aria-hidden="true" tabindex="-1"></a>gapminder_dengue <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/gapminder_dengue.csv&quot;</span>)</span>
+<span id="cb43-4"><a href="relational-data-and-databases.html#cb43-4" aria-hidden="true" tabindex="-1"></a>flu_dengue <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/flu_dengue.csv&quot;</span>)</span>
+<span id="cb43-5"><a href="relational-data-and-databases.html#cb43-5" aria-hidden="true" tabindex="-1"></a>gapminder_flu_dengue <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/gapminder_flu_dengue.csv&quot;</span>)</span></code></pre></div>
+<p>As said before, there was something important that stood out to me, the dataset missed metadata.
+The cases columns didn’t specify how it was measured, and this was also not written down in the metadata. This resulted in unreliable data that doesn’t take in account that countries have different populations, just a count of cases isn’t enough. Therefore a normalisation was necessary. I divided the cases by the population from the gapminder data and multiplied this by 100000, which seemed like a logical amount when calculating with populations. I added the results to the tables.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="relational-data-and-databases.html#cb44-1" aria-hidden="true" tabindex="-1"></a>gapminder_flu <span class="ot">&lt;-</span> gapminder_flu <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">&quot;cases_per_100000&quot;</span> <span class="ot">=</span>gapminder_flu<span class="sc">$</span>flu_cases<span class="sc">/</span>gapminder_flu<span class="sc">$</span>population<span class="sc">*</span><span class="dv">100000</span>)</span>
+<span id="cb44-2"><a href="relational-data-and-databases.html#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="relational-data-and-databases.html#cb44-3" aria-hidden="true" tabindex="-1"></a>gapminder_dengue <span class="ot">&lt;-</span> gapminder_dengue <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">&quot;cases_per_100000&quot;</span> <span class="ot">=</span>gapminder_dengue<span class="sc">$</span>dengue_cases<span class="sc">/</span>gapminder_dengue<span class="sc">$</span>population<span class="sc">*</span><span class="dv">100000</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="descriptive-statistics" class="section level2 unnumbered hasAnchor">
+<h2>Descriptive statistics<a href="relational-data-and-databases.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the sets are normalised, descriptives can start. Starting by calculating the means and standard deviations of cases per country with the updated data.</p>
+<p>After performing the Shapiro-Wilk test, the flu seems to have 8 non normal distributed variables from a total of 29, and dengue has 5 non normal distributed variables from a total of 10.
+As an extra test, the Levene’s test shows that the flu doesn’t have a variance of equility between countries.</p>
+<p>Because of these two specifics, a Kruskal-Wallis test was chosen, because this test doesn’t account for normality. The results of this test shows that both datasets have a p-value of &lt; 2.2e-16 which tells us that there is a significance difference.</p>
+<p>To determine the differences between variables, the Dunn test was performed as a post hoc test. The results of those are stored in separate tables of difference and no difference, but in total 114 from a total of 406 combinations of the flu show differences and 19 from a total of 45 combinations of dengue show differences.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="relational-data-and-databases.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain mean and standard deviation per country</span></span>
+<span id="cb45-2"><a href="relational-data-and-databases.html#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="relational-data-and-databases.html#cb45-3" aria-hidden="true" tabindex="-1"></a>flu_sum <span class="ot">&lt;-</span> gapminder_flu <span class="sc">%&gt;%</span> </span>
+<span id="cb45-4"><a href="relational-data-and-databases.html#cb45-4" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">group_by</span>(country)<span class="sc">%&gt;%</span> </span>
+<span id="cb45-5"><a href="relational-data-and-databases.html#cb45-5" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">summarize</span>(<span class="at">avg_population =</span> <span class="fu">round</span>(<span class="fu">mean</span>(population), <span class="dv">0</span>),</span>
+<span id="cb45-6"><a href="relational-data-and-databases.html#cb45-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sd_population =</span> <span class="fu">round</span>(<span class="fu">sd</span>(population), <span class="dv">0</span>),</span>
+<span id="cb45-7"><a href="relational-data-and-databases.html#cb45-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">avg_cases_per_100000 =</span> <span class="fu">mean</span>(cases_per_100000),</span>
+<span id="cb45-8"><a href="relational-data-and-databases.html#cb45-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sd_cases_per_100000 =</span> <span class="fu">sd</span>(cases_per_100000))</span>
+<span id="cb45-9"><a href="relational-data-and-databases.html#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="relational-data-and-databases.html#cb45-10" aria-hidden="true" tabindex="-1"></a>dengue_sum <span class="ot">&lt;-</span> gapminder_dengue <span class="sc">%&gt;%</span> </span>
+<span id="cb45-11"><a href="relational-data-and-databases.html#cb45-11" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">group_by</span>(country)<span class="sc">%&gt;%</span> </span>
+<span id="cb45-12"><a href="relational-data-and-databases.html#cb45-12" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">summarize</span>(<span class="at">avg_population =</span> <span class="fu">round</span>(<span class="fu">mean</span>(population), <span class="dv">0</span>),</span>
+<span id="cb45-13"><a href="relational-data-and-databases.html#cb45-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sd_population =</span> <span class="fu">round</span>(<span class="fu">sd</span>(population), <span class="dv">0</span>),</span>
+<span id="cb45-14"><a href="relational-data-and-databases.html#cb45-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">avg_cases_per_100000 =</span> <span class="fu">mean</span>(cases_per_100000),</span>
+<span id="cb45-15"><a href="relational-data-and-databases.html#cb45-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sd_cases_per_100000 =</span> <span class="fu">sd</span>(cases_per_100000))</span>
+<span id="cb45-16"><a href="relational-data-and-databases.html#cb45-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-17"><a href="relational-data-and-databases.html#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="co"># To check the normality, dataframes are made with the countries </span></span>
+<span id="cb45-18"><a href="relational-data-and-databases.html#cb45-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-19"><a href="relational-data-and-databases.html#cb45-19" aria-hidden="true" tabindex="-1"></a>flu_country <span class="ot">&lt;-</span> gapminder_flu <span class="sc">%&gt;%</span> </span>
+<span id="cb45-20"><a href="relational-data-and-databases.html#cb45-20" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">select</span>(country, cases_per_100000, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-21"><a href="relational-data-and-databases.html#cb45-21" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> country, </span>
+<span id="cb45-22"><a href="relational-data-and-databases.html#cb45-22" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">values_from =</span> cases_per_100000) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-23"><a href="relational-data-and-databases.html#cb45-23" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">filter</span>(year <span class="sc">!=</span> <span class="dv">2002</span>)</span>
+<span id="cb45-24"><a href="relational-data-and-databases.html#cb45-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-25"><a href="relational-data-and-databases.html#cb45-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-26"><a href="relational-data-and-databases.html#cb45-26" aria-hidden="true" tabindex="-1"></a>dengue_country <span class="ot">&lt;-</span> gapminder_dengue <span class="sc">%&gt;%</span> </span>
+<span id="cb45-27"><a href="relational-data-and-databases.html#cb45-27" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">select</span>(country, cases_per_100000, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-28"><a href="relational-data-and-databases.html#cb45-28" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> country, </span>
+<span id="cb45-29"><a href="relational-data-and-databases.html#cb45-29" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">values_from =</span> cases_per_100000) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-30"><a href="relational-data-and-databases.html#cb45-30" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">filter</span>(year <span class="sc">!=</span> <span class="dv">2002</span>)</span>
+<span id="cb45-31"><a href="relational-data-and-databases.html#cb45-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-32"><a href="relational-data-and-databases.html#cb45-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Shapiro wilk </span></span>
+<span id="cb45-33"><a href="relational-data-and-databases.html#cb45-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Flu</span></span>
+<span id="cb45-34"><a href="relational-data-and-databases.html#cb45-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-35"><a href="relational-data-and-databases.html#cb45-35" aria-hidden="true" tabindex="-1"></a>flu_stats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">country =</span> <span class="fu">colnames</span>(flu_country[,<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">colnames</span>(flu_country))]),</span>
+<span id="cb45-36"><a href="relational-data-and-databases.html#cb45-36" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">pvalue_shap =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Uruguay)<span class="sc">$</span>p.value,</span>
+<span id="cb45-37"><a href="relational-data-and-databases.html#cb45-37" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span><span class="st">`</span><span class="at">United States</span><span class="st">`</span>)<span class="sc">$</span>p.value,</span>
+<span id="cb45-38"><a href="relational-data-and-databases.html#cb45-38" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Ukraine)<span class="sc">$</span>p.value,</span>
+<span id="cb45-39"><a href="relational-data-and-databases.html#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Switzerland)<span class="sc">$</span>p.value,                                            <span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Sweden)<span class="sc">$</span>p.value,</span>
+<span id="cb45-40"><a href="relational-data-and-databases.html#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Spain)<span class="sc">$</span>p.value,</span>
+<span id="cb45-41"><a href="relational-data-and-databases.html#cb45-41" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span><span class="st">`</span><span class="at">South Africa</span><span class="st">`</span>)<span class="sc">$</span>p.value,</span>
+<span id="cb45-42"><a href="relational-data-and-databases.html#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Russia)<span class="sc">$</span>p.value,</span>
+<span id="cb45-43"><a href="relational-data-and-databases.html#cb45-43" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Romania)<span class="sc">$</span>p.value,</span>
+<span id="cb45-44"><a href="relational-data-and-databases.html#cb45-44" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Poland)<span class="sc">$</span>p.value,</span>
+<span id="cb45-45"><a href="relational-data-and-databases.html#cb45-45" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Peru)<span class="sc">$</span>p.value,</span>
+<span id="cb45-46"><a href="relational-data-and-databases.html#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Paraguay)<span class="sc">$</span>p.value,                                            <span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Norway)<span class="sc">$</span>p.value,</span>
+<span id="cb45-47"><a href="relational-data-and-databases.html#cb45-47" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span><span class="st">`</span><span class="at">New Zealand</span><span class="st">`</span>)<span class="sc">$</span>p.value,</span>
+<span id="cb45-48"><a href="relational-data-and-databases.html#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Netherlands)<span class="sc">$</span>p.value,</span>
+<span id="cb45-49"><a href="relational-data-and-databases.html#cb45-49" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Mexico)<span class="sc">$</span>p.value,</span>
+<span id="cb45-50"><a href="relational-data-and-databases.html#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Japan)<span class="sc">$</span>p.value,</span>
+<span id="cb45-51"><a href="relational-data-and-databases.html#cb45-51" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Hungary)<span class="sc">$</span>p.value,</span>
+<span id="cb45-52"><a href="relational-data-and-databases.html#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Germany)<span class="sc">$</span>p.value,</span>
+<span id="cb45-53"><a href="relational-data-and-databases.html#cb45-53" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>France)<span class="sc">$</span>p.value,                                            <span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Chile)<span class="sc">$</span>p.value,</span>
+<span id="cb45-54"><a href="relational-data-and-databases.html#cb45-54" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Canada)<span class="sc">$</span>p.value,</span>
+<span id="cb45-55"><a href="relational-data-and-databases.html#cb45-55" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Bulgaria)<span class="sc">$</span>p.value,</span>
+<span id="cb45-56"><a href="relational-data-and-databases.html#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Brazil)<span class="sc">$</span>p.value,</span>
+<span id="cb45-57"><a href="relational-data-and-databases.html#cb45-57" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Bolivia)<span class="sc">$</span>p.value,</span>
+<span id="cb45-58"><a href="relational-data-and-databases.html#cb45-58" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Belgium)<span class="sc">$</span>p.value,</span>
+<span id="cb45-59"><a href="relational-data-and-databases.html#cb45-59" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Austria)<span class="sc">$</span>p.value,</span>
+<span id="cb45-60"><a href="relational-data-and-databases.html#cb45-60" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Australia)<span class="sc">$</span>p.value,                                            </span>
+<span id="cb45-61"><a href="relational-data-and-databases.html#cb45-61" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(flu_country<span class="sc">$</span>Argentina)<span class="sc">$</span>p.value), <span class="dv">4</span>))</span>
+<span id="cb45-62"><a href="relational-data-and-databases.html#cb45-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-63"><a href="relational-data-and-databases.html#cb45-63" aria-hidden="true" tabindex="-1"></a><span class="do">## Dengue </span></span>
+<span id="cb45-64"><a href="relational-data-and-databases.html#cb45-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-65"><a href="relational-data-and-databases.html#cb45-65" aria-hidden="true" tabindex="-1"></a>dengue_stats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">country =</span> <span class="fu">colnames</span>(dengue_country[,<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">colnames</span>(dengue_country))]),</span>
+<span id="cb45-66"><a href="relational-data-and-databases.html#cb45-66" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">pvalue_shap =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Venezuela)<span class="sc">$</span>p.value,                                    <span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Thailand)<span class="sc">$</span>p.value,</span>
+<span id="cb45-67"><a href="relational-data-and-databases.html#cb45-67" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Singapore)<span class="sc">$</span>p.value,</span>
+<span id="cb45-68"><a href="relational-data-and-databases.html#cb45-68" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Philippines)<span class="sc">$</span>p.value,</span>
+<span id="cb45-69"><a href="relational-data-and-databases.html#cb45-69" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Mexico)<span class="sc">$</span>p.value,</span>
+<span id="cb45-70"><a href="relational-data-and-databases.html#cb45-70" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Indonesia)<span class="sc">$</span>p.value,</span>
+<span id="cb45-71"><a href="relational-data-and-databases.html#cb45-71" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>India)<span class="sc">$</span>p.value,</span>
+<span id="cb45-72"><a href="relational-data-and-databases.html#cb45-72" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Brazil)<span class="sc">$</span>p.value,</span>
+<span id="cb45-73"><a href="relational-data-and-databases.html#cb45-73" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Bolivia)<span class="sc">$</span>p.value,</span>
+<span id="cb45-74"><a href="relational-data-and-databases.html#cb45-74" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dengue_country<span class="sc">$</span>Argentina)<span class="sc">$</span>p.value), <span class="dv">4</span>))</span>
+<span id="cb45-75"><a href="relational-data-and-databases.html#cb45-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-76"><a href="relational-data-and-databases.html#cb45-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Normality check</span></span>
+<span id="cb45-77"><a href="relational-data-and-databases.html#cb45-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-78"><a href="relational-data-and-databases.html#cb45-78" aria-hidden="true" tabindex="-1"></a>flu_stats <span class="ot">&lt;-</span> flu_stats <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">normal_dis =</span> pvalue_shap<span class="sc">&gt;</span><span class="fl">0.05</span>) </span>
+<span id="cb45-79"><a href="relational-data-and-databases.html#cb45-79" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 out of 5 are normally distributed</span></span>
+<span id="cb45-80"><a href="relational-data-and-databases.html#cb45-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-81"><a href="relational-data-and-databases.html#cb45-81" aria-hidden="true" tabindex="-1"></a>dengue_stats <span class="ot">&lt;-</span> dengue_stats <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">normal_dis =</span> pvalue_shap<span class="sc">&gt;</span><span class="fl">0.05</span>) </span>
+<span id="cb45-82"><a href="relational-data-and-databases.html#cb45-82" aria-hidden="true" tabindex="-1"></a><span class="co"># 21 out of 29 are normally distributed</span></span>
+<span id="cb45-83"><a href="relational-data-and-databases.html#cb45-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-84"><a href="relational-data-and-databases.html#cb45-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene test</span></span>
+<span id="cb45-85"><a href="relational-data-and-databases.html#cb45-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-86"><a href="relational-data-and-databases.html#cb45-86" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(cases_per_100000 <span class="sc">~</span> country, <span class="at">data =</span> gapminder_flu) <span class="co"># &lt;2.2e-16</span></span></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##        Df F value    Pr(&gt;F)    
+## group  28  12.482 &lt; 2.2e-16 ***
+##       330                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="relational-data-and-databases.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(cases_per_100000 <span class="sc">~</span> country, <span class="at">data =</span> gapminder_dengue) <span class="co"># 3.228e-07</span></span></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##        Df F value    Pr(&gt;F)    
+## group   9  6.2485 3.288e-07 ***
+##       120                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="relational-data-and-databases.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kruskal Wallis test</span></span>
+<span id="cb49-2"><a href="relational-data-and-databases.html#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="relational-data-and-databases.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(cases_per_100000 <span class="sc">~</span> country, <span class="at">data =</span> gapminder_flu) <span class="co"># p-value &lt; 2.2e-16</span></span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  cases_per_100000 by country
+## Kruskal-Wallis chi-squared = 332.13, df = 28, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="relational-data-and-databases.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(cases_per_100000 <span class="sc">~</span> country, <span class="at">data =</span> gapminder_dengue) <span class="co"># p-value &lt; 2.2e-16</span></span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  cases_per_100000 by country
+## Kruskal-Wallis chi-squared = 110.54, df = 9, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="relational-data-and-databases.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P-value of basically .0000, there is a statistically significant difference</span></span>
+<span id="cb53-2"><a href="relational-data-and-databases.html#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="relational-data-and-databases.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dunn post-hoc test</span></span>
+<span id="cb53-4"><a href="relational-data-and-databases.html#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="relational-data-and-databases.html#cb53-5" aria-hidden="true" tabindex="-1"></a>dengue_dunn <span class="ot">&lt;-</span> <span class="fu">dunnTest</span>(cases_per_100000 <span class="sc">~</span> country, </span>
+<span id="cb53-6"><a href="relational-data-and-databases.html#cb53-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">data =</span> gapminder_dengue, <span class="at">method =</span> <span class="st">&quot;holm&quot;</span>)<span class="sc">$</span>res</span>
+<span id="cb53-7"><a href="relational-data-and-databases.html#cb53-7" aria-hidden="true" tabindex="-1"></a>flu_dunn <span class="ot">&lt;-</span> <span class="fu">dunnTest</span>(cases_per_100000 <span class="sc">~</span> country, </span>
+<span id="cb53-8"><a href="relational-data-and-databases.html#cb53-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">data =</span> gapminder_flu, <span class="at">method =</span> <span class="st">&quot;holm&quot;</span>)<span class="sc">$</span>res</span>
+<span id="cb53-9"><a href="relational-data-and-databases.html#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-10"><a href="relational-data-and-databases.html#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for significant differences </span></span>
+<span id="cb53-11"><a href="relational-data-and-databases.html#cb53-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-12"><a href="relational-data-and-databases.html#cb53-12" aria-hidden="true" tabindex="-1"></a>dengue_dunn <span class="ot">&lt;-</span> dengue_dunn <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">different =</span> P.adj<span class="sc">&lt;</span><span class="fl">0.05</span>)</span>
+<span id="cb53-13"><a href="relational-data-and-databases.html#cb53-13" aria-hidden="true" tabindex="-1"></a>flu_dunn <span class="ot">&lt;-</span> flu_dunn <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">different =</span> P.adj<span class="sc">&lt;</span><span class="fl">0.05</span>)</span>
+<span id="cb53-14"><a href="relational-data-and-databases.html#cb53-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-15"><a href="relational-data-and-databases.html#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the significant differences between countries/continents</span></span>
+<span id="cb53-16"><a href="relational-data-and-databases.html#cb53-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-17"><a href="relational-data-and-databases.html#cb53-17" aria-hidden="true" tabindex="-1"></a>dengue_dunn_diff <span class="ot">&lt;-</span> dengue_dunn <span class="sc">%&gt;%</span> <span class="fu">filter</span>(different <span class="sc">==</span> <span class="cn">TRUE</span>)</span>
+<span id="cb53-18"><a href="relational-data-and-databases.html#cb53-18" aria-hidden="true" tabindex="-1"></a>flu_dunn_diff <span class="ot">&lt;-</span> flu_dunn <span class="sc">%&gt;%</span> <span class="fu">filter</span>(different <span class="sc">==</span> <span class="cn">TRUE</span>)</span>
+<span id="cb53-19"><a href="relational-data-and-databases.html#cb53-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-20"><a href="relational-data-and-databases.html#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the comparable countries/continents</span></span>
+<span id="cb53-21"><a href="relational-data-and-databases.html#cb53-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-22"><a href="relational-data-and-databases.html#cb53-22" aria-hidden="true" tabindex="-1"></a>dengue_dunn_non <span class="ot">&lt;-</span> dengue_dunn <span class="sc">%&gt;%</span> <span class="fu">filter</span>(different <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb53-23"><a href="relational-data-and-databases.html#cb53-23" aria-hidden="true" tabindex="-1"></a>flu_dunn_non <span class="ot">&lt;-</span> flu_dunn <span class="sc">%&gt;%</span> <span class="fu">filter</span>(different <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="visualisations" class="section level2 unnumbered hasAnchor">
+<h2>Visualisations<a href="relational-data-and-databases.html#visualisations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>According to the dataset en information in this assignment, two graphs per disease were made to showcase the data.</p>
+<div id="flu" class="section level3 unnumbered hasAnchor">
+<h3>Flu<a href="relational-data-and-databases.html#flu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="relational-data-and-databases.html#cb54-1" aria-hidden="true" tabindex="-1"></a>gapminder_flu <span class="sc">%&gt;%</span></span>
+<span id="cb54-2"><a href="relational-data-and-databases.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>continent,<span class="at">y=</span>cases_per_100000, <span class="at">group=</span>continent, <span class="at">fill=</span>continent)) <span class="sc">+</span> </span>
+<span id="cb54-3"><a href="relational-data-and-databases.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb54-4"><a href="relational-data-and-databases.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Flu cases per continent&quot;</span>, </span>
+<span id="cb54-5"><a href="relational-data-and-databases.html#cb54-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;Continent&quot;</span>, </span>
+<span id="cb54-6"><a href="relational-data-and-databases.html#cb54-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Flu cases per 100000 residents&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-7"><a href="relational-data-and-databases.html#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span></code></pre></div>
+<p><img src="portfolio_book_files/figure-html/visualisation1%20flu-1.png" width="672" />
+<em>Figure 6: Bargraph of the amount of flu cases per continent.</em></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="relational-data-and-databases.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flu_dengue, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>flu_cases, <span class="at">group =</span> country, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
+<span id="cb55-2"><a href="relational-data-and-databases.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb55-3"><a href="relational-data-and-databases.html#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb55-4"><a href="relational-data-and-databases.html#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Flu cases&quot;</span>,</span>
+<span id="cb55-5"><a href="relational-data-and-databases.html#cb55-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb55-6"><a href="relational-data-and-databases.html#cb55-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average dengue cases per year&quot;</span>) <span class="sc">+</span></span>
+<span id="cb55-7"><a href="relational-data-and-databases.html#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span></code></pre></div>
+<p><img src="portfolio_book_files/figure-html/visualisation2%20flu-1.png" width="672" />
+<em>Figure 7: Linegraph of average flu cases per year per country.</em></p>
+</div>
+<div id="dengue" class="section level3 unnumbered hasAnchor">
+<h3>Dengue<a href="relational-data-and-databases.html#dengue" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="relational-data-and-databases.html#cb56-1" aria-hidden="true" tabindex="-1"></a>gapminder_dengue <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="relational-data-and-databases.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>continent,<span class="at">y=</span>cases_per_100000, <span class="at">group=</span>continent, <span class="at">fill=</span>continent)) <span class="sc">+</span> </span>
+<span id="cb56-3"><a href="relational-data-and-databases.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb56-4"><a href="relational-data-and-databases.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Dengue cases per continent&quot;</span>, </span>
+<span id="cb56-5"><a href="relational-data-and-databases.html#cb56-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;Continent&quot;</span>, </span>
+<span id="cb56-6"><a href="relational-data-and-databases.html#cb56-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Dengue cases per 100000 residents&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-7"><a href="relational-data-and-databases.html#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span></code></pre></div>
+<p><img src="portfolio_book_files/figure-html/visualisation1%20dengue-1.png" width="672" />
+<em>Figure 8: Bargraph of the amount of dengue cases per continent</em></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="relational-data-and-databases.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flu_dengue, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>dengue_cases, <span class="at">group =</span> country, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
+<span id="cb57-2"><a href="relational-data-and-databases.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb57-3"><a href="relational-data-and-databases.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb57-4"><a href="relational-data-and-databases.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Dengue cases&quot;</span>,</span>
+<span id="cb57-5"><a href="relational-data-and-databases.html#cb57-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb57-6"><a href="relational-data-and-databases.html#cb57-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average dengue cases per year&quot;</span>) <span class="sc">+</span></span>
+<span id="cb57-7"><a href="relational-data-and-databases.html#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span></code></pre></div>
+<p><img src="portfolio_book_files/figure-html/visualisation2%20dengue-1.png" width="672" />
+<em>Figure 9: Linegraph of average dengue cases per year per country.</em></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="groupproject.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

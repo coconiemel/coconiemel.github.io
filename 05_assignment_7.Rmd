@@ -104,9 +104,7 @@ The flu has no "NULL variables in country and year, 17266 cases in the data set 
 
 Gapminder had no "NULL" variables in country and year.
 
-There was an important thing that stood out to me about the metadata. I will discuss this later in this chapter.
-
-<details><summary>This information is obtained by SQL and R code.</summary>
+There was an important thing that stood out to me about the metadata. I will discuss this later in this chapter. This information is obtained by the following SQL and R code:
    
 <img src="images/SQL_inspection.jpg"
      width="300" 
@@ -125,7 +123,6 @@ mima(flu_df_tidy$cases) # 0, 10555
 mean_sd(flu_df_tidy$cases) # 473.74, 768.95
 
 ```
-</details>
 
 For a good analysis of the different, but related data, they need to be joined together in one table with the important columns. I created four joined tables, flu with dengue, dengue with gapminder, flu with gapminder and all three of them. Some tables have more countries than others, this is because the joining only joins the matching countries. See below for the SQL and R code.
 
