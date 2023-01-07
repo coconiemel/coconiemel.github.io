@@ -1,8 +1,10 @@
-# Reproducible Research {-}
+# Reproducible Research 
 
 ## Introduction {-}
 
 During this assignment I learned to search, analyse and use different types of reproducible data.
+
+----
 
 ## Analyse an excel file {-}
 
@@ -95,6 +97,8 @@ position = position_jitter(width = 0.5, height = 0.5, seed = 150)) +
 
 ```
 
+----
+
 ## Scoring reproducibility {-}
 
 The next analysis is based on an article that addresses if meaningless novel words in linguistic contexts can achieve emotional connotations and whether these connotations can affect the quality of word learning and retention [@snefjellaHowEmotionLearned2020].
@@ -119,10 +123,11 @@ colnames(repita_criteria_tab) <- c('Transparency criteria', 'Score')
 repita_criteria_tab <- as.table(repita_criteria_tab)
 
 # Design and view table 
-kable(repita_criteria_tab) %>%
-  kable_styling(latex_options = "striped")
+repita_criteria_tab %>% kable(caption = "Table 1: The Repita criteria with answers concerning the article above.") %>% kable_styling(latex_options = "striped")
 
 ```
+
+----
 
 ## Usage of other peoples codes {-}
 
@@ -707,6 +712,11 @@ After trying the code myself the code was a little less accessible than I though
       axis.title.x = element_text(size = tx + 1),
       axis.title.y = element_text(size = tx + 1)
     )
+```
+
+_Figure 1: Differences in Case fatality rate between countries._
+
+```{r save plot}
   
   # Save
   ggsave("files/COVID_article/Fig_1.jpg", width = 4, height = 3, dpi = 600)

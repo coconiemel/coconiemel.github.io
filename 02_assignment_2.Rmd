@@ -1,9 +1,11 @@
-# Data management (2) {-}
+# Data management
 
-During the course, I learned to use the Guerrilla analytics framework to manage my data in a clear way. The Guerrilla analytics framework consists of seven principles, which I will shortly introduce [@gestelLessonDataManagement].
+## Introduction {-}
+
+I learned to use the Guerrilla analytics framework to manage my data in a clear way. The Guerrilla analytics framework consists of seven principles, which I will shortly introduce [@gestelLessonDataManagement].
 
 1.	Space is cheap, confusion is expensive.
-Basically saying that storage costs are low. Always keep your files, store them in a reliable online cloud and protect yourself from cyber criminals.
+Saying that storage costs are low. Always keep your files, store them in a reliable online cloud and protect yourself from cyber criminals.
 2.	Use simple, visual project structures and conventions.
 Organize files and folders in a system that makes it understandable for other team members. A couple of things to think of is to avoid deep nesting in folders, create a separate folder for each project and use subfolders for different datasets. Also try not to change names or move them, this makes it harder to lose.
 3.	Automate with program code.
@@ -17,11 +19,15 @@ When working together, make shure to have a good communication line.
 7.	Use code that runs from start to finish.
 This also makes it easier to reproduce or revisit later on.
 
+----
+
+## My execution {-}
+
 An example of applying the Guerrilla analytics framework is linked below. This shows a project of a previous course I followed (DAUR2).
 
 <img src="images/foldertree.jpg"
      width="300" 
      height="600" />
      
-_Figure 1: Folder tree DAUR2._
+_Figure 2: Folder tree following Guerrilla analytics framework._
 

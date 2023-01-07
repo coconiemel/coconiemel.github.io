@@ -1,12 +1,14 @@
-# Relational data and databases (7) {-}
+# Relational data and databases
 
 ## Introduction {-}
 
 This assignment was focused on learning the basics of the SQL language and how to work this around relational data and databases. These are collections of information stored in separate tables with underlying relations to create an easy overview of relations between different data structures.
 
+----
+
 ## DBeaver connection {-}
 
-Start by creating three data frames out of files and making them tidy.
+I Start by creating three data frames out of files and making them tidy.
 
 ```{r import and tidy}
 
@@ -41,23 +43,23 @@ flu_df_tidy$country <- as.factor(flu_df_tidy$country)
 dengue_df_tidy$country <- as.factor(dengue_df_tidy$country)
 
 ## Check if it worked
-class(flu_df_tidy$country) # Factor
-class(dengue_df_tidy$country) # Factor
+multi_check(flu_df_tidy$country, dengue_df_tidy$country, NA) 
 ## It worked!
 
 # Column 'date'
 ## Check types.
-multi_check(flu_df_tidy$Date, dengue_df_tidy$Date, gapminder$year) # date, date, integer
+multi_check(flu_df_tidy$Date, dengue_df_tidy$Date, gapminder$year) 
 
 ## Because flu and dengue are specified to day instead of the year at gapminder, a 'year' column needs to be added and changed into the integer type to create similarity.
 flu_df_tidy <- flu_df_tidy %>% mutate(year = substr(flu_df_tidy$Date, start=1, stop=4))
 dengue_df_tidy <- dengue_df_tidy %>% mutate(year = substr(dengue_df_tidy$Date, start=1, stop=4))
 
+## Change all types into integer
 flu_df_tidy$year <- as.integer(flu_df_tidy$year)
 dengue_df_tidy$year <- as.integer(dengue_df_tidy$year)
 
 ## Check if it worked.
-multi_check(flu_df_tidy$year, dengue_df_tidy$year, NA) # integer, integer
+multi_check(flu_df_tidy$year, dengue_df_tidy$year, NA)
 ## It worked!
 
 ```
@@ -91,6 +93,8 @@ dbWriteTable(con, "flu", flu_df_tidy)
 dbWriteTable(con, "dengue", dengue_df_tidy)
 ```
 
+----
+
 ## Inspection {-}
 
 Now that the tables are imported, i checked a couple of things.
@@ -102,13 +106,13 @@ Gapminder had no "NULL" variables in country and year.
 
 There was an important thing that stood out to me about the metadata. I will discuss this later in this chapter.
 
-The information is obtained by the following SQL and R code:
+<details><summary>This information is obtained by SQL and R code.</summary>
    
 <img src="images/SQL_inspection.jpg"
      width="300" 
      height="800" />
 
-Figure 2: SQL code of data inspection.   
+_Figure 4: SQL code of data inspection._   
 
 ```{r inspection}
 
@@ -121,6 +125,7 @@ mima(flu_df_tidy$cases) # 0, 10555
 mean_sd(flu_df_tidy$cases) # 473.74, 768.95
 
 ```
+</details>
 
 For a good analysis of the different, but related data, they need to be joined together in one table with the important columns. I created four joined tables, flu with dengue, dengue with gapminder, flu with gapminder and all three of them. Some tables have more countries than others, this is because the joining only joins the matching countries. See below for the SQL and R code.
 
@@ -128,7 +133,7 @@ For a good analysis of the different, but related data, they need to be joined t
      width="300" 
      height="900" />
      
-Figure 3: SQL code of inner-join.
+_Figure 5: SQL code of inner-join._
    
 ```{r join}
 
@@ -142,7 +147,7 @@ gapminder_flu_dengue <- read_csv("files/gapminder_flu_dengue.csv")
 ```
 
 As said before, there was something important that stood out to me, the dataset missed metadata.
-The cases columns didn't specify how it was messured, and this was also not written down in the metadata. This resulted in unreliable data that doesn't take in account that countries have different populations, so just a count of cases isn't enough. Therefore a normalisation was necessary. I divided the cases by the population from the gapminder data and multiplied this by 100000, which seemed like a logical amount when calculating with populations. I added the results to the tables.
+The cases columns didn't specify how it was measured, and this was also not written down in the metadata. This resulted in unreliable data that doesn't take in account that countries have different populations, just a count of cases isn't enough. Therefore a normalisation was necessary. I divided the cases by the population from the gapminder data and multiplied this by 100000, which seemed like a logical amount when calculating with populations. I added the results to the tables.
 
 ```{r normalizing}
 
@@ -154,9 +159,11 @@ gapminder_dengue <- gapminder_dengue %>% mutate("cases_per_100000" =gapminder_de
 
 ```
 
+----
+
 ## Descriptive statistics {-}
 
-Now that the sets are normalized, descriptives can start. Starting by calculating the means and standard deviations of cases per country with the updated data.
+Now that the sets are normalised, descriptives can start. Starting by calculating the means and standard deviations of cases per country with the updated data.
 
 After performing the Shapiro-Wilk test, the flu seems to have 8 non normal distributed variables from a total of 29, and dengue has 5 non normal distributed variables from a total of 10. 
 As an extra test, the Levene's test shows that the flu doesn't have a variance of equility between countries.
@@ -286,52 +293,62 @@ flu_dunn_non <- flu_dunn %>% filter(different == FALSE)
 
 ```
 
+----
+
 ## Visualisations {-}
+
+According to the dataset en information in this assignment, two graphs per disease were made to showcase the data.
 
 ### Flu {-}
 
-```{r visualisations flu}
+```{r visualisation1 flu}
 
 gapminder_flu %>%
   ggplot(aes(x=continent,y=cases_per_100000, group=continent, fill=continent)) + 
   geom_col(stat="identity")+ 
   labs(title = "Flu cases per continent", 
        x="Continent", 
-       y="Flu cases per 100000 residents ",
-       caption = "Figure 3: Bargraph of the amount of flu cases per continent") +
+       y="Flu cases per 100000 residents") +
   theme(legend.position = "right", text = element_text(size=10))
 
+```
+_Figure 6: Bargraph of the amount of flu cases per continent._
+
+```{r visualisation2 flu}
 ggplot(flu_dengue, aes(x=year, y=flu_cases, group = country, color = country)) + 
   geom_point() +
   geom_line() +
   labs(title = "Flu cases",
        x = "Year",
-       y = "Average dengue cases per year",
-       caption = "Figure 4: Linegraph of average flu cases per year per country.") +
+       y = "Average dengue cases per year") +
   theme(legend.position = "right", text = element_text(size=10))
 
 ```
+_Figure 7: Linegraph of average flu cases per year per country._
 
 ### Dengue {-}
 
-```{r visualisation dengue}
+```{r visualisation1 dengue}
 
 gapminder_dengue %>%
   ggplot(aes(x=continent,y=cases_per_100000, group=continent, fill=continent)) + 
   geom_col(stat="identity")+ 
   labs(title = "Dengue cases per continent", 
        x="Continent", 
-       y="Dengue cases per 100000 residents",
-       caption = "Figure 5: Bargraph of the amount of dengue cases per continent") +
+       y="Dengue cases per 100000 residents") +
   theme(legend.position = "right", text = element_text(size=10))
 
+```
+_Figure 8: Bargraph of the amount of dengue cases per continent_
+
+```{r visualisation2 dengue}
 ggplot(flu_dengue, aes(x=year, y=dengue_cases, group = country, color = country)) + 
   geom_point() +
   geom_line() +
   labs(title = "Dengue cases",
        x = "Year",
-       y = "Average dengue cases per year",
-       caption = "Figure 6: Linegraph of average dengue cases per year per country.") +
+       y = "Average dengue cases per year") +
   theme(legend.position = "right", text = element_text(size=10))
 
 ```
+_Figure 9: Linegraph of average dengue cases per year per country._

@@ -1,12 +1,14 @@
-# Free future assignment (3) {-}
+# A phylogenetic analysis
 
 ## Introduction {-}
 
-For this assignment, we were opted to learn a new skill in four days, any skill related to data science and life sciences that will help you in the future.
+For this assignment, we were challenged to learn a new skill in four days, any skill related to data science and life sciences that will help you in the future.
 
 After this course I will be specializing in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before i start working in the field, I hope to earn a masters degree, so in two years i will probably be busy with my masters. I am not sure what masters I would like to do.
 
-Because I am interested in microbiology, my free assignment will also be in that lane. I chose to learn to generate a phylogenetic tree about the Filoviridae family. I chose this viral family because I am interested in infectious diseases and two species of these are known to cause quite the infectious diseases.
+Because I am interested in microbiology, my free assignment will also be in that lane. I chose to learn to generate a phylogenetic tree and to analyse its contents about the Filoviridae family. I chose this viral family because I am interested in infectious diseases and two species of these are known to cause quite the infectious diseases.
+
+----
 
 ## Plan {-}
 
@@ -23,13 +25,17 @@ Eventually, i gained my needed information to generate a phylogenetic tree from 
 <li>[Building a phylogeny in R](https://brouwern.github.io/lbrb/worked-example-building-a-phylogeny-in-r.html#genetic-distances-of-sequence-in-subset)</li>
 <li>[Visualization and annotation of phylogenetic trees: ggtree](https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html)</li></ul>
 
+----
+
 ## The Filoviridae family {-}
 
-Viruses of the Filoviridae family, also know as filoviruses, are viruses containing one molecule of single-stranded negative-sense RNA that are enveloped in a fatty membrane. The viruses are zoonotic and it is believed that their reservoir hosts usually are bats [@FilovirusesFiloviridaeViral2021]. The viruses are one of the families known to cause Viral hemorrhagic fevers (VHS) that affects multiple body systems and usually results in heavy bleeding and death [@WhatAreVHFs2021].
+Viruses of the Filoviridae family, also know as filoviruses, are viruses containing one molecule of single-stranded negative-sense RNA that are enveloped in a fatty membrane. The viruses are zoonotic and it is believed that their reservoir hosts usually are bats [@FilovirusesFiloviridaeViral2021]. The viruses are one of the families known to cause Viral Haemorrhagic Fevers (VHFs) that affects multiple body systems and usually results in heavy bleeding and death [@WhatAreVHFs2021].
 
-There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus and Striavirus. Ebolavirus has six knows species and the rest have one [@languonFilovirusDiseaseOutbreaks2019]. In my analysis I left Striavirus out, because there is barely any information or data about Striavirus.
+There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus and Striavirus. Ebolavirus has six knows species and the rest have one [@languonFilovirusDiseaseOutbreaks2019]. In my analysis I left Striavirus out, because there is barely any information or data about.
 
 Ebolavirus and Marburgvirus are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@filoviruses-infection-with.pdf].
+
+----
 
 ## The phylogenetic tree {-}
 
@@ -112,7 +118,7 @@ Next is the multiple sequence alignment. This creates an alignment to easily spo
 filoviridae_align <- msa(filoviridae_vector_ss,
                      method = "ClustalW")
 
-# Change class into correct one, in this case RNA because Ebola is a RNA-virus
+# Change class into correct one, in this case RNA because filoviruses are RNA viruses
 class(filoviridae_align) <- "RNAMultipleAlignment"
 
 # Save in file so alignment only needs to run once
@@ -131,24 +137,24 @@ To use the alignment for the tree, the genetic distance between the sequences wi
 
 ```{r view msa}
 
+# Adjust datatype for calculations
 filoviridae_align_seqinr <- msaConvert(filoviridae_align, 
                                    type = "seqinr::alignment")
 
+# Calculate genetic distances
 filoviridae_dist <- seqinr::dist.alignment(filoviridae_align_seqinr, 
                                        matrix = "identity")
 filoviridae_dist_rounded <- round(filoviridae_dist,
-                              digits = 2)
+                              digits = 2) # Add rounded version
 
 ```
 
 ```{r phylogenetic tree}
 
 # Generate the structure of the tree
-
 filoviridae_tree <- nj(filoviridae_dist)
 
 # Plot tree
-
 ggtree(filoviridae_tree, ladderize = T, branch.length = "branch.length", 
        root.position = .05)+ 
   geom_tiplab(size = 3.5)+
@@ -159,14 +165,11 @@ ggtree(filoviridae_tree, ladderize = T, branch.length = "branch.length",
 
 ```
 
+_Figure 3: Phylogenetic tree of the Filoviridae family._
 
-_Figure 2: Phylogenetic tree of the Filoviridae family._
+The tree shows an easy picture of the differences, but is doesn't show the numbers in detail. To solve this, I calculated them separately.
 
-The tree shows an easy picture of the differences, but is doesn't show the numbers in detail. To solve this, I calcutated them separately.
-
-The return of the code below shows the calculated genetic distances of all options. Seen from here is states that Taiforest ebolavirus & Bundibogyo ebolavirus are closest related with a score of 0.56.
-
-It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus & Marburg marburgvirus, Bombali ebolavirus & Mengla dianlovirus, Sudan ebolavirus & Marburg marburgvirus, Sudan ebolavirus & Mengla dianlovirus, Reston ebolavirus & Marburg marburgvirus, Lloviu cuevavirus & Marburg marburgvirus, Lloviu cuevavirus & Mengla dianlovirus.
+<details><summary>The response of the code shows the calculated genetic distances of all options.</summary>
 
 ```{r details}
 
@@ -175,10 +178,17 @@ filoviridae_dist_rounded
 mima(filoviridae_dist_rounded) # 0.56, 0.76
 
 ```
+</details>
+
+Seen from here is states that Taiforest ebolavirus & Bundibogyo ebolavirus are closest related with a score of 0.56.
+
+It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus & Marburg marburgvirus, Bombali ebolavirus & Mengla dianlovirus, Sudan ebolavirus & Marburg marburgvirus, Sudan ebolavirus & Mengla dianlovirus, Reston ebolavirus & Marburg marburgvirus, Lloviu cuevavirus & Marburg marburgvirus, Lloviu cuevavirus & Mengla dianlovirus.
+
+----
 
 ## Future steps {-}
 
-In the future I would like to expand my knoledge in phylogeny and generating the trees, because this was just a start, there are so much more options to create. A couple of examples of things I would still like to learn in this area are:
+In the future I would like to expand my knowledge in phylogeny and generating trees, because this was just a start, there are so much more options to create. A couple of examples of things I would still like to learn in this area are:
 <ul><li>How to add the genetic distances to the tree so it is clear in one view.</li>
 <li> How to generate different types of trees, because there are a lot more and for different data, different types of trees are more compatible.</li>
-<li> How to read an extensive tree. The one I've created is doable, but once they get a lot more species, reading it becomes quite hard.</li></ul>
+<li> How to read an extensive tree. The one I've created is doable, but once they get a lot more values, reading it becomes quite hard.</li></ul>

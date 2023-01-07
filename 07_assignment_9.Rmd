@@ -1,4 +1,4 @@
-# Rmarkdown parameters (9) {-}
+# Rmarkdown parameters
 
 ## Introduction {-}
 
@@ -17,6 +17,8 @@ params:
 ---
 
 ```
+
+----
 
 ## Data inspection {-}
 
@@ -38,6 +40,8 @@ mima(covid$dateRep) # First data was noted on 01/01/2020, last data was noted on
 
 
 ```
+
+----
 
 ## Building a parameterized graph {-}
 
@@ -81,6 +85,8 @@ ggplot(covid_deaths, aes(x=dateRep, y=deaths))+
 
 ```
 
+----
+
 ## Alter parameter settings {-}
 
 A parameterized report makes it easy to change settings to have a different view of the data, I added screenshots below to showcase what the graph would look like with a different input.
@@ -89,10 +95,10 @@ A parameterized report makes it easy to change settings to have a different view
      width="600" 
      height="400" />
      
-_Figure 3: Parameterized graph containing the COVID cases data._
+_Figure 10: Parameterized graph containing the COVID cases data._
 
 <img src="images/deaths_france.jpg"
      width="600" 
      height="400" />
      
-_Figure 4: Parameterized graph containing the COVID deaths data._
+_Figure 11: Parameterized graph containing the COVID deaths data._
