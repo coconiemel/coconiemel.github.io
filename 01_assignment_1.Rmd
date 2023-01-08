@@ -107,6 +107,7 @@ position = position_jitter(width = 0.5, height = 0.5, seed = 150)) +
 ```
 
 _Figure 2: Normalised scatterplot of C. elegans offspring counts._
+
 ----
 
 ## Scoring reproducibility {-}

@@ -1,5 +1,4 @@
 reproducible-research
-figure-2-normalised-scatterplot-of-c.-elegans-offspring-counts.
 data-management
 a-phylogenetic-analysis
 group-project
