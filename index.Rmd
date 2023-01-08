@@ -72,9 +72,9 @@ library(scales)
 
 <i class="fa fa-home"></i> Utrecht, The Netherlands<br>
 
-<i class="fa fa-envelope"></i> cocojn@hotmail.com
-
 <i class="fa fa-phone"></i> +31 6 48 48 34 68
+
+<i class="fa fa-envelope"></i> cocojn@hotmail.com
 
 <i class="fa fa-github"></i> [github.com/coconiemel](https://github.com/coconiemel)
 

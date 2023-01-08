@@ -167,9 +167,7 @@ ggtree(filoviridae_tree, ladderize = T, branch.length = "branch.length",
 
 _Figure 3: Phylogenetic tree of the Filoviridae family._
 
-The tree shows an easy picture of the differences, but is doesn't show the numbers in detail. To solve this, I calculated them separately.
-
-<details><summary>The response of the code shows the calculated genetic distances of all options.</summary>
+The tree shows an easy picture of the differences, but is doesn't show the numbers in detail. To solve this, I calculated them separately. The response of the code shows the calculated genetic distances of all options.
 
 ```{r details}
 
@@ -178,7 +176,6 @@ filoviridae_dist_rounded
 mima(filoviridae_dist_rounded) # 0.56, 0.76
 
 ```
-</details>
 
 Seen from here is states that Taiforest ebolavirus & Bundibogyo ebolavirus are closest related with a score of 0.56.
 
