@@ -33,7 +33,7 @@ Viruses of the Filoviridae family, also know as filoviruses, are viruses contain
 
 There are currently five genera in the family; _Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus_ and _Striavirus_. _Ebolavirus_ has six known species and the rest have one [@languonFilovirusDiseaseOutbreaks2019]. In my analysis I left _Striavirus_ out, because there is barely any information or data on.
 
-_Ebolavirus_ and _Marburgvirus_ are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@filoviruses-infection-with.pdf].
+_Ebolavirus_ and _Marburgvirus_ are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@buckoFIlovirusesInfection].
 
 ----
 
