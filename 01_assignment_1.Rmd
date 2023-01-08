@@ -75,20 +75,20 @@ position = position_jitter(width = 0.5, height = 0.5, seed = 123)) +
 
 ```
 
-For further analysing of the effect I would start by testing normality by performing a Shapiro-Wilk test. If unusual, I would normalize the data, if normal, I would start an ANOVA between de different conditions. I would end with the post-hoc tests, to check in what combination of groups the difference is.
+For further analysing of the effect I would start by testing normality by performing a Shapiro-Wilk test. If unusual, I would normalise the data, if normal, I would start an ANOVA between de different conditions. I would end with the post-hoc tests, to check in what combination of groups the difference is.
 
-In this case, the data is not normal, so normalizing is necessary.
-The normalizing step is to see if the offspring count increases or decreases relatively to the negative control and if so, if there is anything influenced by the negative control.
+In this case, the data is not normal, so normalising is necessary.
+The normalising step is to see if the offspring count increases or decreases relatively to the negative control and if so, if there is anything influenced by the negative control.
 
-```{r normalize data}
+```{r normalise data}
 
 # Viewing CE.LIQ.FLOW.062_summary shows the mean value of controlNegative = 85.9.
 
-# Add the column with normalized average counts
+# Add the column with normalised average counts
 CE.LIQ.FLOW.062_summary_norm <- CE.LIQ.FLOW.062_summary_tbl %>% 
   mutate(norm_counts = mean_counts/85.9, norm_sd = sd_counts/85.9)
 
-# Create scatterplot with normalized data
+# Create scatterplot with normalised data
 CE.LIQ.FLOW.062_summary_norm %>% ggplot(aes(x = log10(compConcentration), 
                                             y = norm_counts)) +
   geom_point(aes(color = compName, shape = expType), size = 2, 
@@ -97,7 +97,7 @@ position = position_jitter(width = 0.5, height = 0.5, seed = 150)) +
                     color = compName), width= 0.2, 
                 position = position_jitter(width = 0.5, height = 0.5, seed = 150))+
   labs(title = "Mean counts C. elegans offspring in various concentrations",
-       subtitle = "Normalized to negative control = 1",
+       subtitle = "normalised to negative control = 1",
        x = "Log10 of compound concentration",
        y = "C. elegans offspring count") +
   theme(axis.text = element_text(size = 10)) 
@@ -112,9 +112,9 @@ The next analysis is based on an article that addresses if meaningless novel wor
 
 There is a lot of language research concerning the human capacity for learning new words, though this research is by far not complete yet. Because of that, the goal of this paper is to add to this research field.
 
-To answer these questions, five experiments were set up. three groups of L1 speakers of the English language had to learn nine novel words in a consistently positive, neutral or negative context. During the learning phase, reading times were recorded. Immediately after and one week after, vocabulary post-test were administered to assess learning and retention.
+To answer these questions, five experiments were set up. Three groups of L1 speakers of the English language had to learn nine novel words in a consistently positive, neutral or negative context. During the learning phase, reading times were recorded. Immediately after and one week after, vocabulary post-test were administered to assess learning and retention.
 
-The results showed that for both research questions two out of three groups learned the forms, definitional meanings en emotional connotations and that de positive group learned the best out of the three groups.
+The results showed that for both research questions two out of three groups learned the forms, definitional meanings and emotional connotations and that de positive group learned the best out of the three groups.
 
 The analysis is a scoring on the basis of the [Repita transparency criteria](https://www.researchgate.net/publication/340244621_Reproducibility_and_reporting_practices_in_COVID-19_preprint_manuscripts). This is a method for identifying reproducibility issues in a scientific publication [@sumnerReproducibilityReportingPractices2020]. The scoring is shown below, the definitions can be found in the link above.
 
@@ -142,7 +142,7 @@ The last analysis contains a code of an article about the case-fatality rate of 
 
 Looking at the code, is seems to achieve a visualisation of the differences in case-fatality rate (CFR)  over time in between countries, using the age structure of infection and age specific CFRs. This is done by creating tables containing the latest data of diagnosed cases and death counts (concerning COVID-19) for each country.
 
-The readability of the code is quite al right. The code in general is readable and understandable because of comments en different chuncks. But the total code is quite long and stored in different files, which makes it a little bit harder to access and run.
+The readability of the code is quite al right. The code in general is readable and understandable because of comments and different chuncks. But the total code is quite long and stored in different files, which makes it a little bit harder to access and run.
 
 After trying the code myself the code was a little less accessible than I thought. At first it took a lot of effort, because the file in the url didn't exist any more and I couldn't figure out the updated pathway. The updated pathway was not clearly indicated, but once I found it the reproduction was pretty smooth and I only had to make small changes.
 

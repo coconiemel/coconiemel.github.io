@@ -2,13 +2,13 @@
 
 ## Introduction {-}
 
-I created a R package to support my portfolio, following [The Whole Game demo](https://r-pkgs.org/whole-game.html) made by Hadley Wickham. The demo guided me through setting up my own package and helped me create something useful on my own after.
+I created a R package to support my portfolio, following [The Whole Game demo](https://r-pkgs.org/whole-game.html) made by Hadley Wickham. The demo guided me through setting up my own package and helped me create something useful on my own.
 
 ----
 
 ## Copopa {-}
 
-To start a new package, a name is necessary. I combined my name, "portfolio" and "package" together into a fun word an checked availability with the {available} package. 
+To start a new package, a name is necessary. I combined my name, "portfolio" and "package" together into a fun word and checked availability with the {available} package. 
 
 The name was available, so I set up the project and the github repository to get started.
 

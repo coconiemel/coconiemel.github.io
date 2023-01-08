@@ -2,7 +2,7 @@
 
 ## Introduction {-}
 
-Parameters make a report in RMarkdown more dynamic, which help reproduce the analysis on different inputs or sets. Parameters can be set up for a number of things, so changing anything will become easy.
+Parameters makes a report in RMarkdown more dynamic, which helps reproduce the analysis on different inputs or sets. Parameters can be set up for a number of things, so changing anything will become easy.
 
 In this assignment I will be using data about COVID19 retrieved from [ECDC](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country) and I will be looking at the daily reported cases and the daily reported deaths.
 
@@ -43,7 +43,7 @@ mima(covid$dateRep) # First data was noted on 01/01/2020, last data was noted on
 
 ----
 
-## Building a parameterized graph {-}
+## Building a parametrised graph {-}
 
 I will be making two graphs, one about the daily reported cases and one about the daily reported deaths. The parameters are country, year, and months and the default settings are used. The default settings show the data of the Netherlands in all 12 months of the year 2021.
 
@@ -89,16 +89,16 @@ ggplot(covid_deaths, aes(x=dateRep, y=deaths))+
 
 ## Alter parameter settings {-}
 
-A parameterized report makes it easy to change settings to have a different view of the data, I added screenshots below to showcase what the graph would look like with a different input.
+A parametrised report makes it easy to change settings to have a different view of the data, I added screenshots below to showcase what the graph would look like with a different input.
 
 <img src="images/cases_france.jpg"
      width="600" 
      height="400" />
      
-_Figure 10: Parameterized graph containing the COVID cases data._
+_Figure 10: Parametrised graph containing the COVID cases data._
 
 <img src="images/deaths_france.jpg"
      width="600" 
      height="400" />
      
-_Figure 11: Parameterized graph containing the COVID deaths data._
+_Figure 11: Parametrised graph containing the COVID deaths data._

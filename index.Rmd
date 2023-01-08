@@ -82,7 +82,7 @@ library(scales)
 
 ## Education {-}
 
-__Biology and medical labratory research, University of applied sciences__ 
+__Biology and medical laboratory research, University of applied sciences__ 
 
 Utrecht
 

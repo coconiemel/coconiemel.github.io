@@ -8,7 +8,7 @@ This assignment was focused on learning the basics of the SQL language and how t
 
 ## DBeaver connection {-}
 
-I Start by creating three data frames out of files and making them tidy.
+I start by creating three data frames out of files and making them tidy.
 
 ```{r import and tidy}
 
@@ -89,7 +89,7 @@ dbWriteTable(con, "dengue", dengue_df_tidy)
 
 ## Inspection {-}
 
-Now that the tables are imported, i checked a couple of things.
+Now that the tables are imported, I checked a couple of things.
 Dengue has no "NULL" variables in country and year, 6263 cases in the data set and the average amount of cases is 0.14 with a standard deviation of 0.14. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Venezuela with 1 case.
 
 The flu has no "NULL variables in country and year, 17266 cases in the data set and the average amount of cases is 473.74 with a standard deviation of 768.95. The country with the least amount of cases is Argentina with 0 cases and the country with the most is Uruguay 10555 cases.
@@ -136,7 +136,7 @@ gapminder_flu_dengue <- read_csv("files/gapminder_flu_dengue.csv")
 ```
 
 As said before, there was something important that stood out to me, the dataset missed metadata.
-The cases columns didn't specify how it was measured, and this was also not written down in the metadata. This resulted in unreliable data that doesn't take in account that countries have different populations, just a count of cases isn't enough. Therefore a normalisation was necessary. I divided the cases by the population from the gapminder data and multiplied this by 100000, which seemed like a logical amount when calculating with populations. I added the results to the tables.
+The cases columns didn't specify how it was measured, and this was also not written down in the metadata. This resulted in unreliable data that doesn't take into account that countries have different populations, just a count of cases isn't enough. Therefore a normalisation was necessary. I divided the cases by the population from the gapminder data and multiplied this by 100000, which seemed like a logical amount when calculating with populations. I added the results to the tables.
 
 ```{r normalizing}
 
@@ -301,6 +301,7 @@ gapminder_flu %>%
   theme(legend.position = "right", text = element_text(size=10))
 
 ```
+
 _Figure 6: Bargraph of the amount of flu cases per continent._
 
 ```{r visualisation2 flu}
@@ -313,6 +314,7 @@ ggplot(flu_dengue, aes(x=year, y=flu_cases, group = country, color = country)) +
   theme(legend.position = "right", text = element_text(size=10))
 
 ```
+
 _Figure 7: Linegraph of average flu cases per year per country._
 
 ### Dengue {-}
@@ -328,6 +330,7 @@ gapminder_dengue %>%
   theme(legend.position = "right", text = element_text(size=10))
 
 ```
+
 _Figure 8: Bargraph of the amount of dengue cases per continent_
 
 ```{r visualisation2 dengue}
@@ -340,4 +343,5 @@ ggplot(flu_dengue, aes(x=year, y=dengue_cases, group = country, color = country)
   theme(legend.position = "right", text = element_text(size=10))
 
 ```
+
 _Figure 9: Linegraph of average dengue cases per year per country._

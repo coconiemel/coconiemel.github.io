@@ -4,9 +4,9 @@
 
 For this assignment, we were challenged to learn a new skill in four days, any skill related to data science and life sciences that will help you in the future.
 
-After this course I will be specializing in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before i start working in the field, I hope to earn a masters degree, so in two years i will probably be busy with my masters. I am not sure what masters I would like to do.
+After this course I will be specialising in microbiology, this is also where I see myself in a couple of years. Data science for me is a great opportunity to combine different work areas and keep my work various, but my main focus will be microbiology. Before I start working in the field, I hope to earn a masters degree, so in two years I will probably be busy with my masters. I am not sure what masters I would like to do.
 
-Because I am interested in microbiology, my free assignment will also be in that lane. I chose to learn to generate a phylogenetic tree and to analyse its contents about the Filoviridae family. I chose this viral family because I am interested in infectious diseases and two species of these are known to cause quite the infectious diseases.
+Because I am interested in microbiology, my free assignment will also be in that area. I chose to learn to generate a phylogenetic tree and to analyse its contents about the Filoviridae family. I chose this viral family because I am interested in infectious diseases and two species of these are known to cause quite the infectious diseases.
 
 ----
 
@@ -18,7 +18,7 @@ To achieve my goal, I had 4 days total planned to work on it. I had divided the 
 <li>Two days to implement my knowledge from searching the internet and tutorials to the data I will be using and complete generating the tree.</li>
 <li>Half a day to finish the writing and details.</li></ul>
 
-Eventually, i gained my needed information to generate a phylogenetic tree from a lot of searching, some trial and error, but also with help from these resources: 
+Eventually, I gained information that I needed to generate a phylogenetic tree from a lot of searching, some trial and error, but also with help from these resources: 
 <ul><li>[Multiple Alignment Object](https://bioconductor.org/packages/devel/bioc/vignettes/Biostrings/inst/doc/MultipleAlignments.pdf)</li>
 <li>[ggtree utilities](https://bioconductor.statistik.tu-dortmund.de/packages/3.5/bioc/vignettes/ggtree/inst/doc/ggtreeUtilities.html)</li>
 <li>[tree Visualization](https://bioconductor.statistik.tu-dortmund.de/packages/3.8/bioc/vignettes/ggtree/inst/doc/treeVisualization.html#displaying-tree-scale-evolution-distance)</li>
@@ -31,7 +31,7 @@ Eventually, i gained my needed information to generate a phylogenetic tree from 
 
 Viruses of the Filoviridae family, also know as filoviruses, are viruses containing one molecule of single-stranded negative-sense RNA that are enveloped in a fatty membrane. The viruses are zoonotic and it is believed that their reservoir hosts usually are bats [@FilovirusesFiloviridaeViral2021]. The viruses are one of the families known to cause Viral Haemorrhagic Fevers (VHFs) that affects multiple body systems and usually results in heavy bleeding and death [@WhatAreVHFs2021].
 
-There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus and Striavirus. Ebolavirus has six knows species and the rest have one [@languonFilovirusDiseaseOutbreaks2019]. In my analysis I left Striavirus out, because there is barely any information or data about.
+There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus and Striavirus. Ebolavirus has six known species and the rest have one [@languonFilovirusDiseaseOutbreaks2019]. In my analysis I left Striavirus out, because there is barely any information or data on.
 
 Ebolavirus and Marburgvirus are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@filoviruses-infection-with.pdf].
 
@@ -79,7 +79,7 @@ entrez_fetch_list <- function(db, id, rettype, ...){
 
 ```
 
-The analysis starts by fetching the sequences from NCBI [@NationalCenterBiotechnology] and make them compatible for analysis.
+The analysis starts by fetching the sequences from NCBI nucleotide bank [@NationalCenterBiotechnology] and make them compatible for analysis.
 The file "species" is written to enhance the target IDs, this way, all the genomes can be fetched at once.
 
 ```{r load and adjust sequences}
@@ -133,7 +133,7 @@ filoviridae_align <- readRDS("files/filo_data/filoviridae_align.RDS")
 
 ```
 
-To use the alignment for the tree, the genetic distance between the sequences will be calculated. For readability, a rounded version is also made. After the calculations the tree is plotted. The tree clearly shows that most ebolaviruses are closely related, which is logical because they are only different species, only Reston and Sudan are somewhat further from the rest but close to each other. Is also shows that Mengla dianlovirus and Marburg marburgvirus are closely related, and Lloviu is also nearby.
+To use the alignment for the tree, the genetic distance between the sequences will be calculated. For readability, a rounded version is also made. After the calculations the tree is plotted. The tree clearly shows that most ebolaviruses are closely related, which is logical because they are only different species, only Reston and Sudan are somewhat further from the rest but close to each other. It also shows that Mengla dianlovirus and Marburg marburgvirus are closely related, and Lloviu is also nearby.
 
 ```{r view msa}
 
@@ -177,7 +177,7 @@ mima(filoviridae_dist_rounded) # 0.56, 0.76
 
 ```
 
-Seen from here is states that Taiforest ebolavirus & Bundibogyo ebolavirus are closest related with a score of 0.56.
+Seen from here it states that Taiforest ebolavirus & Bundibogyo ebolavirus are closest related with a score of 0.56.
 
 It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus & Marburg marburgvirus, Bombali ebolavirus & Mengla dianlovirus, Sudan ebolavirus & Marburg marburgvirus, Sudan ebolavirus & Mengla dianlovirus, Reston ebolavirus & Marburg marburgvirus, Lloviu cuevavirus & Marburg marburgvirus, Lloviu cuevavirus & Mengla dianlovirus.
 

@@ -216,7 +216,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#introduction-6"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#data-inspection"><i class="fa fa-check"></i>Data inspection</a></li>
-<li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#building-a-parameterized-graph"><i class="fa fa-check"></i>Building a parameterized graph</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#building-a-parametrised-graph"><i class="fa fa-check"></i>Building a parametrised graph</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#alter-parameter-settings"><i class="fa fa-check"></i>Alter parameter settings</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -241,7 +241,7 @@ div.csl-indent {
 <h1><span class="header-section-number">7</span> RMarkdown parameters</h1>
 <div id="introduction-6" class="section level2 unnumbered">
 <h2>Introduction</h2>
-<p>Parameters make a report in RMarkdown more dynamic, which help reproduce the analysis on different inputs or sets. Parameters can be set up for a number of things, so changing anything will become easy.</p>
+<p>Parameters makes a report in RMarkdown more dynamic, which helps reproduce the analysis on different inputs or sets. Parameters can be set up for a number of things, so changing anything will become easy.</p>
 <p>In this assignment I will be using data about COVID19 retrieved from <a href="https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country">ECDC</a> and I will be looking at the daily reported cases and the daily reported deaths.</p>
 <p>For this assignment I used three parameters, the default of these need to be set in the YAML header, so if the parameters aren’t specified, these will be rendered.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="rmarkdown-parameters.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
@@ -268,8 +268,8 @@ div.csl-indent {
 <span id="cb61-11"><a href="rmarkdown-parameters.html#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(covid<span class="sc">$</span>dateRep) <span class="co"># First data was noted on 01/01/2020, last data was noted on 31/12/2021.</span></span></code></pre></div>
 <hr />
 </div>
-<div id="building-a-parameterized-graph" class="section level2 unnumbered">
-<h2>Building a parameterized graph</h2>
+<div id="building-a-parametrised-graph" class="section level2 unnumbered">
+<h2>Building a parametrised graph</h2>
 <p>I will be making two graphs, one about the daily reported cases and one about the daily reported deaths. The parameters are country, year, and months and the default settings are used. The default settings show the data of the Netherlands in all 12 months of the year 2021.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="rmarkdown-parameters.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the necessary columns and change the datatype of dateRep.</span></span>
 <span id="cb62-2"><a href="rmarkdown-parameters.html#cb62-2" aria-hidden="true" tabindex="-1"></a>covid_cases <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
@@ -305,15 +305,15 @@ div.csl-indent {
 </div>
 <div id="alter-parameter-settings" class="section level2 unnumbered">
 <h2>Alter parameter settings</h2>
-<p>A parameterized report makes it easy to change settings to have a different view of the data, I added screenshots below to showcase what the graph would look like with a different input.</p>
+<p>A parametrised report makes it easy to change settings to have a different view of the data, I added screenshots below to showcase what the graph would look like with a different input.</p>
 <p><img src="images/cases_france.jpg"
      width="600" 
      height="400" /></p>
-<p><em>Figure 10: Parameterized graph containing the COVID cases data.</em></p>
+<p><em>Figure 10: Parametrised graph containing the COVID cases data.</em></p>
 <p><img src="images/deaths_france.jpg"
      width="600" 
      height="400" /></p>
-<p><em>Figure 11: Parameterized graph containing the COVID deaths data.</em></p>
+<p><em>Figure 11: Parametrised graph containing the COVID deaths data.</em></p>
 
 </div>
 </div>
