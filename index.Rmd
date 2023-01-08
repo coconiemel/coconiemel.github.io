@@ -172,7 +172,7 @@ The Hague
 
 ## Skills {-}
 
-R, Bash
+R, Bash, CSS
 
 Adobe Photoshop, Adobe Premiere Pro
 

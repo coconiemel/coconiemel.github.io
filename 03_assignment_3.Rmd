@@ -31,9 +31,9 @@ Eventually, I gained information that I needed to generate a phylogenetic tree f
 
 Viruses of the Filoviridae family, also know as filoviruses, are viruses containing one molecule of single-stranded negative-sense RNA that are enveloped in a fatty membrane. The viruses are zoonotic and it is believed that their reservoir hosts usually are bats [@FilovirusesFiloviridaeViral2021]. The viruses are one of the families known to cause Viral Haemorrhagic Fevers (VHFs) that affects multiple body systems and usually results in heavy bleeding and death [@WhatAreVHFs2021].
 
-There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus and Striavirus. Ebolavirus has six known species and the rest have one [@languonFilovirusDiseaseOutbreaks2019]. In my analysis I left Striavirus out, because there is barely any information or data on.
+There are currently five genera in the family; _Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus_ and _Striavirus_. _Ebolavirus_ has six known species and the rest have one [@languonFilovirusDiseaseOutbreaks2019]. In my analysis I left _Striavirus_ out, because there is barely any information or data on.
 
-Ebolavirus and Marburgvirus are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@filoviruses-infection-with.pdf].
+_Ebolavirus_ and _Marburgvirus_ are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs [@filoviruses-infection-with.pdf].
 
 ----
 
@@ -177,9 +177,9 @@ mima(filoviridae_dist_rounded) # 0.56, 0.76
 
 ```
 
-Seen from here it states that Taiforest ebolavirus & Bundibogyo ebolavirus are closest related with a score of 0.56.
+Seen from here it states that _Taiforest ebolavirus_ & _Bundibogyo ebolavirus_ are closest related with a score of 0.56.
 
-It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus & Marburg marburgvirus, Bombali ebolavirus & Mengla dianlovirus, Sudan ebolavirus & Marburg marburgvirus, Sudan ebolavirus & Mengla dianlovirus, Reston ebolavirus & Marburg marburgvirus, Lloviu cuevavirus & Marburg marburgvirus, Lloviu cuevavirus & Mengla dianlovirus.
+It also states that there are multiple options that score furthest related with a score of 0.76. These are: _Bombali ebolavirus_ & _Marburg marburgvirus_, _Bombali ebolavirus_ & _Mengla dianlovirus_, _Sudan ebolavirus_ & _Marburg marburgvirus_, _Sudan ebolavirus_ & _Mengla dianlovirus_, _Reston ebolavirus_ & _Marburg marburgvirus_, _Lloviu cuevavirus_ & _Marburg marburgvirus_, _Lloviu cuevavirus_ & _Mengla dianlovirus_.
 
 ----
 
