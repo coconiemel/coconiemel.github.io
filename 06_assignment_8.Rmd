@@ -12,11 +12,61 @@ To start a new package, a name is necessary. I combined my name, "portfolio" and
 
 The name was available, so I set up the project and the github repository to get started.
 
-A package to support my portfolio would reduce duplicated code. But scanning through my portfolio, I noticed that there wasn't a lot of code or duplicated code. Luckily, i found some that would work for this. The package that I made contains four functions:
-<ul><li>multi_check() -> checks the data type of up to three datasets, or columns in it.</li>
-<li>save_to_csv_rds() -> saves a data frame into CSV and RDS files.</li>
-<li>mima() -> calculates the minimum and maximum of data.</li>
-<li>mean_sd -> calculates the mean and standard deviation of data.</li></ul>
+A package to support my portfolio would reduce duplicated code. But scanning through my portfolio, I noticed that there wasn't a lot of code or duplicated code. Luckily, I found some that would work for this. The package that I made contains four functions, which I will elaborate following the next example dataset:
+
+```{r example data}
+
+# Create data frame
+name <- c("Noa", "Luke", "Oliver", "Anna", "Julie")
+gender <- c("F", "M", "M", "F", "F")
+age <- c(21, 29, 27, 29, 24)
+test <- data.frame(name, gender, age)
+
+kbl(test, caption = "Table 2: Example data frame for copopa package") %>% 
+  kable_paper(bootstrap_options = "striped", full_width = F)
+
+```
+
+### multi_check() {-}
+
+This functions checks the data types of up to three datasets, or columns in it. Full sets can be used as input, or in this case columns.
+
+```{r multi check}
+
+multi_check(test$name, test$gender, test$age)
+
+```
+
+### mima() {-}
+
+This function calculates the minimum and maximum of data. The data must be numeric.
+
+```{r mima}
+
+mima(test$age)
+
+```
+
+### mean_sd() {-}
+
+This function calculates the mean and standard deviation of data. The data must be numeric.
+
+```{r mean sd}
+
+mean_sd(test$age)
+
+```
+
+### save_to_csv_rds() {-}
+
+This function saves a data frame to a CSV file and a RSD file. Fill in target data set and the name of the wanted output.
+
+```{r save, eval = FALSE}
+
+save_to_csv_rds(test, "test")
+
+```
+
 For the manual and contents of the package, please visit [the copopa github repository](https://github.com/coconiemel/copopa).
 
 ## Install and load {-}

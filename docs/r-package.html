@@ -203,7 +203,13 @@ div.csl-indent {
 <li class="chapter" data-level="6" data-path="r-package.html"><a href="r-package.html"><i class="fa fa-check"></i><b>6</b> R package</a>
 <ul>
 <li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#introduction-5"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#copopa"><i class="fa fa-check"></i>Copopa</a></li>
+<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#copopa"><i class="fa fa-check"></i>Copopa</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#multi_check"><i class="fa fa-check"></i>multi_check()</a></li>
+<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#mima"><i class="fa fa-check"></i>mima()</a></li>
+<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#mean_sd"><i class="fa fa-check"></i>mean_sd()</a></li>
+<li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#save_to_csv_rds"><i class="fa fa-check"></i>save_to_csv_rds()</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="r-package.html"><a href="r-package.html#install-and-load"><i class="fa fa-check"></i>Install and load</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html"><i class="fa fa-check"></i><b>7</b> RMarkdown parameters</a>
@@ -242,34 +248,141 @@ div.csl-indent {
 <h2>Copopa</h2>
 <p>To start a new package, a name is necessary. I combined my name, “portfolio” and “package” together into a fun word an checked availability with the {available} package.</p>
 <p>The name was available, so I set up the project and the github repository to get started.</p>
-A package to support my portfolio would reduce duplicated code. But scanning through my portfolio, I noticed that there wasn’t a lot of code or duplicated code. Luckily, i found some that would work for this. The package that I made contains four functions:
-<ul>
-<li>
-multi_check() -&gt; checks the data type of up to three datasets, or columns in it.
-</li>
-<li>
-save_to_csv_rds() -&gt; saves a data frame into CSV and RDS files.
-</li>
-<li>
-mima() -&gt; calculates the minimum and maximum of data.
-</li>
-<li>
-mean_sd -&gt; calculates the mean and standard deviation of data.
-</li>
-</ul>
+<p>A package to support my portfolio would reduce duplicated code. But scanning through my portfolio, I noticed that there wasn’t a lot of code or duplicated code. Luckily, I found some that would work for this. The package that I made contains four functions, which I will elaborate following the next example dataset:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-package.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame</span></span>
+<span id="cb51-2"><a href="r-package.html#cb51-2" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Noa&quot;</span>, <span class="st">&quot;Luke&quot;</span>, <span class="st">&quot;Oliver&quot;</span>, <span class="st">&quot;Anna&quot;</span>, <span class="st">&quot;Julie&quot;</span>)</span>
+<span id="cb51-3"><a href="r-package.html#cb51-3" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>)</span>
+<span id="cb51-4"><a href="r-package.html#cb51-4" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">27</span>, <span class="dv">29</span>, <span class="dv">24</span>)</span>
+<span id="cb51-5"><a href="r-package.html#cb51-5" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name, gender, age)</span>
+<span id="cb51-6"><a href="r-package.html#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="r-package.html#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(test, <span class="at">caption =</span> <span class="st">&quot;Table 2: Example data frame for copopa package&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-8"><a href="r-package.html#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="at">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F)</span></code></pre></div>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:example data)Table 2: Example data frame for copopa package
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Noa
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Luke
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:right;">
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oliver
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Anna
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:right;">
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Julie
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:right;">
+24
+</td>
+</tr>
+</tbody>
+</table>
+<div id="multi_check" class="section level3 unnumbered">
+<h3>multi_check()</h3>
+<p>This functions checks the data types of up to three datasets, or columns in it. Full sets can be used as input, or in this case columns.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="r-package.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multi_check</span>(test<span class="sc">$</span>name, test<span class="sc">$</span>gender, test<span class="sc">$</span>age)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;character&quot;
+## 
+## [[2]]
+## [1] &quot;character&quot;
+## 
+## [[3]]
+## [1] &quot;numeric&quot;</code></pre>
+</div>
+<div id="mima" class="section level3 unnumbered">
+<h3>mima()</h3>
+<p>This function calculates the minimum and maximum of data. The data must be numeric.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="r-package.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(test<span class="sc">$</span>age)</span></code></pre></div>
+<pre><code>## $min
+## [1] 21
+## 
+## $max
+## [1] 29</code></pre>
+</div>
+<div id="mean_sd" class="section level3 unnumbered">
+<h3>mean_sd()</h3>
+<p>This function calculates the mean and standard deviation of data. The data must be numeric.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="r-package.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean_sd</span>(test<span class="sc">$</span>age)</span></code></pre></div>
+<pre><code>## $mean
+## [1] 26
+## 
+## $sd
+## [1] 3.464102</code></pre>
+</div>
+<div id="save_to_csv_rds" class="section level3 unnumbered">
+<h3>save_to_csv_rds()</h3>
+<p>This function saves a data frame to a CSV file and a RSD file. Fill in target data set and the name of the wanted output.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="r-package.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_to_csv_rds</span>(test, <span class="st">&quot;test&quot;</span>)</span></code></pre></div>
 <p>For the manual and contents of the package, please visit <a href="https://github.com/coconiemel/copopa">the copopa github repository</a>.</p>
+</div>
 </div>
 <div id="install-and-load" class="section level2 unnumbered">
 <h2>Install and load</h2>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-package.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only if not obtained already</span></span>
-<span id="cb51-2"><a href="r-package.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb51-3"><a href="r-package.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb51-4"><a href="r-package.html#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="r-package.html#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Installation</span></span>
-<span id="cb51-6"><a href="r-package.html#cb51-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;coconiemel/copopa&quot;</span>)</span>
-<span id="cb51-7"><a href="r-package.html#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-8"><a href="r-package.html#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load</span></span>
-<span id="cb51-9"><a href="r-package.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copopa)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="r-package.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only if not obtained already</span></span>
+<span id="cb59-2"><a href="r-package.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb59-3"><a href="r-package.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb59-4"><a href="r-package.html#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="r-package.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Installation</span></span>
+<span id="cb59-6"><a href="r-package.html#cb59-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;coconiemel/copopa&quot;</span>)</span>
+<span id="cb59-7"><a href="r-package.html#cb59-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-8"><a href="r-package.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load</span></span>
+<span id="cb59-9"><a href="r-package.html#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(copopa)</span></code></pre></div>
 
 </div>
 </div>
