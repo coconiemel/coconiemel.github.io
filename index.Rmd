@@ -12,6 +12,7 @@ output:
             before: <div class="title">Portfolio of Coco Niemel</div>
             
 documentclass: book
+favicon: images/favicon.ico
 bibliography: bibliography.bib
 biblio-style: apalike
 link-citations: yes
