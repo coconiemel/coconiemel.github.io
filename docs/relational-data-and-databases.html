@@ -166,6 +166,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#analyse-an-excel-file"><i class="fa fa-check"></i>Analyse an excel file</a></li>
+<li class="chapter" data-level="1.1" data-path="reproducible-research.html"><a href="reproducible-research.html#figure-2-normalised-scatterplot-of-c.-elegans-offspring-counts."><i class="fa fa-check"></i><b>1.1</b> <em>Figure 2: Normalised scatterplot of C. elegans offspring counts.</em></a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#scoring-reproducibility"><i class="fa fa-check"></i>Scoring reproducibility</a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#usage-of-other-peoples-codes"><i class="fa fa-check"></i>Usage of other peoples codes</a></li>
 </ul></li>
@@ -217,6 +218,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#introduction-6"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#data-inspection"><i class="fa fa-check"></i>Data inspection</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#building-a-parametrised-graph"><i class="fa fa-check"></i>Building a parametrised graph</a></li>
+<li class="chapter" data-level="7.1" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#figure-12-parametrised-graph-containing-the-covid-deaths-data-in-default-settings."><i class="fa fa-check"></i><b>7.1</b> <em>Figure 12: Parametrised graph containing the COVID deaths data in default settings.</em></a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#alter-parameter-settings"><i class="fa fa-check"></i>Alter parameter settings</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -309,7 +311,7 @@ Dengue has no “NULL” variables in country and year, 6263 cases in the data s
 <p><img src="images/SQL_inspection.jpg"
      width="300" 
      height="800" /></p>
-<p><em>Figure 4: SQL code of data inspection.</em></p>
+<p><em>Figure 6: SQL code of data inspection.</em></p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="relational-data-and-databases.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dengue</span></span>
 <span id="cb28-2"><a href="relational-data-and-databases.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mima</span>(dengue_df_tidy<span class="sc">$</span>cases) <span class="co"># 0, 1</span></span></code></pre></div>
 <pre><code>## $min
@@ -340,7 +342,7 @@ Dengue has no “NULL” variables in country and year, 6263 cases in the data s
 <p><img src="images/SQL_join.jpg"
      width="300" 
      height="900" /></p>
-<p><em>Figure 5: SQL code of inner-join.</em></p>
+<p><em>Figure 7: SQL code of inner-join.</em></p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="relational-data-and-databases.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load joined table to object</span></span>
 <span id="cb36-2"><a href="relational-data-and-databases.html#cb36-2" aria-hidden="true" tabindex="-1"></a>gapminder_flu <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/gapminder_flu.csv&quot;</span>)</span>
 <span id="cb36-3"><a href="relational-data-and-databases.html#cb36-3" aria-hidden="true" tabindex="-1"></a>gapminder_dengue <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;files/gapminder_dengue.csv&quot;</span>)</span>
@@ -511,7 +513,7 @@ As an extra test, the Levene’s test shows that the flu doesn’t have a varian
 <span id="cb47-6"><a href="relational-data-and-databases.html#cb47-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Flu cases per 100000 residents&quot;</span>) <span class="sc">+</span></span>
 <span id="cb47-7"><a href="relational-data-and-databases.html#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/visualisation1%20flu-1.png" width="672" /></p>
-<p><em>Figure 6: Bargraph of the amount of flu cases per continent.</em></p>
+<p><em>Figure 8: Bargraph of the amount of flu cases per continent.</em></p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="relational-data-and-databases.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flu_dengue, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>flu_cases, <span class="at">group =</span> country, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
 <span id="cb48-2"><a href="relational-data-and-databases.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb48-3"><a href="relational-data-and-databases.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -520,7 +522,7 @@ As an extra test, the Levene’s test shows that the flu doesn’t have a varian
 <span id="cb48-6"><a href="relational-data-and-databases.html#cb48-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average dengue cases per year&quot;</span>) <span class="sc">+</span></span>
 <span id="cb48-7"><a href="relational-data-and-databases.html#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/visualisation2%20flu-1.png" width="672" /></p>
-<p><em>Figure 7: Linegraph of average flu cases per year per country.</em></p>
+<p><em>Figure 9: Linegraph of average flu cases per year per country.</em></p>
 </div>
 <div id="dengue" class="section level3 unnumbered">
 <h3>Dengue</h3>
@@ -532,7 +534,7 @@ As an extra test, the Levene’s test shows that the flu doesn’t have a varian
 <span id="cb49-6"><a href="relational-data-and-databases.html#cb49-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Dengue cases per 100000 residents&quot;</span>) <span class="sc">+</span></span>
 <span id="cb49-7"><a href="relational-data-and-databases.html#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/visualisation1%20dengue-1.png" width="672" /></p>
-<p><em>Figure 8: Bargraph of the amount of dengue cases per continent</em></p>
+<p><em>Figure 10: Bargraph of the amount of dengue cases per continent</em></p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="relational-data-and-databases.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(flu_dengue, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>dengue_cases, <span class="at">group =</span> country, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
 <span id="cb50-2"><a href="relational-data-and-databases.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb50-3"><a href="relational-data-and-databases.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -541,7 +543,7 @@ As an extra test, the Levene’s test shows that the flu doesn’t have a varian
 <span id="cb50-6"><a href="relational-data-and-databases.html#cb50-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average dengue cases per year&quot;</span>) <span class="sc">+</span></span>
 <span id="cb50-7"><a href="relational-data-and-databases.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>))</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/visualisation2%20dengue-1.png" width="672" /></p>
-<p><em>Figure 9: Linegraph of average dengue cases per year per country.</em></p>
+<p><em>Figure 11: Linegraph of average dengue cases per year per country.</em></p>
 
 </div>
 </div>

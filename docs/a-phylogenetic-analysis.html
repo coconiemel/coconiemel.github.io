@@ -166,6 +166,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#analyse-an-excel-file"><i class="fa fa-check"></i>Analyse an excel file</a></li>
+<li class="chapter" data-level="1.1" data-path="reproducible-research.html"><a href="reproducible-research.html#figure-2-normalised-scatterplot-of-c.-elegans-offspring-counts."><i class="fa fa-check"></i><b>1.1</b> <em>Figure 2: Normalised scatterplot of C. elegans offspring counts.</em></a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#scoring-reproducibility"><i class="fa fa-check"></i>Scoring reproducibility</a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#usage-of-other-peoples-codes"><i class="fa fa-check"></i>Usage of other peoples codes</a></li>
 </ul></li>
@@ -217,6 +218,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#introduction-6"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#data-inspection"><i class="fa fa-check"></i>Data inspection</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#building-a-parametrised-graph"><i class="fa fa-check"></i>Building a parametrised graph</a></li>
+<li class="chapter" data-level="7.1" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#figure-12-parametrised-graph-containing-the-covid-deaths-data-in-default-settings."><i class="fa fa-check"></i><b>7.1</b> <em>Figure 12: Parametrised graph containing the COVID deaths data in default settings.</em></a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#alter-parameter-settings"><i class="fa fa-check"></i>Alter parameter settings</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -286,8 +288,8 @@ Eventually, I gained information that I needed to generate a phylogenetic tree f
 <div id="the-filoviridae-family" class="section level2 unnumbered">
 <h2>The Filoviridae family</h2>
 <p>Viruses of the Filoviridae family, also know as filoviruses, are viruses containing one molecule of single-stranded negative-sense RNA that are enveloped in a fatty membrane. The viruses are zoonotic and it is believed that their reservoir hosts usually are bats <span class="citation">(<a href="references.html#ref-FilovirusesFiloviridaeViral2021" role="doc-biblioref"><span>“Filoviruses (<span>Filoviridae</span>) | <span>Viral Hemorrhagic Fevers</span> (<span>VHFs</span>) | <span>CDC</span>”</span> 2021</a>)</span>. The viruses are one of the families known to cause Viral Haemorrhagic Fevers (VHFs) that affects multiple body systems and usually results in heavy bleeding and death <span class="citation">(<a href="references.html#ref-WhatAreVHFs2021" role="doc-biblioref"><span>“What Are <span>VHFs</span>? | <span>Viral Hemorrhagic Fevers</span> (<span>VHFs</span>) | <span>CDC</span>”</span> 2021</a>)</span>.</p>
-<p>There are currently five genera in the family; Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus and Striavirus. Ebolavirus has six known species and the rest have one <span class="citation">(<a href="references.html#ref-languonFilovirusDiseaseOutbreaks2019" role="doc-biblioref">Languon and Quaye 2019</a>)</span>. In my analysis I left Striavirus out, because there is barely any information or data on.</p>
-<p>Ebolavirus and Marburgvirus are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs <span class="citation">(<a href="#ref-filoviruses-infection-with.pdf" role="doc-biblioref"><strong>filoviruses-infection-with.pdf?</strong></a>)</span>.</p>
+<p>There are currently five genera in the family; <em>Ebolavirus, Marburgvirus, Cuevavirus, Dianlovirus</em> and <em>Striavirus</em>. <em>Ebolavirus</em> has six known species and the rest have one <span class="citation">(<a href="references.html#ref-languonFilovirusDiseaseOutbreaks2019" role="doc-biblioref">Languon and Quaye 2019</a>)</span>. In my analysis I left <em>Striavirus</em> out, because there is barely any information or data on.</p>
+<p><em>Ebolavirus</em> and <em>Marburgvirus</em> are the most common to cause (deathly) disease in humans, the other ones also host in non-human primates and pigs <span class="citation">(<a href="#ref-filoviruses-infection-with.pdf" role="doc-biblioref"><strong>filoviruses-infection-with.pdf?</strong></a>)</span>.</p>
 <hr />
 </div>
 <div id="the-phylogenetic-tree" class="section level2 unnumbered">
@@ -385,7 +387,7 @@ The file “species” is written to enhance the target IDs, this way, all the g
 <span id="cb18-10"><a href="a-phylogenetic-analysis.html#cb18-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Rooted phylogenetic tree, with branch lengths&quot;</span>)<span class="sc">+</span></span>
 <span id="cb18-11"><a href="a-phylogenetic-analysis.html#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> .<span class="dv">5</span>), <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">hjust =</span> .<span class="dv">5</span>))</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/phylogenetic%20tree-1.png" width="672" /></p>
-<p><em>Figure 3: Phylogenetic tree of the Filoviridae family.</em></p>
+<p><em>Figure 5: Phylogenetic tree of the Filoviridae family.</em></p>
 <p>The tree shows an easy picture of the differences, but is doesn’t show the numbers in detail. To solve this, I calculated them separately. The response of the code shows the calculated genetic distances of all options.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="a-phylogenetic-analysis.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Details</span></span>
 <span id="cb19-2"><a href="a-phylogenetic-analysis.html#cb19-2" aria-hidden="true" tabindex="-1"></a>filoviridae_dist_rounded</span></code></pre></div>
@@ -467,8 +469,8 @@ The file “species” is written to enhance the target IDs, this way, all the g
 ## 
 ## $max
 ## [1] 0.76</code></pre>
-<p>Seen from here it states that Taiforest ebolavirus &amp; Bundibogyo ebolavirus are closest related with a score of 0.56.</p>
-<p>It also states that there are multiple options that score furthest related with a score of 0.76. These are: Bombali ebolavirus &amp; Marburg marburgvirus, Bombali ebolavirus &amp; Mengla dianlovirus, Sudan ebolavirus &amp; Marburg marburgvirus, Sudan ebolavirus &amp; Mengla dianlovirus, Reston ebolavirus &amp; Marburg marburgvirus, Lloviu cuevavirus &amp; Marburg marburgvirus, Lloviu cuevavirus &amp; Mengla dianlovirus.</p>
+<p>Seen from here it states that <em>Taiforest ebolavirus</em> &amp; <em>Bundibogyo ebolavirus</em> are closest related with a score of 0.56.</p>
+<p>It also states that there are multiple options that score furthest related with a score of 0.76. These are: <em>Bombali ebolavirus</em> &amp; <em>Marburg marburgvirus</em>, <em>Bombali ebolavirus</em> &amp; <em>Mengla dianlovirus</em>, <em>Sudan ebolavirus</em> &amp; <em>Marburg marburgvirus</em>, <em>Sudan ebolavirus</em> &amp; <em>Mengla dianlovirus</em>, <em>Reston ebolavirus</em> &amp; <em>Marburg marburgvirus</em>, <em>Lloviu cuevavirus</em> &amp; <em>Marburg marburgvirus</em>, <em>Lloviu cuevavirus</em> &amp; <em>Mengla dianlovirus</em>.</p>
 <hr />
 </div>
 <div id="future-steps" class="section level2 unnumbered">

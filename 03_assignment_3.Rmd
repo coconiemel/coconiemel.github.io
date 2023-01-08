@@ -165,7 +165,7 @@ ggtree(filoviridae_tree, ladderize = T, branch.length = "branch.length",
 
 ```
 
-_Figure 3: Phylogenetic tree of the Filoviridae family._
+_Figure 5: Phylogenetic tree of the Filoviridae family._
 
 The tree shows an easy picture of the differences, but is doesn't show the numbers in detail. To solve this, I calculated them separately. The response of the code shows the calculated genetic distances of all options.
 

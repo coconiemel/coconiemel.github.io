@@ -166,6 +166,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#analyse-an-excel-file"><i class="fa fa-check"></i>Analyse an excel file</a></li>
+<li class="chapter" data-level="1.1" data-path="reproducible-research.html"><a href="reproducible-research.html#figure-2-normalised-scatterplot-of-c.-elegans-offspring-counts."><i class="fa fa-check"></i><b>1.1</b> <em>Figure 2: Normalised scatterplot of C. elegans offspring counts.</em></a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#scoring-reproducibility"><i class="fa fa-check"></i>Scoring reproducibility</a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#usage-of-other-peoples-codes"><i class="fa fa-check"></i>Usage of other peoples codes</a></li>
 </ul></li>
@@ -217,6 +218,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#introduction-6"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#data-inspection"><i class="fa fa-check"></i>Data inspection</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#building-a-parametrised-graph"><i class="fa fa-check"></i>Building a parametrised graph</a></li>
+<li class="chapter" data-level="7.1" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#figure-12-parametrised-graph-containing-the-covid-deaths-data-in-default-settings."><i class="fa fa-check"></i><b>7.1</b> <em>Figure 12: Parametrised graph containing the COVID deaths data in default settings.</em></a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#alter-parameter-settings"><i class="fa fa-check"></i>Alter parameter settings</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -246,7 +248,7 @@ div.csl-indent {
 </div>
 <div id="analyse-an-excel-file" class="section level2 unnumbered">
 <h2>Analyse an excel file</h2>
-<p>The experiment used for this analysis was obtained from an experiment in which adult C. elegans was exposed to varying concentrations of different compounds. The data for this experiment is supplied by J. Louter (INT/ILC).</p>
+<p>The experiment used for this analysis was obtained from an experiment in which adult <em>C. elegans</em> was exposed to varying concentrations of different compounds. The data for this experiment is supplied by J. Louter (INT/ILC).</p>
 <p>The experiment contains a Excel file called CE.LIQ.FLOW.062_Tidydata.xlsx. During analysing this file I noticed that under ‘compVehicle’ the negative and positive seems to be alike, apart from the concentration. Negative is a higher concentration with ethanol and positive is a lower concentration with a variation of things.
 The summary of the file tells the positive control is ethanol and the negative control is S medium.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="reproducible-research.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain file in environment</span></span>
@@ -266,7 +268,7 @@ CompConcentration is character, but should be numeric, because it contains decim
 <span id="cb3-6"><a href="reproducible-research.html#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="reproducible-research.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn into double (numeric value).</span></span>
 <span id="cb3-8"><a href="reproducible-research.html#cb3-8" aria-hidden="true" tabindex="-1"></a>CE.LIQ.FLOW<span class="fl">.062</span><span class="sc">$</span>compConcentration <span class="ot">&lt;-</span> <span class="fu">as.double</span>(CE.LIQ.FLOW<span class="fl">.062</span><span class="sc">$</span>compConcentration)</span></code></pre></div>
-<p>After this plotting was possible. The scatterplot shows the log10 of the concentration of different compounds in the C. elegans offspring count.
+<p>After this plotting was possible. The scatterplot shows the log10 of the concentration of different compounds in the <em>C. elegans</em> offspring count.
 The correction with log10 was necessary because the labels of the x-axis were overlapping each other, the values had a large number of decimals and were randomly positioned.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="reproducible-research.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain needed columns</span></span>
 <span id="cb4-2"><a href="reproducible-research.html#cb4-2" aria-hidden="true" tabindex="-1"></a>CE.LIQ.FLOW<span class="fl">.062</span>_summary <span class="ot">&lt;-</span> CE.LIQ.FLOW<span class="fl">.062</span> <span class="sc">%&gt;%</span> </span>
@@ -289,6 +291,7 @@ The correction with log10 was necessary because the labels of the x-axis were ov
 <span id="cb4-19"><a href="reproducible-research.html#cb4-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;C. elegans offspring count&quot;</span>) <span class="sc">+</span></span>
 <span id="cb4-20"><a href="reproducible-research.html#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)) </span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/create%20plot-1.png" width="672" /></p>
+<p><em>Figure 1: Scatterplot of C. elegans offspring counts.</em></p>
 <p>For further analysing of the effect I would start by testing normality by performing a Shapiro-Wilk test. If unusual, I would normalise the data, if normal, I would start an ANOVA between de different conditions. I would end with the post-hoc tests, to check in what combination of groups the difference is.</p>
 <p>In this case, the data is not normal, so normalising is necessary.
 The normalising step is to see if the offspring count increases or decreases relatively to the negative control and if so, if there is anything influenced by the negative control.</p>
@@ -312,7 +315,9 @@ The normalising step is to see if the offspring count increases or decreases rel
 <span id="cb5-18"><a href="reproducible-research.html#cb5-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;C. elegans offspring count&quot;</span>) <span class="sc">+</span></span>
 <span id="cb5-19"><a href="reproducible-research.html#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)) </span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/normalise%20data-1.png" width="672" /></p>
-<hr />
+</div>
+<div id="figure-2-normalised-scatterplot-of-c.-elegans-offspring-counts." class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> <em>Figure 2: Normalised scatterplot of C. elegans offspring counts.</em></h2>
 </div>
 <div id="scoring-reproducibility" class="section level2 unnumbered">
 <h2>Scoring reproducibility</h2>
@@ -1005,7 +1010,7 @@ X
 <span id="cb11-119"><a href="reproducible-research.html#cb11-119" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> tx <span class="sc">+</span> <span class="dv">1</span>)</span>
 <span id="cb11-120"><a href="reproducible-research.html#cb11-120" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/line%20graph-1.png" width="672" /></p>
-<p><em>Figure 1: Differences in Case fatality rate between countries.</em></p>
+<p><em>Figure 3: Differences in Case fatality rate between countries.</em></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="reproducible-research.html#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Save</span></span>
 <span id="cb12-2"><a href="reproducible-research.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="st">&quot;files/COVID_article/Fig_1.jpg&quot;</span>, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">3</span>, <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
 

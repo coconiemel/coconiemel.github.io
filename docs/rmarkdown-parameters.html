@@ -166,6 +166,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#analyse-an-excel-file"><i class="fa fa-check"></i>Analyse an excel file</a></li>
+<li class="chapter" data-level="1.1" data-path="reproducible-research.html"><a href="reproducible-research.html#figure-2-normalised-scatterplot-of-c.-elegans-offspring-counts."><i class="fa fa-check"></i><b>1.1</b> <em>Figure 2: Normalised scatterplot of C. elegans offspring counts.</em></a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#scoring-reproducibility"><i class="fa fa-check"></i>Scoring reproducibility</a></li>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#usage-of-other-peoples-codes"><i class="fa fa-check"></i>Usage of other peoples codes</a></li>
 </ul></li>
@@ -217,6 +218,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#introduction-6"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#data-inspection"><i class="fa fa-check"></i>Data inspection</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#building-a-parametrised-graph"><i class="fa fa-check"></i>Building a parametrised graph</a></li>
+<li class="chapter" data-level="7.1" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#figure-12-parametrised-graph-containing-the-covid-deaths-data-in-default-settings."><i class="fa fa-check"></i><b>7.1</b> <em>Figure 12: Parametrised graph containing the COVID deaths data in default settings.</em></a></li>
 <li class="chapter" data-level="" data-path="rmarkdown-parameters.html"><a href="rmarkdown-parameters.html#alter-parameter-settings"><i class="fa fa-check"></i>Alter parameter settings</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -286,6 +288,7 @@ div.csl-indent {
 <span id="cb62-13"><a href="rmarkdown-parameters.html#cb62-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;New cases&quot;</span>)<span class="sc">+</span></span>
 <span id="cb62-14"><a href="rmarkdown-parameters.html#cb62-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/cases%20graph-1.png" width="672" /></p>
+<p><em>Figure 11: Parametrised graph containing the COVID cases data in default settings.</em></p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="rmarkdown-parameters.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the necessary columns and change the datatype of dateRep.</span></span>
 <span id="cb63-2"><a href="rmarkdown-parameters.html#cb63-2" aria-hidden="true" tabindex="-1"></a>covid_deaths <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country,</span>
 <span id="cb63-3"><a href="rmarkdown-parameters.html#cb63-3" aria-hidden="true" tabindex="-1"></a>                                year <span class="sc">==</span> params<span class="sc">$</span>year,</span>
@@ -301,7 +304,9 @@ div.csl-indent {
 <span id="cb63-13"><a href="rmarkdown-parameters.html#cb63-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Covid related deaths&quot;</span>)<span class="sc">+</span></span>
 <span id="cb63-14"><a href="rmarkdown-parameters.html#cb63-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/deaths%20graph-1.png" width="672" /></p>
-<hr />
+</div>
+<div id="figure-12-parametrised-graph-containing-the-covid-deaths-data-in-default-settings." class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> <em>Figure 12: Parametrised graph containing the COVID deaths data in default settings.</em></h2>
 </div>
 <div id="alter-parameter-settings" class="section level2 unnumbered">
 <h2>Alter parameter settings</h2>
@@ -309,11 +314,11 @@ div.csl-indent {
 <p><img src="images/cases_france.jpg"
      width="600" 
      height="400" /></p>
-<p><em>Figure 10: Parametrised graph containing the COVID cases data.</em></p>
+<p><em>Figure 13: Parametrised graph containing the COVID cases data.</em></p>
 <p><img src="images/deaths_france.jpg"
      width="600" 
      height="400" /></p>
-<p><em>Figure 11: Parametrised graph containing the COVID deaths data.</em></p>
+<p><em>Figure 14: Parametrised graph containing the COVID deaths data.</em></p>
 
 </div>
 </div>

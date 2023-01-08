@@ -66,6 +66,8 @@ ggplot(covid_cases, aes(x=dateRep, y=cases))+
 
 ```
 
+_Figure 11: Parametrised graph containing the COVID cases data in default settings._
+
 ```{r deaths graph}
 
 # Filter the necessary columns and change the datatype of dateRep.
@@ -85,6 +87,7 @@ ggplot(covid_deaths, aes(x=dateRep, y=deaths))+
 
 ```
 
+_Figure 12: Parametrised graph containing the COVID deaths data in default settings._
 ----
 
 ## Alter parameter settings {-}
@@ -95,10 +98,10 @@ A parametrised report makes it easy to change settings to have a different view 
      width="600" 
      height="400" />
      
-_Figure 10: Parametrised graph containing the COVID cases data._
+_Figure 13: Parametrised graph containing the COVID cases data._
 
 <img src="images/deaths_france.jpg"
      width="600" 
      height="400" />
      
-_Figure 11: Parametrised graph containing the COVID deaths data._
+_Figure 14: Parametrised graph containing the COVID deaths data._

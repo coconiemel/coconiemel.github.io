@@ -75,6 +75,8 @@ position = position_jitter(width = 0.5, height = 0.5, seed = 123)) +
 
 ```
 
+_Figure 1: Scatterplot of C. elegans offspring counts._
+
 For further analysing of the effect I would start by testing normality by performing a Shapiro-Wilk test. If unusual, I would normalise the data, if normal, I would start an ANOVA between de different conditions. I would end with the post-hoc tests, to check in what combination of groups the difference is.
 
 In this case, the data is not normal, so normalising is necessary.
@@ -104,6 +106,7 @@ position = position_jitter(width = 0.5, height = 0.5, seed = 150)) +
 
 ```
 
+_Figure 2: Normalised scatterplot of C. elegans offspring counts._
 ----
 
 ## Scoring reproducibility {-}
@@ -721,7 +724,7 @@ The full code is stated below, showing comments of changes I made to make it run
     )
 ```
 
-_Figure 1: Differences in Case fatality rate between countries._
+_Figure 3: Differences in Case fatality rate between countries._
 
 ```{r save plot}
   

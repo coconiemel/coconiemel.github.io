@@ -102,7 +102,7 @@ There was an important thing that stood out to me about the metadata. I will dis
      width="300" 
      height="800" />
 
-_Figure 4: SQL code of data inspection._   
+_Figure 6: SQL code of data inspection._   
 
 ```{r inspection}
 
@@ -122,7 +122,7 @@ For a good analysis of the different, but related data, they need to be joined t
      width="300" 
      height="900" />
      
-_Figure 5: SQL code of inner-join._
+_Figure 7: SQL code of inner-join._
    
 ```{r join}
 
@@ -302,7 +302,7 @@ gapminder_flu %>%
 
 ```
 
-_Figure 6: Bargraph of the amount of flu cases per continent._
+_Figure 8: Bargraph of the amount of flu cases per continent._
 
 ```{r visualisation2 flu}
 ggplot(flu_dengue, aes(x=year, y=flu_cases, group = country, color = country)) + 
@@ -315,7 +315,7 @@ ggplot(flu_dengue, aes(x=year, y=flu_cases, group = country, color = country)) +
 
 ```
 
-_Figure 7: Linegraph of average flu cases per year per country._
+_Figure 9: Linegraph of average flu cases per year per country._
 
 ### Dengue {-}
 
@@ -331,7 +331,7 @@ gapminder_dengue %>%
 
 ```
 
-_Figure 8: Bargraph of the amount of dengue cases per continent_
+_Figure 10: Bargraph of the amount of dengue cases per continent_
 
 ```{r visualisation2 dengue}
 ggplot(flu_dengue, aes(x=year, y=dengue_cases, group = country, color = country)) + 
@@ -344,4 +344,4 @@ ggplot(flu_dengue, aes(x=year, y=dengue_cases, group = country, color = country)
 
 ```
 
-_Figure 9: Linegraph of average dengue cases per year per country._
+_Figure 11: Linegraph of average dengue cases per year per country._
