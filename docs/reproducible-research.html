@@ -325,8 +325,8 @@ The normalizing step is to see if the offspring count increases or decreases rel
 <span id="cb6-8"><a href="reproducible-research.html#cb6-8" aria-hidden="true" tabindex="-1"></a>repita_criteria_tab <span class="ot">&lt;-</span> <span class="fu">as.table</span>(repita_criteria_tab)</span>
 <span id="cb6-9"><a href="reproducible-research.html#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-10"><a href="reproducible-research.html#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Design and view table </span></span>
-<span id="cb6-11"><a href="reproducible-research.html#cb6-11" aria-hidden="true" tabindex="-1"></a>repita_criteria_tab <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Table 1: The Repita criteria with answers concerning the article above.&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">latex_options =</span> <span class="st">&quot;striped&quot;</span>)</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<span id="cb6-11"><a href="reproducible-research.html#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(repita_criteria_tab, <span class="at">caption =</span> <span class="st">&quot;Table 1: The Repita criteria with answers concerning the article above.&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F)</span></code></pre></div>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 (#tab:repita scoring table)Table 1: The Repita criteria with answers concerning the article above.
 </caption>

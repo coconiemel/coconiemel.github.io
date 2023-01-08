@@ -130,7 +130,7 @@ colnames(repita_criteria_tab) <- c('Transparency criteria', 'Score')
 repita_criteria_tab <- as.table(repita_criteria_tab)
 
 # Design and view table 
-repita_criteria_tab %>% kable(caption = "Table 1: The Repita criteria with answers concerning the article above.") %>% kable_styling(latex_options = "striped")
+kbl(repita_criteria_tab, caption = "Table 1: The Repita criteria with answers concerning the article above.") %>% kable_styling(bootstrap_options = "striped", full_width = F)
 
 ```
 
