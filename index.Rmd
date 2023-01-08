@@ -64,7 +64,7 @@ library(scales)
 
 <img src="images/resume.jpg"
      width="400" 
-     height="400" />
+     height="400"/>
 
 ----
 
