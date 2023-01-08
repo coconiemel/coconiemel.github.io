@@ -88,6 +88,7 @@ ggplot(covid_deaths, aes(x=dateRep, y=deaths))+
 ```
 
 _Figure 12: Parametrised graph containing the COVID deaths data in default settings._
+
 ----
 
 ## Alter parameter settings {-}
