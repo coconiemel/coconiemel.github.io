@@ -14,37 +14,37 @@ text-align: center;
 }
 
 p {
-  color: #002070;
+  color: #FFFFFF; /* Wit */
 }
 
-.book .book-header,.book .book-summary {
-font-family: Garamond, serif;
+.book .book-header, .book .book-summary {
+  font-family: Garamond, serif;
 }
 
 .book .book-summary {
-color:#D5EEC3;
-background:#8FBED1;
+  color: #FFFFFF; /* Wit */
+  background: #0A1F44; /* Donkerblauw */
 }
 
-.book .book-summary ul.summary li a,.book .book-summary ul.summary li span {
-color:#D5EEC3;
+.book .book-summary ul.summary li a, .book .book-summary ul.summary li span {
+  color: #FFFFFF; /* Wit */
 }
 
-.book .book-summary ul.summary li a:hover,.book .book-summary ul.summary li.active>a {
-color:#002070;
+.book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active > a {
+  color: #AFCBFF; /* Lichter blauw voor hover effect */
 }
 
 .book .book-body {
-color:#D5EEC3;
-background:#D5EEC3;
+  color: #FFFFFF; /* Wit */
+  background: #0A1F44; /* Donkerblauw */
 }
 
 .book .book-body .page-wrapper .page-inner section.normal {
-color:#002070;
+  color: #FFFFFF; /* Wit */
 }
 
 .book .book-body .page-wrapper .page-inner section.normal a {
-color:#8FBED1;
+  color: #AFCBFF; /* Lichter blauw voor links */
 }
 
 .book .book-body .page-wrapper .page-inner section.normal hr {
