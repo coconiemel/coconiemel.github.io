@@ -1,11 +1,10 @@
 # Portfolio of Coco Niemel
 
 ## General Information
-The project is a collection of different assignments collected in a portfolio site. It contains a resume and shows how I take on different sides of workflows and data analysis. 
-It is part of the Workflows course from the minor Data science for biology at Utrecht university of applied sciences.
+The project is a collection of different assignments collected in a portfolio site. It shows how I take on different sides of workflows and data analysis. 
+It is part of the Workflows course from the minor Data science for biology at Utrecht university of applied sciences (2023).
 
 ## Table of Contents
-* Curriculum Vitae
 * Reproducible research
 * Data management
 * A phylogenetic analysis
